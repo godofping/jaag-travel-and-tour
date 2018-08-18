@@ -9,7 +9,7 @@
     <meta name="description" content="bootstrap material admin template">
     <meta name="author" content="">
     
-    <title>Travel and Tours Admin Dashboard</title>
+    <title>JAAG Travel and Tours and Van Rental Admin Dashboard</title>
     
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -69,13 +69,9 @@
         </button>
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
           <img class="navbar-brand-logo" src="assets/images/logo.png" title="Remark">
-          <span class="navbar-brand-text hidden-xs-down"> Remark</span>
+          <span class="navbar-brand-text hidden-xs-down"> JAAG DASHBOARD</span>
         </div>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
-          data-toggle="collapse">
-          <span class="sr-only">Toggle Search</span>
-          <i class="icon md-search" aria-hidden="true"></i>
-        </button>
+     
       </div>
     
       <div class="navbar-container container-fluid">
