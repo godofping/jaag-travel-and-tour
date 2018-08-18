@@ -11,13 +11,13 @@
     
     <title>Travel and Tours Admin Dashboard</title>
     
-    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
-    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../global/css/bootstrap.min.css">
     <link rel="stylesheet" href="../global/css/bootstrap-extend.min.css">
-    <link rel="stylesheet" href="../assets/css/site.min.css">
+    <link rel="stylesheet" href="assets/css/site.min.css">
     
     <!-- Plugins -->
     <link rel="stylesheet" href="../global/vendor/animsition/animsition.css">
@@ -68,7 +68,7 @@
           <i class="icon md-more" aria-hidden="true"></i>
         </button>
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-          <img class="navbar-brand-logo" src="../assets/images/logo.png" title="Remark">
+          <img class="navbar-brand-logo" src="assets/images/logo.png" title="Remark">
           <span class="navbar-brand-text hidden-xs-down"> Remark</span>
         </div>
         <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
@@ -1263,18 +1263,18 @@
     <script src="../global/js/Base.js"></script>
     <script src="../global/js/Config.js"></script>
     
-    <script src="../assets/js/Section/Menubar.js"></script>
-    <script src="../assets/js/Section/Sidebar.js"></script>
-    <script src="../assets/js/Section/PageAside.js"></script>
-    <script src="../assets/js/Section/GridMenu.js"></script>
+    <script src="assets/js/Section/Menubar.js"></script>
+    <script src="assets/js/Section/Sidebar.js"></script>
+    <script src="assets/js/Section/PageAside.js"></script>
+    <script src="assets/js/Section/GridMenu.js"></script>
     
     <!-- Config -->
     <script src="../global/js/config/colors.js"></script>
-    <script src="../assets/js/config/tour.js"></script>
-    <script>Config.set('assets', '../assets');</script>
+    <script src="assets/js/config/tour.js"></script>
+    <script>Config.set('assets', 'assets');</script>
     
     <!-- Page -->
-    <script src="../assets/js/Site.js"></script>
+    <script src="assets/js/Site.js"></script>
     <script src="../global/js/Plugin/asscrollable.js"></script>
     <script src="../global/js/Plugin/slidepanel.js"></script>
     <script src="../global/js/Plugin/switchery.js"></script>
