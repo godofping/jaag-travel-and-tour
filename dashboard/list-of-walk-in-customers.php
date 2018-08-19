@@ -20,7 +20,7 @@ include("includes/side-menu.php");
         <!-- Panel Table Tools -->
         <div class="panel">
           <header class="panel-heading">
-            <h3 class="panel-title">Table Tools</h3>
+            <h3 class="panel-title"></h3>
           </header>
           <div class="panel-body">
             <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
