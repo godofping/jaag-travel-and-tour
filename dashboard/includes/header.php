@@ -26,7 +26,11 @@
     <link rel="stylesheet" href="global/vendor/jquery-mmenu/jquery-mmenu.css">
     <link rel="stylesheet" href="global/vendor/flag-icon-css/flag-icon.css">
     <link rel="stylesheet" href="global/vendor/waves/waves.css">
-    
+    <link rel="stylesheet" href="global/vendor/chartist/chartist.css">
+    <link rel="stylesheet" href="global/vendor/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="assets/examples/css/dashboard/v1.css">
+
     
     <!-- Fonts -->
     <link rel="stylesheet" href="global/fonts/material-design/material-design.min.css">

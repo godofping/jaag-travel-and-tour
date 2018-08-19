@@ -7,12 +7,6 @@
               </a>
         </li>
         
-        <li class="site-menu-item">
-          <a class="animsition-link" href="packages.php">
-                  <i class="site-menu-icon md-landscape" aria-hidden="true"></i>
-                  <span class="site-menu-title">Packages</span>
-              </a>
-        </li>
 
         <li class="site-menu-item">
           <a class="animsition-link" href="booked.php">
