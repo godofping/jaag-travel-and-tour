@@ -1,4 +1,8 @@
-
+<?php 
+if (isset($_SESSION['adminId'])) {
+  header("Location: home.php");
+}
+ ?>
 <!DOCTYPE html>
 <html class="no-js css-menubar" lang="en">
   <head>
@@ -28,6 +32,8 @@
     <link rel="stylesheet" href="global/vendor/flag-icon-css/flag-icon.css">
     <link rel="stylesheet" href="global/vendor/waves/waves.css">
         <link rel="stylesheet" href="assets/examples/css/pages/login-v2.css">
+        <link rel="stylesheet" href="global/vendor/toastr/toastr.css">
+        <link rel="stylesheet" href="assets/examples/css/advanced/toastr.css">
     
     
     <!-- Fonts -->
@@ -43,12 +49,20 @@
     <script src="global/vendor/media-match/media.match.min.js"></script>
     <script src="global/vendor/respond/respond.min.js"></script>
     <![endif]-->
+
+
+    
+
     
     <!-- Scripts -->
     <script src="global/vendor/breakpoints/breakpoints.js"></script>
     <script>
       Breakpoints();
     </script>
+
+
+
+
   </head>
   <body class="animsition page-login-v2 layout-full page-dark">
     <!--[if lt IE 8]>
@@ -72,10 +86,12 @@
             <img class="brand-img" src="assets/images/logo-colored@2x.png" alt="...">
             <h3 class="brand-text font-size-40">Jaag Travel and Tours</h3>
           </div>
+
+
           <h3 class="font-size-30">Sign In</h3>
           <p>Only authorized users can login.</p>
 
-          <form method="post" action="login-v2.html" autocomplete="off">
+          <form method="post" action="controller.php" autocomplete="off">
             <div class="form-group form-material floating" data-plugin="formMaterial">
               <input type="text" class="form-control empty" id="userName" name="userName">
               <label class="floating-label" for="userName">Username</label>
@@ -84,11 +100,9 @@
               <input type="password" class="form-control empty" id="passWord" name="passWord">
               <label class="floating-label" for="passWord">Password</label>
             </div>
-     
+            <input type="terxt" name="from" value="login" hidden="">
             <button type="submit" class="btn btn-primary btn-block">Sign in</button>
           </form>
-
-   
 
           <footer class="page-copyright">
             <p>WEBSITE BY STI</p>
@@ -130,6 +144,7 @@
     <script src="global/vendor/screenfull/screenfull.js"></script>
     <script src="global/vendor/slidepanel/jquery-slidePanel.js"></script>
         <script src="global/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+        <script src="global/vendor/toastr/toastr.js"></script>
     
     <!-- Scripts -->
     <script src="global/js/Component.js"></script>
@@ -154,6 +169,7 @@
     <script src="global/js/Plugin/switchery.js"></script>
         <script src="global/js/Plugin/jquery-placeholder.js"></script>
         <script src="global/js/Plugin/material.js"></script>
+        <script src="global/js/Plugin/toastr.js"></script>
     
     <script>
       (function(document, window, $){
@@ -165,6 +181,14 @@
         });
       })(document, window, jQuery);
     </script>
+
+    <?php if (isset($_GET['login']) and $_GET['login'] == 'failed'): ?>
+        <script>
+  $(document).ready(function(){
+   toastr["error"]("Login Failed! Incorrect username and/or password.", "Error");
+  });
+</script>
+    <?php endif ?>
     
   </body>
 </html>
