@@ -93,11 +93,11 @@ if (isset($_SESSION['adminId'])) {
 
           <form method="post" action="controller.php" autocomplete="off">
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="text" class="form-control empty" id="userName" name="userName">
+              <input type="text" class="form-control empty" id="userName" name="userName" required="">
               <label class="floating-label" for="userName">Username</label>
             </div>
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="password" class="form-control empty" id="passWord" name="passWord">
+              <input type="password" class="form-control empty" id="passWord" name="passWord" required=""> 
               <label class="floating-label" for="passWord">Password</label>
             </div>
             <input type="terxt" name="from" value="login" hidden="">
