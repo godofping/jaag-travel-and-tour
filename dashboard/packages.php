@@ -7,7 +7,7 @@ include("includes/side-menu.php");
     <!-- Page -->
     <div class="page">
       <div class="page-content">
-        <h2>Blank</h2>
+        <h2>Packages</h2>
         <p>Page content goes here</p>
       </div>
     </div>
