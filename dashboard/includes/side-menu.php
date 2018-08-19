@@ -7,6 +7,20 @@
               </a>
         </li>
         
+         <li class="site-menu-item has-sub">
+          <a href="javascript:void(0)">
+            <i class="site-menu-icon md-book" aria-hidden="true"></i>
+            <span class="site-menu-title">Van Rental</span>
+            <span class="site-menu-arrow"></span>
+          </a>
+          <ul class="site-menu-sub">
+            <li class="site-menu-item">
+              <a class="animsition-link" href="list-of-booking-schedules.php">
+                <span class="site-menu-title">List of Vans</span>
+              </a>
+            </li>
+          </ul>
+        </li>
 
         <li class="site-menu-item">
           <a class="animsition-link" href="booked.php">
