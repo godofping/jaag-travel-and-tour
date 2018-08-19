@@ -189,6 +189,14 @@ if (isset($_SESSION['adminId'])) {
   });
 </script>
     <?php endif ?>
+
+    <?php if (isset($_GET['login']) and $_GET['login'] == 'logout'): ?>
+        <script>
+  $(document).ready(function(){
+   toastr["success"]("Successfully Logout!", "Message");
+  });
+</script>
+    <?php endif ?>
     
   </body>
 </html>
