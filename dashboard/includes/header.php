@@ -110,12 +110,21 @@
          
           </ul>
           <!-- End Navbar Toolbar -->
+
+
+          <?php 
+          $qry = mysqli_query($connection, "select * from admin_view where adminId = '" . $_SESSION['adminId'] . "'");
+          $res = mysqli_fetch_assoc($qry);
+
+
+           ?>
     
           <!-- Navbar Toolbar Right -->
           <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
             <li class="nav-item">
               <a class="nav-link">
-                <span>Welcome, Name</span>
+                <span>Welcome, <?php echo $res['firstName'] . " " . $res['middleName'] . " " . $res['lastName']; ?></span>
+                
               </a>
               
             </li>
