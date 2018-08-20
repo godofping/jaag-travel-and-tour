@@ -125,13 +125,13 @@ CREATE TABLE `book_payment_transaction_table` (
   `modeOfPaymentId` int(6) DEFAULT NULL,
   `statusId` int(6) DEFAULT NULL,
   PRIMARY KEY (`bookPaymentTransactionId`),
-  KEY `FK_payment_transaction_table` (`bookId`),
   KEY `FK_payment_transaction_table3` (`modeOfPaymentId`),
-  KEY `FK_payment_transaction_table12` (`statusId`),
   KEY `FK_book_payment_transaction_table` (`amountId`),
   KEY `FK_book_payment_transaction_table34` (`datePaidId`),
-  CONSTRAINT `FK_payment_transaction_table` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`),
-  CONSTRAINT `FK_payment_transaction_table12` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`)
+  KEY `FK_payment_transaction_table12142535142563` (`statusId`),
+  KEY `FK_payment_transaction_table612536412653` (`bookId`),
+  CONSTRAINT `FK_payment_transaction_table12142535142563` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
+  CONSTRAINT `FK_payment_transaction_table612536412653` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `book_payment_transaction_table` */
@@ -465,12 +465,12 @@ CREATE TABLE `van_rental_payment_transaction_table` (
   `datePaidId` int(6) DEFAULT NULL,
   PRIMARY KEY (`vanRentalPaymentTransactionId`),
   KEY `FK_van_rental_payment_transaction_table1` (`amountId`),
-  KEY `FK_van_rental_payment_transaction_table` (`statusId`),
-  KEY `FK_van_rental_payment_transaction_tabl2` (`vanRentalId`),
   KEY `FK_van_rental_payment_transaction_table3` (`datePaidId`),
   KEY `FK_van_rental_payment_transaction_t13` (`modeOfPaymentId`),
-  CONSTRAINT `FK_van_rental_payment_transaction_tabl2` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`),
-  CONSTRAINT `FK_van_rental_payment_transaction_table` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`)
+  KEY `FK_van_rental_payment_transaction_tabl212335126` (`vanRentalId`),
+  KEY `FK_van_rental_payment_transaction12563412333` (`statusId`),
+  CONSTRAINT `FK_van_rental_payment_transaction12563412333` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
+  CONSTRAINT `FK_van_rental_payment_transaction_tabl212335126` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `van_rental_payment_transaction_table` */
