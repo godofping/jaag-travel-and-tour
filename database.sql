@@ -89,10 +89,10 @@ CREATE TABLE `announcement_media_table` (
   `mediaLocationId` int(6) DEFAULT NULL,
   `announcementId` int(6) DEFAULT NULL,
   PRIMARY KEY (`announcementMediaId`),
-  KEY `FK_media_table` (`mediaLocationId`),
   KEY `FK_announcement_media_table` (`announcementId`),
+  KEY `FK_media_table123123123` (`mediaLocationId`),
   CONSTRAINT `FK_announcement_media_table` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`),
-  CONSTRAINT `FK_media_table` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`)
+  CONSTRAINT `FK_media_table123123123` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `announcement_media_table` */
@@ -352,10 +352,10 @@ CREATE TABLE `package_media_table` (
   `mediaLocationId` int(6) DEFAULT NULL,
   `packageId` int(6) DEFAULT NULL,
   PRIMARY KEY (`packageMediaId`),
-  KEY `FK_package_media_table` (`mediaLocationId`),
   KEY `FK_package_media_table1` (`packageId`),
-  CONSTRAINT `FK_package_media_table` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`),
-  CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
+  KEY `FK_package_media_table123123123` (`mediaLocationId`),
+  CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
+  CONSTRAINT `FK_package_media_table123123123` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_media_table` */
@@ -445,9 +445,9 @@ CREATE TABLE `van_media_table` (
   `vanId` int(6) DEFAULT NULL,
   PRIMARY KEY (`vanMediaId`),
   KEY `FK_van_media_table` (`vanId`),
-  KEY `FK_van_media_table1` (`mediaLocationId`),
+  KEY `FK_van_media_table1123123123` (`mediaLocationId`),
   CONSTRAINT `FK_van_media_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
-  CONSTRAINT `FK_van_media_table1` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`)
+  CONSTRAINT `FK_van_media_table1123123123` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `van_media_table` */
