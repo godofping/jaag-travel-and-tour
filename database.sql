@@ -125,11 +125,14 @@ CREATE TABLE `book_payment_transaction_table` (
   `modeOfPaymentId` int(6) DEFAULT NULL,
   `statusId` int(6) DEFAULT NULL,
   PRIMARY KEY (`bookPaymentTransactionId`),
-  KEY `FK_payment_transaction_table3` (`modeOfPaymentId`),
-  KEY `FK_book_payment_transaction_table` (`amountId`),
-  KEY `FK_book_payment_transaction_table34` (`datePaidId`),
   KEY `FK_payment_transaction_table12142535142563` (`statusId`),
   KEY `FK_payment_transaction_table612536412653` (`bookId`),
+  KEY `FK_book_payment_transaction_tableas4d565a4sd` (`amountId`),
+  KEY `FK_book_payment_transaction_table23a4sd2as46as` (`datePaidId`),
+  KEY `FK_book_payment_transaction2a4s645asd_table` (`modeOfPaymentId`),
+  CONSTRAINT `FK_book_payment_transaction2a4s645asd_table` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`),
+  CONSTRAINT `FK_book_payment_transaction_table23a4sd2as46as` FOREIGN KEY (`datePaidId`) REFERENCES `date_paid_table` (`datePaidId`),
+  CONSTRAINT `FK_book_payment_transaction_tableas4d565a4sd` FOREIGN KEY (`amountId`) REFERENCES `amount_table` (`amountId`),
   CONSTRAINT `FK_payment_transaction_table12142535142563` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
   CONSTRAINT `FK_payment_transaction_table612536412653` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -464,12 +467,15 @@ CREATE TABLE `van_rental_payment_transaction_table` (
   `statusId` int(6) DEFAULT NULL,
   `datePaidId` int(6) DEFAULT NULL,
   PRIMARY KEY (`vanRentalPaymentTransactionId`),
-  KEY `FK_van_rental_payment_transaction_table1` (`amountId`),
-  KEY `FK_van_rental_payment_transaction_table3` (`datePaidId`),
-  KEY `FK_van_rental_payment_transaction_t13` (`modeOfPaymentId`),
   KEY `FK_van_rental_payment_transaction_tabl212335126` (`vanRentalId`),
   KEY `FK_van_rental_payment_transaction12563412333` (`statusId`),
+  KEY `FK_van_rental_payment_transaction_a6+5s4da4sdtable` (`amountId`),
+  KEY `FK_van_rent5as4d65al_payment_transaction_table` (`modeOfPaymentId`),
+  KEY `FK_van_rental_payment_trans54asd56action_table` (`datePaidId`),
+  CONSTRAINT `FK_van_rent5as4d65al_payment_transaction_table` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`),
+  CONSTRAINT `FK_van_rental_payment_trans54asd56action_table` FOREIGN KEY (`datePaidId`) REFERENCES `date_paid_table` (`datePaidId`),
   CONSTRAINT `FK_van_rental_payment_transaction12563412333` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
+  CONSTRAINT `FK_van_rental_payment_transaction_a6+5s4da4sdtable` FOREIGN KEY (`amountId`) REFERENCES `amount_table` (`amountId`),
   CONSTRAINT `FK_van_rental_payment_transaction_tabl212335126` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
