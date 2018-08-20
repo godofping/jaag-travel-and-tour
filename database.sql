@@ -68,6 +68,35 @@ CREATE TABLE `admin_table` (
 
 insert  into `admin_table`(`adminId`,`accountId`,`profileId`) values (1,1,4);
 
+/*Table structure for table `amount_table` */
+
+DROP TABLE IF EXISTS `amount_table`;
+
+CREATE TABLE `amount_table` (
+  `amountId` int(6) NOT NULL AUTO_INCREMENT,
+  `amount` double DEFAULT NULL,
+  PRIMARY KEY (`amountId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `amount_table` */
+
+/*Table structure for table `announcement_media_table` */
+
+DROP TABLE IF EXISTS `announcement_media_table`;
+
+CREATE TABLE `announcement_media_table` (
+  `announcementMediaId` int(6) NOT NULL AUTO_INCREMENT,
+  `mediaLocationId` int(6) DEFAULT NULL,
+  `announcementId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`announcementMediaId`),
+  KEY `FK_media_table` (`mediaLocationId`),
+  KEY `FK_announcement_media_table` (`announcementId`),
+  CONSTRAINT `FK_announcement_media_table` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`),
+  CONSTRAINT `FK_media_table` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `announcement_media_table` */
+
 /*Table structure for table `announcement_table` */
 
 DROP TABLE IF EXISTS `announcement_table`;
@@ -77,10 +106,38 @@ CREATE TABLE `announcement_table` (
   `announcementDescription` text,
   `datePosted` date DEFAULT NULL,
   `accountId` int(6) DEFAULT NULL,
-  PRIMARY KEY (`announcementId`)
+  PRIMARY KEY (`announcementId`),
+  KEY `FK_announcement_table1` (`accountId`),
+  CONSTRAINT `FK_announcement_table1` FOREIGN KEY (`accountId`) REFERENCES `account_table` (`accountId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `announcement_table` */
+
+/*Table structure for table `book_payment_transaction_table` */
+
+DROP TABLE IF EXISTS `book_payment_transaction_table`;
+
+CREATE TABLE `book_payment_transaction_table` (
+  `bookPaymentTransactionId` int(6) NOT NULL AUTO_INCREMENT,
+  `bookId` int(6) DEFAULT NULL,
+  `amountId` int(6) DEFAULT NULL,
+  `datePaidId` int(6) DEFAULT NULL,
+  `modeOfPaymentId` int(6) DEFAULT NULL,
+  `statusId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`bookPaymentTransactionId`),
+  KEY `FK_payment_transaction_table` (`bookId`),
+  KEY `FK_payment_transaction_table3` (`modeOfPaymentId`),
+  KEY `FK_payment_transaction_table12` (`statusId`),
+  KEY `FK_book_payment_transaction_table` (`amountId`),
+  KEY `FK_book_payment_transaction_table34` (`datePaidId`),
+  CONSTRAINT `FK_book_payment_transaction_table` FOREIGN KEY (`amountId`) REFERENCES `amount_table` (`amountId`),
+  CONSTRAINT `FK_book_payment_transaction_table34` FOREIGN KEY (`datePaidId`) REFERENCES `date_paid_table` (`datePaidId`),
+  CONSTRAINT `FK_payment_transaction_table` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`),
+  CONSTRAINT `FK_payment_transaction_table12` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
+  CONSTRAINT `FK_payment_transaction_table3` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `book_payment_transaction_table` */
 
 /*Table structure for table `book_table` */
 
@@ -114,15 +171,9 @@ CREATE TABLE `comment_table` (
   `comment` text,
   `customerId` int(6) DEFAULT NULL,
   `datePosted` date DEFAULT NULL,
-  `vanRentalId` int(6) DEFAULT NULL,
-  `packageId` int(6) DEFAULT NULL,
   PRIMARY KEY (`commentId`),
   KEY `FK_comment_table` (`customerId`),
-  KEY `FK_comment_table1` (`packageId`),
-  KEY `FK_comment_table12` (`vanRentalId`),
-  CONSTRAINT `FK_comment_table` FOREIGN KEY (`customerId`) REFERENCES `customer_table` (`customerId`),
-  CONSTRAINT `FK_comment_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
-  CONSTRAINT `FK_comment_table12` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`)
+  CONSTRAINT `FK_comment_table` FOREIGN KEY (`customerId`) REFERENCES `customer_table` (`customerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `comment_table` */
@@ -163,6 +214,18 @@ CREATE TABLE `customer_type_table` (
 
 insert  into `customer_type_table`(`customerTypeId`,`customerType`) values (1,'Walk In Customer'),(2,'Registered Customer');
 
+/*Table structure for table `date_paid_table` */
+
+DROP TABLE IF EXISTS `date_paid_table`;
+
+CREATE TABLE `date_paid_table` (
+  `datePaidId` int(6) NOT NULL AUTO_INCREMENT,
+  `datePaid` date DEFAULT NULL,
+  PRIMARY KEY (`datePaidId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `date_paid_table` */
+
 /*Table structure for table `departure_and_arrival_table` */
 
 DROP TABLE IF EXISTS `departure_and_arrival_table`;
@@ -183,8 +246,11 @@ DROP TABLE IF EXISTS `destination_table`;
 CREATE TABLE `destination_table` (
   `destinationId` int(6) NOT NULL AUTO_INCREMENT,
   `packageId` int(6) DEFAULT NULL,
+  `placeId` int(6) DEFAULT NULL,
   PRIMARY KEY (`destinationId`),
   KEY `FK_destination_table1` (`packageId`),
+  KEY `FK_destination_table` (`placeId`),
+  CONSTRAINT `FK_destination_table` FOREIGN KEY (`placeId`) REFERENCES `place_table` (`placeId`),
   CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -222,26 +288,6 @@ CREATE TABLE `exclusion_table` (
 
 /*Data for the table `exclusion_table` */
 
-/*Table structure for table `gallery_table` */
-
-DROP TABLE IF EXISTS `gallery_table`;
-
-CREATE TABLE `gallery_table` (
-  `galleryId` int(6) NOT NULL AUTO_INCREMENT,
-  `vanId` int(6) DEFAULT NULL,
-  `packageId` int(6) DEFAULT NULL,
-  `announcementId` int(6) DEFAULT NULL,
-  PRIMARY KEY (`galleryId`),
-  KEY `FK_gallery_table` (`vanId`),
-  KEY `FK_gallery_table1` (`packageId`),
-  KEY `FK_gallery_table12` (`announcementId`),
-  CONSTRAINT `FK_gallery_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
-  CONSTRAINT `FK_gallery_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
-  CONSTRAINT `FK_gallery_table12` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `gallery_table` */
-
 /*Table structure for table `inclusion_table` */
 
 DROP TABLE IF EXISTS `inclusion_table`;
@@ -257,21 +303,17 @@ CREATE TABLE `inclusion_table` (
 
 /*Data for the table `inclusion_table` */
 
-/*Table structure for table `media_table` */
+/*Table structure for table `media_location_table` */
 
-DROP TABLE IF EXISTS `media_table`;
+DROP TABLE IF EXISTS `media_location_table`;
 
-CREATE TABLE `media_table` (
-  `mediaId` int(6) NOT NULL AUTO_INCREMENT,
-  `mediaLocation` varchar(200) DEFAULT NULL,
-  `description` text,
-  `galleryId` int(6) DEFAULT NULL,
-  PRIMARY KEY (`mediaId`),
-  KEY `FK_media_table` (`galleryId`),
-  CONSTRAINT `FK_media_table` FOREIGN KEY (`galleryId`) REFERENCES `gallery_table` (`galleryId`)
+CREATE TABLE `media_location_table` (
+  `mediaLocationId` int(6) NOT NULL AUTO_INCREMENT,
+  `mediaLocation` text,
+  PRIMARY KEY (`mediaLocationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `media_table` */
+/*Data for the table `media_location_table` */
 
 /*Table structure for table `mode_of_payment_table` */
 
@@ -304,6 +346,23 @@ CREATE TABLE `notification_table` (
 
 /*Data for the table `notification_table` */
 
+/*Table structure for table `package_media_table` */
+
+DROP TABLE IF EXISTS `package_media_table`;
+
+CREATE TABLE `package_media_table` (
+  `packageMediaId` int(6) NOT NULL AUTO_INCREMENT,
+  `mediaLocationId` int(6) DEFAULT NULL,
+  `packageId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`packageMediaId`),
+  KEY `FK_package_media_table` (`mediaLocationId`),
+  KEY `FK_package_media_table1` (`packageId`),
+  CONSTRAINT `FK_package_media_table` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`),
+  CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `package_media_table` */
+
 /*Table structure for table `package_table` */
 
 DROP TABLE IF EXISTS `package_table`;
@@ -322,31 +381,6 @@ CREATE TABLE `package_table` (
 
 /*Data for the table `package_table` */
 
-/*Table structure for table `payment_transaction_table` */
-
-DROP TABLE IF EXISTS `payment_transaction_table`;
-
-CREATE TABLE `payment_transaction_table` (
-  `paymentTransactionId` int(6) NOT NULL AUTO_INCREMENT,
-  `bookId` int(6) DEFAULT NULL,
-  `amount` double DEFAULT NULL,
-  `datePaid` date DEFAULT NULL,
-  `vanRentalId` int(6) DEFAULT NULL,
-  `modeOfPaymentId` int(6) DEFAULT NULL,
-  `statusId` int(6) DEFAULT NULL,
-  PRIMARY KEY (`paymentTransactionId`),
-  KEY `FK_payment_transaction_table` (`bookId`),
-  KEY `FK_payment_transaction_table1` (`vanRentalId`),
-  KEY `FK_payment_transaction_table3` (`modeOfPaymentId`),
-  KEY `FK_payment_transaction_table12` (`statusId`),
-  CONSTRAINT `FK_payment_transaction_table` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`),
-  CONSTRAINT `FK_payment_transaction_table1` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`),
-  CONSTRAINT `FK_payment_transaction_table12` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
-  CONSTRAINT `FK_payment_transaction_table3` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `payment_transaction_table` */
-
 /*Table structure for table `place_table` */
 
 DROP TABLE IF EXISTS `place_table`;
@@ -355,10 +389,7 @@ CREATE TABLE `place_table` (
   `placeId` int(6) NOT NULL AUTO_INCREMENT,
   `placeName` varchar(60) DEFAULT NULL,
   `mapLocationCoordinate` varchar(60) DEFAULT NULL,
-  `destinationId` int(6) DEFAULT NULL,
-  PRIMARY KEY (`placeId`),
-  KEY `FK_place_table` (`destinationId`),
-  CONSTRAINT `FK_place_table` FOREIGN KEY (`destinationId`) REFERENCES `destination_table` (`destinationId`)
+  PRIMARY KEY (`placeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `place_table` */
@@ -406,6 +437,49 @@ CREATE TABLE `status_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `status_table` */
+
+/*Table structure for table `van_media_table` */
+
+DROP TABLE IF EXISTS `van_media_table`;
+
+CREATE TABLE `van_media_table` (
+  `vanMediaId` int(6) NOT NULL AUTO_INCREMENT,
+  `mediaLocationId` int(6) DEFAULT NULL,
+  `vanId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`vanMediaId`),
+  KEY `FK_van_media_table` (`vanId`),
+  KEY `FK_van_media_table1` (`mediaLocationId`),
+  CONSTRAINT `FK_van_media_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
+  CONSTRAINT `FK_van_media_table1` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `van_media_table` */
+
+/*Table structure for table `van_rental_payment_transaction_table` */
+
+DROP TABLE IF EXISTS `van_rental_payment_transaction_table`;
+
+CREATE TABLE `van_rental_payment_transaction_table` (
+  `vanRentalPaymentTransactionId` int(6) NOT NULL AUTO_INCREMENT,
+  `vanRentalId` int(6) DEFAULT NULL,
+  `amountId` int(6) DEFAULT NULL,
+  `modeOfPaymentId` int(6) DEFAULT NULL,
+  `statusId` int(6) DEFAULT NULL,
+  `datePaidId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`vanRentalPaymentTransactionId`),
+  KEY `FK_van_rental_payment_transaction_table1` (`amountId`),
+  KEY `FK_van_rental_payment_transaction_table` (`statusId`),
+  KEY `FK_van_rental_payment_transaction_tabl2` (`vanRentalId`),
+  KEY `FK_van_rental_payment_transaction_table3` (`datePaidId`),
+  KEY `FK_van_rental_payment_transaction_t13` (`modeOfPaymentId`),
+  CONSTRAINT `FK_van_rental_payment_transaction_t13` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`),
+  CONSTRAINT `FK_van_rental_payment_transaction_tabl2` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`),
+  CONSTRAINT `FK_van_rental_payment_transaction_table` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
+  CONSTRAINT `FK_van_rental_payment_transaction_table1` FOREIGN KEY (`amountId`) REFERENCES `amount_table` (`amountId`),
+  CONSTRAINT `FK_van_rental_payment_transaction_table3` FOREIGN KEY (`datePaidId`) REFERENCES `date_paid_table` (`datePaidId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `van_rental_payment_transaction_table` */
 
 /*Table structure for table `van_rental_table` */
 
