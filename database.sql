@@ -92,14 +92,15 @@ CREATE TABLE `book_table` (
   `packageId` int(6) DEFAULT NULL,
   `dateBooked` date DEFAULT NULL,
   `statusId` int(6) DEFAULT NULL,
-  `departureDate` date DEFAULT NULL,
-  `arrivalDate` date DEFAULT NULL,
   `numberOfPax` int(6) DEFAULT NULL,
+  `departureAndArrivalId` int(6) DEFAULT NULL,
   PRIMARY KEY (`bookId`),
   KEY `FK_book_table` (`packageId`),
   KEY `FK_book_table1` (`statusId`),
+  KEY `FK_book_table12` (`departureAndArrivalId`),
   CONSTRAINT `FK_book_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
-  CONSTRAINT `FK_book_table1` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`)
+  CONSTRAINT `FK_book_table1` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
+  CONSTRAINT `FK_book_table12` FOREIGN KEY (`departureAndArrivalId`) REFERENCES `departure_and_arrival_table` (`departureAndArrivalId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `book_table` */
@@ -117,7 +118,11 @@ CREATE TABLE `comment_table` (
   `packageId` int(6) DEFAULT NULL,
   PRIMARY KEY (`commentId`),
   KEY `FK_comment_table` (`customerId`),
-  CONSTRAINT `FK_comment_table` FOREIGN KEY (`customerId`) REFERENCES `customer_table` (`customerId`)
+  KEY `FK_comment_table1` (`packageId`),
+  KEY `FK_comment_table12` (`vanRentalId`),
+  CONSTRAINT `FK_comment_table` FOREIGN KEY (`customerId`) REFERENCES `customer_table` (`customerId`),
+  CONSTRAINT `FK_comment_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
+  CONSTRAINT `FK_comment_table12` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `comment_table` */
@@ -157,6 +162,33 @@ CREATE TABLE `customer_type_table` (
 /*Data for the table `customer_type_table` */
 
 insert  into `customer_type_table`(`customerTypeId`,`customerType`) values (1,'Walk In Customer'),(2,'Registered Customer');
+
+/*Table structure for table `departure_and_arrival_table` */
+
+DROP TABLE IF EXISTS `departure_and_arrival_table`;
+
+CREATE TABLE `departure_and_arrival_table` (
+  `departureAndArrivalId` int(11) NOT NULL AUTO_INCREMENT,
+  `departureDate` date DEFAULT NULL,
+  `arrivalDate` date DEFAULT NULL,
+  PRIMARY KEY (`departureAndArrivalId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `departure_and_arrival_table` */
+
+/*Table structure for table `destination_table` */
+
+DROP TABLE IF EXISTS `destination_table`;
+
+CREATE TABLE `destination_table` (
+  `destinationId` int(6) NOT NULL AUTO_INCREMENT,
+  `packageId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`destinationId`),
+  KEY `FK_destination_table1` (`packageId`),
+  CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `destination_table` */
 
 /*Table structure for table `employee_table` */
 
@@ -202,10 +234,10 @@ CREATE TABLE `gallery_table` (
   PRIMARY KEY (`galleryId`),
   KEY `FK_gallery_table` (`vanId`),
   KEY `FK_gallery_table1` (`packageId`),
-  KEY `FK_gallery_table123` (`announcementId`),
+  KEY `FK_gallery_table12` (`announcementId`),
   CONSTRAINT `FK_gallery_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
   CONSTRAINT `FK_gallery_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
-  CONSTRAINT `FK_gallery_table123` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`)
+  CONSTRAINT `FK_gallery_table12` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `gallery_table` */
@@ -253,20 +285,38 @@ CREATE TABLE `mode_of_payment_table` (
 
 /*Data for the table `mode_of_payment_table` */
 
+/*Table structure for table `notification_table` */
+
+DROP TABLE IF EXISTS `notification_table`;
+
+CREATE TABLE `notification_table` (
+  `notificationId` int(6) NOT NULL AUTO_INCREMENT,
+  `notificationMessage` varchar(200) DEFAULT NULL,
+  `vanRentalId` int(6) DEFAULT NULL,
+  `bookId` int(6) DEFAULT NULL,
+  `isRead` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`notificationId`),
+  KEY `FK_notification_table` (`vanRentalId`),
+  KEY `FK_notification_table1` (`bookId`),
+  CONSTRAINT `FK_notification_table` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`),
+  CONSTRAINT `FK_notification_table1` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `notification_table` */
+
 /*Table structure for table `package_table` */
 
 DROP TABLE IF EXISTS `package_table`;
 
 CREATE TABLE `package_table` (
   `packageId` int(6) NOT NULL AUTO_INCREMENT,
-  `placeId` int(6) DEFAULT NULL,
+  `destinationId` int(6) DEFAULT NULL,
   `pax` int(6) DEFAULT NULL,
   `priceId` int(6) DEFAULT NULL,
   `packageDetails` text,
   PRIMARY KEY (`packageId`),
-  KEY `FK_booking_table` (`placeId`),
+  KEY `FK_booking_table` (`destinationId`),
   KEY `FK_package_table3` (`priceId`),
-  CONSTRAINT `FK_booking_table` FOREIGN KEY (`placeId`) REFERENCES `place_table` (`placeId`),
   CONSTRAINT `FK_package_table3` FOREIGN KEY (`priceId`) REFERENCES `price_table` (`priceId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -283,12 +333,15 @@ CREATE TABLE `payment_transaction_table` (
   `datePaid` date DEFAULT NULL,
   `vanRentalId` int(6) DEFAULT NULL,
   `modeOfPaymentId` int(6) DEFAULT NULL,
+  `statusId` int(6) DEFAULT NULL,
   PRIMARY KEY (`paymentTransactionId`),
   KEY `FK_payment_transaction_table` (`bookId`),
   KEY `FK_payment_transaction_table1` (`vanRentalId`),
   KEY `FK_payment_transaction_table3` (`modeOfPaymentId`),
+  KEY `FK_payment_transaction_table12` (`statusId`),
   CONSTRAINT `FK_payment_transaction_table` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`),
   CONSTRAINT `FK_payment_transaction_table1` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`),
+  CONSTRAINT `FK_payment_transaction_table12` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
   CONSTRAINT `FK_payment_transaction_table3` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -302,7 +355,10 @@ CREATE TABLE `place_table` (
   `placeId` int(6) NOT NULL AUTO_INCREMENT,
   `placeName` varchar(60) DEFAULT NULL,
   `mapLocationCoordinate` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`placeId`)
+  `destinationId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`placeId`),
+  KEY `FK_place_table` (`destinationId`),
+  CONSTRAINT `FK_place_table` FOREIGN KEY (`destinationId`) REFERENCES `destination_table` (`destinationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `place_table` */
@@ -361,11 +417,14 @@ CREATE TABLE `van_rental_table` (
   `customerId` int(6) DEFAULT NULL,
   `dateRented` date DEFAULT NULL,
   `statusId` int(6) DEFAULT NULL,
+  `departureAndArrivalId` int(6) DEFAULT NULL,
   PRIMARY KEY (`vanRentalId`),
   KEY `FK_van_rental_table` (`vanId`),
   KEY `FK_van_rental_table2` (`customerId`),
   KEY `FK_van_rental_table4` (`statusId`),
+  KEY `FK_van_rental_table12` (`departureAndArrivalId`),
   CONSTRAINT `FK_van_rental_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
+  CONSTRAINT `FK_van_rental_table12` FOREIGN KEY (`departureAndArrivalId`) REFERENCES `departure_and_arrival_table` (`departureAndArrivalId`),
   CONSTRAINT `FK_van_rental_table2` FOREIGN KEY (`customerId`) REFERENCES `customer_table` (`customerId`),
   CONSTRAINT `FK_van_rental_table4` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
