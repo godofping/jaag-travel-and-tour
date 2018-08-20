@@ -76,7 +76,7 @@ if (isset($_SESSION['adminId'])) {
         <div class="page-brand-info">
           <div class="brand">
             <img class="brand-img" src="assets/images/logo@2x.png" alt="...">
-            <h2 class="brand-text font-size-50">Jaag Travel and Tour</h2>
+            <h2 class="brand-text font-size-50">Jaag Travel and Tour and Van Rental</h2>
           </div>
           <p class="font-size-20">"we give you the best memory's you can kept for lasts. :)"</p>
         </div>
