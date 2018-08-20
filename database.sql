@@ -130,11 +130,8 @@ CREATE TABLE `book_payment_transaction_table` (
   KEY `FK_payment_transaction_table12` (`statusId`),
   KEY `FK_book_payment_transaction_table` (`amountId`),
   KEY `FK_book_payment_transaction_table34` (`datePaidId`),
-  CONSTRAINT `FK_book_payment_transaction_table` FOREIGN KEY (`amountId`) REFERENCES `amount_table` (`amountId`),
-  CONSTRAINT `FK_book_payment_transaction_table34` FOREIGN KEY (`datePaidId`) REFERENCES `date_paid_table` (`datePaidId`),
   CONSTRAINT `FK_payment_transaction_table` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`),
-  CONSTRAINT `FK_payment_transaction_table12` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
-  CONSTRAINT `FK_payment_transaction_table3` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`)
+  CONSTRAINT `FK_payment_transaction_table12` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `book_payment_transaction_table` */
@@ -472,11 +469,8 @@ CREATE TABLE `van_rental_payment_transaction_table` (
   KEY `FK_van_rental_payment_transaction_tabl2` (`vanRentalId`),
   KEY `FK_van_rental_payment_transaction_table3` (`datePaidId`),
   KEY `FK_van_rental_payment_transaction_t13` (`modeOfPaymentId`),
-  CONSTRAINT `FK_van_rental_payment_transaction_t13` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`),
   CONSTRAINT `FK_van_rental_payment_transaction_tabl2` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`),
-  CONSTRAINT `FK_van_rental_payment_transaction_table` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
-  CONSTRAINT `FK_van_rental_payment_transaction_table1` FOREIGN KEY (`amountId`) REFERENCES `amount_table` (`amountId`),
-  CONSTRAINT `FK_van_rental_payment_transaction_table3` FOREIGN KEY (`datePaidId`) REFERENCES `date_paid_table` (`datePaidId`)
+  CONSTRAINT `FK_van_rental_payment_transaction_table` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `van_rental_payment_transaction_table` */
