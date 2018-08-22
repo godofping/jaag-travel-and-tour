@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v8.53 
-MySQL - 5.5.5-10.1.33-MariaDB : Database - ottmbs_db
+MySQL - 5.5.5-10.1.34-MariaDB : Database - ottmbs_db
 *********************************************************************
 */
 
@@ -43,11 +43,11 @@ CREATE TABLE `address_table` (
   `street` varchar(60) DEFAULT NULL,
   `buildingNumber` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`addressId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `address_table` */
 
-insert  into `address_table`(`addressId`,`province`,`city`,`barangay`,`street`,`buildingNumber`) values (1,'Sultan Kudarat','Tacurong City','Poblacion','Malvar Street','22'),(2,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','44'),(3,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','65');
+insert  into `address_table`(`addressId`,`province`,`city`,`barangay`,`street`,`buildingNumber`) values (1,'Sultan Kudarat','Tacurong City','Poblacion','Malvar Street','22'),(2,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','44'),(3,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','65'),(4,'walk in custoemr','walk in custoemr','walk in custoemr','walk in custoemr','walk in custoemr');
 
 /*Table structure for table `admin_table` */
 
@@ -198,7 +198,7 @@ CREATE TABLE `customer_table` (
 
 /*Data for the table `customer_table` */
 
-insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerTypeId`) values (1,1,2,2),(2,2,NULL,1);
+insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerTypeId`) values (1,1,2,2),(2,5,4,1);
 
 /*Table structure for table `customer_type_table` */
 
@@ -288,6 +288,26 @@ CREATE TABLE `exclusion_table` (
 
 /*Data for the table `exclusion_table` */
 
+/*Table structure for table `gallery_table` */
+
+DROP TABLE IF EXISTS `gallery_table`;
+
+CREATE TABLE `gallery_table` (
+  `galleryId` int(6) NOT NULL AUTO_INCREMENT,
+  `vanId` int(6) DEFAULT NULL,
+  `packageId` int(6) DEFAULT NULL,
+  `announcementId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`galleryId`),
+  KEY `FK_gallery_table` (`vanId`),
+  KEY `FK_gallery_table1` (`packageId`),
+  KEY `FK_gallery_table12` (`announcementId`),
+  CONSTRAINT `FK_gallery_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
+  CONSTRAINT `FK_gallery_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
+  CONSTRAINT `FK_gallery_table12` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `gallery_table` */
+
 /*Table structure for table `inclusion_table` */
 
 DROP TABLE IF EXISTS `inclusion_table`;
@@ -314,6 +334,22 @@ CREATE TABLE `media_location_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `media_location_table` */
+
+/*Table structure for table `media_table` */
+
+DROP TABLE IF EXISTS `media_table`;
+
+CREATE TABLE `media_table` (
+  `mediaId` int(6) NOT NULL AUTO_INCREMENT,
+  `mediaLocation` varchar(200) DEFAULT NULL,
+  `description` text,
+  `galleryId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`mediaId`),
+  KEY `FK_media_table` (`galleryId`),
+  CONSTRAINT `FK_media_table` FOREIGN KEY (`galleryId`) REFERENCES `gallery_table` (`galleryId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `media_table` */
 
 /*Table structure for table `mode_of_payment_table` */
 
@@ -381,6 +417,31 @@ CREATE TABLE `package_table` (
 
 /*Data for the table `package_table` */
 
+/*Table structure for table `payment_transaction_table` */
+
+DROP TABLE IF EXISTS `payment_transaction_table`;
+
+CREATE TABLE `payment_transaction_table` (
+  `paymentTransactionId` int(6) NOT NULL AUTO_INCREMENT,
+  `bookId` int(6) DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `datePaid` date DEFAULT NULL,
+  `vanRentalId` int(6) DEFAULT NULL,
+  `modeOfPaymentId` int(6) DEFAULT NULL,
+  `statusId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`paymentTransactionId`),
+  KEY `FK_payment_transaction_table` (`bookId`),
+  KEY `FK_payment_transaction_table1` (`vanRentalId`),
+  KEY `FK_payment_transaction_table3` (`modeOfPaymentId`),
+  KEY `FK_payment_transaction_table12` (`statusId`),
+  CONSTRAINT `FK_payment_transaction_table` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`),
+  CONSTRAINT `FK_payment_transaction_table1` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`),
+  CONSTRAINT `FK_payment_transaction_table12` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`),
+  CONSTRAINT `FK_payment_transaction_table3` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `payment_transaction_table` */
+
 /*Table structure for table `place_table` */
 
 DROP TABLE IF EXISTS `place_table`;
@@ -420,11 +481,11 @@ CREATE TABLE `profile_table` (
   PRIMARY KEY (`profileId`),
   KEY `FK_profile_table` (`addressId`),
   CONSTRAINT `FK_profile_table` FOREIGN KEY (`addressId`) REFERENCES `address_table` (`addressId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `profile_table` */
 
-insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`addressId`,`contactNumber`) values (1,'toto','panizal','oracoy',1,'09754142411'),(2,'tata','natividad','evanz',2,'09368585441'),(4,'admin','admin','admin',3,'09754363944');
+insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`addressId`,`contactNumber`) values (1,'toto','panizal','oracoy',1,'09754142411'),(2,'tata','natividad','evanz',2,'09368585441'),(4,'admin','admin','admin',3,'09754363944'),(5,'walkin ','walkkinnn','walkkinn',4,'09754352222');
 
 /*Table structure for table `status_table` */
 
@@ -548,12 +609,46 @@ DROP TABLE IF EXISTS `admin_view`;
  `buildingNumber` varchar(60) 
 )*/;
 
+/*Table structure for table `customer_view` */
+
+DROP TABLE IF EXISTS `customer_view`;
+
+/*!50001 DROP VIEW IF EXISTS `customer_view` */;
+/*!50001 DROP TABLE IF EXISTS `customer_view` */;
+
+/*!50001 CREATE TABLE  `customer_view`(
+ `customerId` int(6) ,
+ `profileId` int(6) ,
+ `accountId` int(6) ,
+ `customerTypeId` int(6) ,
+ `userName` varchar(60) ,
+ `passWord` varchar(60) ,
+ `customerType` varchar(60) ,
+ `firstName` varchar(60) ,
+ `middleName` varchar(60) ,
+ `lastName` varchar(60) ,
+ `addressId` int(6) ,
+ `contactNumber` varchar(60) ,
+ `province` varchar(60) ,
+ `city` varchar(60) ,
+ `barangay` varchar(60) ,
+ `street` varchar(60) ,
+ `buildingNumber` varchar(60) 
+)*/;
+
 /*View structure for view admin_view */
 
 /*!50001 DROP TABLE IF EXISTS `admin_view` */;
 /*!50001 DROP VIEW IF EXISTS `admin_view` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `admin_view` AS select `admin_table`.`adminId` AS `adminId`,`admin_table`.`accountId` AS `accountId`,`admin_table`.`profileId` AS `profileId`,`account_table`.`userName` AS `userName`,`account_table`.`passWord` AS `passWord`,`profile_table`.`firstName` AS `firstName`,`profile_table`.`middleName` AS `middleName`,`profile_table`.`lastName` AS `lastName`,`profile_table`.`addressId` AS `addressId`,`profile_table`.`contactNumber` AS `contactNumber`,`address_table`.`province` AS `province`,`address_table`.`city` AS `city`,`address_table`.`barangay` AS `barangay`,`address_table`.`street` AS `street`,`address_table`.`buildingNumber` AS `buildingNumber` from (((`admin_table` join `account_table` on((`admin_table`.`accountId` = `account_table`.`accountId`))) join `profile_table` on((`admin_table`.`profileId` = `profile_table`.`profileId`))) join `address_table` on((`profile_table`.`addressId` = `address_table`.`addressId`))) */;
+
+/*View structure for view customer_view */
+
+/*!50001 DROP TABLE IF EXISTS `customer_view` */;
+/*!50001 DROP VIEW IF EXISTS `customer_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customer_view` AS select `customer_table`.`customerId` AS `customerId`,`customer_table`.`profileId` AS `profileId`,`customer_table`.`accountId` AS `accountId`,`customer_table`.`customerTypeId` AS `customerTypeId`,`account_table`.`userName` AS `userName`,`account_table`.`passWord` AS `passWord`,`customer_type_table`.`customerType` AS `customerType`,`profile_table`.`firstName` AS `firstName`,`profile_table`.`middleName` AS `middleName`,`profile_table`.`lastName` AS `lastName`,`profile_table`.`addressId` AS `addressId`,`profile_table`.`contactNumber` AS `contactNumber`,`address_table`.`province` AS `province`,`address_table`.`city` AS `city`,`address_table`.`barangay` AS `barangay`,`address_table`.`street` AS `street`,`address_table`.`buildingNumber` AS `buildingNumber` from ((((`customer_table` join `profile_table` on((`customer_table`.`profileId` = `profile_table`.`profileId`))) join `account_table` on((`customer_table`.`accountId` = `account_table`.`accountId`))) join `customer_type_table` on((`customer_table`.`customerTypeId` = `customer_type_table`.`customerTypeId`))) join `address_table` on((`profile_table`.`addressId` = `address_table`.`addressId`))) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

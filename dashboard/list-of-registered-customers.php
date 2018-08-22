@@ -12,7 +12,7 @@ include("includes/side-menu.php");
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
           <li class="breadcrumb-item active">Customers</li>
         </ol>
-        <h1 class="page-title">Walk-in Customers</h1>
+        <h1 class="page-title">Registered Customers</h1>
         
       </div>
 
@@ -59,7 +59,7 @@ include("includes/side-menu.php");
               <tbody>
 
                 <?php 
-                $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 1");
+                $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 2");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
                   <td><?php echo $res['firstName']; ?></td>
