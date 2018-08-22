@@ -25,7 +25,10 @@ include("includes/side-menu.php");
           <div class="panel-body">
             
           <div class="row pb-20">
-            <div class="col-md-12"> <button type="button" class="btn btn-success"><i class="icon md-edit" aria-hidden="true"></i>Add Walk-in Customer</button></div>
+            <div class="col-md-12"> 
+              <button class="btn btn-success" data-target="#addModal" data-toggle="modal"
+                      type="button">Add</button>
+            </div>
 
           </div>
 
@@ -45,6 +48,7 @@ include("includes/side-menu.php");
                   <th>Barangay</th>
                   <th>City</th>
                   <th>Province</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tfoot>
@@ -58,6 +62,7 @@ include("includes/side-menu.php");
                   <th>Barangay</th>
                   <th>City</th>
                   <th>Province</th>
+                  <th>Actions</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -75,6 +80,7 @@ include("includes/side-menu.php");
                   <td><?php echo $res['barangay']; ?></td>
                   <td><?php echo $res['city']; ?></td>
                   <td><?php echo $res['province']; ?></td>
+                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
                 </tr>
                 <?php } ?>
               </tbody>
@@ -90,6 +96,104 @@ include("includes/side-menu.php");
       </div>
     </div>
     <!-- End Page -->
+
+
+    <!-- Modal -->
+    <div class="modal fade modal-fill-in" id="addModal" aria-hidden="false" aria-labelledby="addModal0"
+      role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-simple">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Add Walk-in customer</h3>
+          </div>
+          <div class="modal-body">
+            <form autocomplete="off">
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                      <label class="form-control-label" for="firstName">First Name</label>
+                      <input type="text" class="form-control" id="firstName" name="firstName"  required="" />
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                      <label class="form-control-label" for="middleName">Middle Name</label>
+                      <input type="text" class="form-control" id="middleName" name="middleName"  required="" />
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                      <label class="form-control-label" for="lastName">Last Name</label>
+                      <input type="text" class="form-control" id="lastName" name="lastName"  required="" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="contactNumber">Contact Number</label>
+                        <input type="text" class="form-control" id="contactNumber" name="contactNumber" required="" />
+                     </div>
+                    </div>
+
+                    <div class="col-md-4">
+                       <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="buildingNumber">Building Number</label>
+                        <input type="text" class="form-control" id="buildingNumber" name="buildingNumber"/>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="street">Street</label>
+                        <input type="text" class="form-control" id="street" name="street" required="" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="barangay">Barangay</label>
+                        <input type="text" class="form-control" id="barangay" name="barangay" required="" />
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required="" />
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="province">Province</label>
+                        <input type="text" class="form-control" id="province" name="province" required="" />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button class="btn btn-success">Submit</button>
+                    </div>
+                  </div>
+                 
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
 
  
 <?php 

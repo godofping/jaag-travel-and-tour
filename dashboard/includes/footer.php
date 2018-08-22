@@ -44,6 +44,7 @@
         <script src="global/vendor/datatables.net-buttons-bs4/buttons.bootstrap4.js"></script>
         <script src="global/vendor/asrange/jquery-asRange.min.js"></script>
         <script src="global/vendor/bootbox/bootbox.js"></script>
+        <script src="global/vendor/jquery-placeholder/jquery.placeholder.js"></script>
 
     <!-- Scripts -->
     <script src="global/js/Component.js"></script>
@@ -75,6 +76,8 @@
       <script src="global/js/Plugin/datatables.js"></script>
         <script src="assets/examples/js/tables/datatable.js"></script>
         <script src="assets/examples/js/uikit/icon.js"></script>
+        <script src="global/js/Plugin/jquery-placeholder.js"></script>
+        <script src="global/js/Plugin/material.js"></script>
 
     
     <script>
