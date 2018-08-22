@@ -23,7 +23,11 @@ include("includes/side-menu.php");
             <h3 class="panel-title"></h3>
           </header>
           <div class="panel-body">
-          
+            
+          <div class="row pb-20">
+            <div class="col-md-12"> <button type="button" class="btn btn-success"><i class="icon md-edit" aria-hidden="true"></i>Add Walk-in Customer</button></div>
+
+          </div>
 
 
             <div class="row">
