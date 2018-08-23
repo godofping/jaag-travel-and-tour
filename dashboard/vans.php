@@ -38,16 +38,11 @@ include("includes/side-menu.php");
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>First Name</th>
-                  <th>Middle Name</th>
-                  <th>Last Name</th>
-                  <th>Contact Number</th>
-                  <th>Building Number</th>
-                  <th>Street</th>
-                  <th>Barangay</th>
-                  <th>City</th>
-                  <th>Province</th>
-                  <th>Actions</th>
+                  <th>Make</th>
+                  <th>Model</th>
+                  <th>Model Year</th>
+                  <th>Plate Number</th>
+                  <th>Price</th>
                 </tr>
               </thead>
 

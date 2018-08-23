@@ -553,13 +553,16 @@ CREATE TABLE `van_rental_table` (
   `dateRented` date DEFAULT NULL,
   `statusId` int(6) DEFAULT NULL,
   `departureAndArrivalId` int(6) DEFAULT NULL,
+  `priceId` int(6) DEFAULT NULL,
   PRIMARY KEY (`vanRentalId`),
   KEY `FK_van_rental_table` (`vanId`),
   KEY `FK_van_rental_table2` (`customerId`),
   KEY `FK_van_rental_table4` (`statusId`),
   KEY `FK_van_rental_table12` (`departureAndArrivalId`),
+  KEY `FK_van_rental_table123123` (`priceId`),
   CONSTRAINT `FK_van_rental_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
   CONSTRAINT `FK_van_rental_table12` FOREIGN KEY (`departureAndArrivalId`) REFERENCES `departure_and_arrival_table` (`departureAndArrivalId`),
+  CONSTRAINT `FK_van_rental_table123123` FOREIGN KEY (`priceId`) REFERENCES `price_table` (`priceId`),
   CONSTRAINT `FK_van_rental_table2` FOREIGN KEY (`customerId`) REFERENCES `customer_table` (`customerId`),
   CONSTRAINT `FK_van_rental_table4` FOREIGN KEY (`statusId`) REFERENCES `status_table` (`statusId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -575,11 +578,8 @@ CREATE TABLE `van_table` (
   `make` varchar(60) DEFAULT NULL,
   `model` varchar(60) DEFAULT NULL,
   `modelYear` varchar(60) DEFAULT NULL,
-  `priceId` int(6) DEFAULT NULL,
   `plateNumber` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`vanId`),
-  KEY `FK_van_table12` (`priceId`),
-  CONSTRAINT `FK_van_table12` FOREIGN KEY (`priceId`) REFERENCES `price_table` (`priceId`)
+  PRIMARY KEY (`vanId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `van_table` */
