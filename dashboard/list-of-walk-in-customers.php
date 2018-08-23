@@ -67,7 +67,7 @@ include("includes/side-menu.php");
                   <td><?php echo $res['barangay']; ?></td>
                   <td><?php echo $res['city']; ?></td>
                   <td><?php echo $res['province']; ?></td>
-                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"><i class="icon md-edit" aria-hidden="true" data-target="#editModal<?php echo $res['customerId'] ?>" data-toggle="modal"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic"><i class="icon md-delete" aria-hidden="true" data-target="#deleteModal<?php echo $res['customerId'] ?>" data-toggle="modal"></i></button> </td>
+                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"><i class="icon md-edit" aria-hidden="true" data-target="#updateModal<?php echo $res['customerId'] ?>" data-toggle="modal"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic"><i class="icon md-delete" aria-hidden="true" data-target="#deleteModal<?php echo $res['customerId'] ?>" data-toggle="modal"></i></button> </td>
                 </tr>
                 <?php } ?>
               </tbody>
@@ -183,7 +183,7 @@ include("includes/side-menu.php");
     $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 1");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
-    <div class="modal fade modal-fill-in" id="editModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="addModal1"
+    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="addModal1"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">

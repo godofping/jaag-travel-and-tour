@@ -66,4 +66,21 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-walk-in-customer') {
 	header("Location: list-of-walk-in-customers.php");
 }
 
+if (isset($_POST['from']) and $_POST['from'] == 'add-van') {
+	mysqli_query($connection, "insert into van_table (make, model, modelYear, plateNumber) values ('" . $_POST['make'] . "', '" . $_POST['model'] . "', '" . $_POST['modelYear'] . "', '" . $_POST['plateNumber'] . "')");
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-vans.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-van') {
+	mysqli_query($connection, "update van_table set make = '" . $_POST['make'] . "', model = '" . $_POST['model'] . "', modelYear = '" . $_POST['modelYear'] . "', plateNumber = '" . $_POST['plateNumber'] . "' where vanId = '" . $_POST['vanId'] . "'");
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-vans.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-van') {
+	mysqli_query($connection, "delete from van_table where vanId = '" . $_POST['vanId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-vans.php");
+}
  ?>

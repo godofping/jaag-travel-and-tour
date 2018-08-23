@@ -580,9 +580,11 @@ CREATE TABLE `van_table` (
   `modelYear` varchar(60) DEFAULT NULL,
   `plateNumber` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`vanId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `van_table` */
+
+insert  into `van_table`(`vanId`,`make`,`model`,`modelYear`,`plateNumber`) values (1,'Toyota','Hi-Ace','2018','ABC-123');
 
 /*Table structure for table `admin_view` */
 
@@ -636,6 +638,21 @@ DROP TABLE IF EXISTS `customer_view`;
  `buildingNumber` varchar(60) 
 )*/;
 
+/*Table structure for table `van_view` */
+
+DROP TABLE IF EXISTS `van_view`;
+
+/*!50001 DROP VIEW IF EXISTS `van_view` */;
+/*!50001 DROP TABLE IF EXISTS `van_view` */;
+
+/*!50001 CREATE TABLE  `van_view`(
+ `vanId` int(6) ,
+ `make` varchar(60) ,
+ `model` varchar(60) ,
+ `modelYear` varchar(60) ,
+ `plateNumber` varchar(60) 
+)*/;
+
 /*View structure for view admin_view */
 
 /*!50001 DROP TABLE IF EXISTS `admin_view` */;
@@ -649,6 +666,13 @@ DROP TABLE IF EXISTS `customer_view`;
 /*!50001 DROP VIEW IF EXISTS `customer_view` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customer_view` AS select `customer_table`.`customerId` AS `customerId`,`customer_table`.`profileId` AS `profileId`,`customer_table`.`accountId` AS `accountId`,`customer_table`.`customerTypeId` AS `customerTypeId`,`account_table`.`userName` AS `userName`,`account_table`.`passWord` AS `passWord`,`customer_type_table`.`customerType` AS `customerType`,`profile_table`.`firstName` AS `firstName`,`profile_table`.`middleName` AS `middleName`,`profile_table`.`lastName` AS `lastName`,`profile_table`.`addressId` AS `addressId`,`profile_table`.`contactNumber` AS `contactNumber`,`address_table`.`province` AS `province`,`address_table`.`city` AS `city`,`address_table`.`barangay` AS `barangay`,`address_table`.`street` AS `street`,`address_table`.`buildingNumber` AS `buildingNumber` from ((((`customer_table` join `profile_table` on((`customer_table`.`profileId` = `profile_table`.`profileId`))) join `account_table` on((`customer_table`.`accountId` = `account_table`.`accountId`))) join `customer_type_table` on((`customer_table`.`customerTypeId` = `customer_type_table`.`customerTypeId`))) join `address_table` on((`profile_table`.`addressId` = `address_table`.`addressId`))) */;
+
+/*View structure for view van_view */
+
+/*!50001 DROP TABLE IF EXISTS `van_view` */;
+/*!50001 DROP VIEW IF EXISTS `van_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `van_view` AS select `van_table`.`vanId` AS `vanId`,`van_table`.`make` AS `make`,`van_table`.`model` AS `model`,`van_table`.`modelYear` AS `modelYear`,`van_table`.`plateNumber` AS `plateNumber` from `van_table` */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
