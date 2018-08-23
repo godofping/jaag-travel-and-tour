@@ -43,19 +43,7 @@ include("includes/side-menu.php");
                   <th>Province</th>
                 </tr>
               </thead>
-              <tfoot>
-                <tr>
-                  <th>First Name</th>
-                  <th>Middle Name</th>
-                  <th>Last Name</th>
-                  <th>Contact Number</th>
-                  <th>Building Number</th>
-                  <th>Street</th>
-                  <th>Barangay</th>
-                  <th>City</th>
-                  <th>Province</th>
-                </tr>
-              </tfoot>
+
               <tbody>
 
                 <?php 

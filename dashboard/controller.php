@@ -26,9 +26,22 @@ if (isset($_POST['from']) and $_POST['from'] == 'add-walk-in-customer') {
 
 	mysqli_query($connection, "insert into customer_table (profileId, accountId, customerTypeId) values ('" . $profileId . "', 4, 1)");
 
-	$_SESSION['do'] = 'trigger';
+	$_SESSION['do'] = 'added';
 	header("Location: list-of-walk-in-customers.php");
 
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-walk-in-customer') {
+	
+	$qry = mysqli_query($connection, "select * from customer_view where customerId = '" . $_POST['customerId'] . "'");
+	$res = mysqli_fetch_assoc($qry);
+
+	mysqli_query($connection, "update address_table set province = '" . $_POST['province'] . "',city = '" . $_POST['city'] . "', barangay = '" . $_POST['barangay'] . "', street = '" . $_POST['street'] . "', buildingNumber = '" . $_POST['buildingNumber'] . "' where addressId = '" . $res['addressId'] . "'");
+
+	mysqli_query($connection, "update profile_table set firstName = '" . $_POST['firstName'] . "', middleName = '" . $_POST['middleName'] . "', lastName = '" . $_POST['lastName'] . "', contactNumber = '" . $_POST['contactNumber'] . "' where profileId = '" . $res['profileId'] . "'");
+
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-walk-in-customers.php");
 }
 
  ?>

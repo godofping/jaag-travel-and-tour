@@ -103,8 +103,7 @@
 
         <script>
           $(document).ready(function(){
-           toastr["success"]("Successfully" 
-            <?php 
+           toastr["success"]("Successfully <?php 
             if ($_SESSION['do'] == 'added') {
                 echo "added!";
             } elseif ($_SESSION['do'] == 'deleted') {
@@ -113,7 +112,7 @@
                 echo "updated!";
             }
 
-            ?>, "Message");
+            ?>", "Message");
           });
         </script>
 
@@ -121,7 +120,8 @@
 
 
 
-    <?php 
+    <?php
+   
     unset($_SESSION['do']);
      ?>
     
