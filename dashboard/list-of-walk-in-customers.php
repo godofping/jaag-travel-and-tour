@@ -110,7 +110,7 @@ include("includes/side-menu.php");
             <h3 class="modal-title" id="exampleFillInModalTitle">Add Walk-in customer</h3>
           </div>
           <div class="modal-body">
-            <form autocomplete="off">
+            <form autocomplete="off" method="POST" action="controller.php">
 
                   <div class="row">
                     <div class="col-md-4">
@@ -187,6 +187,8 @@ include("includes/side-menu.php");
                       <button class="btn btn-success">Submit</button>
                     </div>
                   </div>
+
+                  <input type="text" name="from" value="add-walk-in-customer" hidden="">
                  
                 </form>
           </div>

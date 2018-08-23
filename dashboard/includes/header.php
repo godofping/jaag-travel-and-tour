@@ -39,6 +39,11 @@
     <link rel="stylesheet" href="global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css">
     <link rel="stylesheet" href="global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.css">
     <link rel="stylesheet" href="assets/examples/css/tables/datatable.css">
+    <link rel="stylesheet" href="assets/examples/css/pages/login-v2.css">
+    <link rel="stylesheet" href="global/vendor/toastr/toastr.css">
+    <link rel="stylesheet" href="assets/examples/css/advanced/toastr.css">
+    
+    
 
 
     

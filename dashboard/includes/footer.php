@@ -45,6 +45,8 @@
         <script src="global/vendor/asrange/jquery-asRange.min.js"></script>
         <script src="global/vendor/bootbox/bootbox.js"></script>
         <script src="global/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+        <script src="global/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+        <script src="global/vendor/toastr/toastr.js"></script>
 
     <!-- Scripts -->
     <script src="global/js/Component.js"></script>
@@ -73,11 +75,16 @@
     <script src="global/js/Plugin/peity.js"></script>
 
     <script src="assets/examples/js/dashboard/v1.js"></script>
-      <script src="global/js/Plugin/datatables.js"></script>
-        <script src="assets/examples/js/tables/datatable.js"></script>
-        <script src="assets/examples/js/uikit/icon.js"></script>
-        <script src="global/js/Plugin/jquery-placeholder.js"></script>
-        <script src="global/js/Plugin/material.js"></script>
+    <script src="global/js/Plugin/datatables.js"></script>
+    <script src="assets/examples/js/tables/datatable.js"></script>
+    <script src="assets/examples/js/uikit/icon.js"></script>
+    <script src="global/js/Plugin/jquery-placeholder.js"></script>
+    <script src="global/js/Plugin/material.js"></script>
+    <script src="global/js/Plugin/jquery-placeholder.js"></script>
+    <script src="global/js/Plugin/material.js"></script>
+    <script src="global/js/Plugin/toastr.js"></script>
+
+
 
     
     <script>
@@ -90,6 +97,33 @@
         });
       })(document, window, jQuery);
     </script>
+
+
+    <?php if (isset($_SESSION['do'])): ?>
+
+        <script>
+          $(document).ready(function(){
+           toastr["success"]("Successfully" 
+            <?php 
+            if ($_SESSION['do'] == 'added') {
+                echo "added!";
+            } elseif ($_SESSION['do'] == 'deleted') {
+                echo "deleted!";
+            } elseif ($_SESSION['do'] == 'updated') {
+                echo "updated!";
+            }
+
+            ?>, "Message");
+          });
+        </script>
+
+    <?php endif ?>
+
+
+
+    <?php 
+    unset($_SESSION['do']);
+     ?>
     
   </body>
 </html>
