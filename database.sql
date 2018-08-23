@@ -43,11 +43,11 @@ CREATE TABLE `address_table` (
   `street` varchar(60) DEFAULT NULL,
   `buildingNumber` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`addressId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `address_table` */
 
-insert  into `address_table`(`addressId`,`province`,`city`,`barangay`,`street`,`buildingNumber`) values (1,'Sultan Kudarat','Tacurong City','Poblacion','Malvar Street','22'),(2,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','44'),(3,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','65'),(4,'walk in custoemr','walk in custoemr','walk in custoemr','walk in custoemr','walk in custoemr'),(5,'asd','a5s9d5a','asdasd','59a5sdad','909'),(6,'asd','a5s9d5a','asdasd','59a5sdad','909'),(7,'Sultan Kudarat','Tacurong','Hubog','Di Makita Street','44'),(8,'asd54s','5asd45','as54d5','5asd5ad','50'),(9,'asd','asd','asd','asd','asd'),(10,'dddddddddddd','ddddddddddd','dddddddddddd','ddddddddddddd','dddddddddd');
+insert  into `address_table`(`addressId`,`province`,`city`,`barangay`,`street`,`buildingNumber`) values (1,'Sultan Kudarat','Tacurong City','Poblacion','Malvar Street','22'),(2,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','44'),(3,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','65'),(4,'walk in custoemr','walk in custoemr','walk in custoemr','walk in custoemr','walk in custoemr'),(5,'asd','a5s9d5a','asdasd','59a5sdad','909'),(6,'asd','a5s9d5a','asdasd','59a5sdad','909'),(7,'Sultan Kudarat11232','Tacurong123','Hubog123','Di Makita Street123','44123'),(8,'asd54s','5asd45','as54d5','5asd5ad','50'),(9,'asd','asd','asd','asd','asd'),(10,'dddddddddddd','ddddddddddd','dddddddddddd','ddddddddddddd','dddddddddd'),(11,'asd','asd','sdasd','sdasda','asda'),(12,'asd','asda','asd','asd','asd');
 
 /*Table structure for table `admin_table` */
 
@@ -194,11 +194,11 @@ CREATE TABLE `customer_table` (
   CONSTRAINT `FK_customer_table` FOREIGN KEY (`customerTypeId`) REFERENCES `customer_type_table` (`customerTypeId`),
   CONSTRAINT `FK_registered_customer_table` FOREIGN KEY (`profileId`) REFERENCES `profile_table` (`profileId`),
   CONSTRAINT `FK_registered_customer_table1` FOREIGN KEY (`accountId`) REFERENCES `account_table` (`accountId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `customer_table` */
 
-insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerTypeId`) values (1,1,2,2),(2,5,4,1),(3,6,4,1),(4,7,4,1),(5,8,4,1),(6,9,4,1),(7,10,4,1);
+insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerTypeId`) values (1,1,2,2),(2,5,4,1),(3,6,4,1),(5,8,4,1),(6,9,4,1),(9,12,4,1);
 
 /*Table structure for table `customer_type_table` */
 
@@ -481,11 +481,11 @@ CREATE TABLE `profile_table` (
   PRIMARY KEY (`profileId`),
   KEY `FK_profile_table` (`addressId`),
   CONSTRAINT `FK_profile_table` FOREIGN KEY (`addressId`) REFERENCES `address_table` (`addressId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `profile_table` */
 
-insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`addressId`,`contactNumber`) values (1,'toto','panizal','oracoy',1,'09754142411'),(2,'tata','natividad','evanz',2,'09368585441'),(4,'admin','admin','admin',3,'09754363944'),(5,'walkin ','walkkinnn','walkkinn',4,'09754352222'),(6,'fn','mn','ln',6,'0975555555'),(7,'ana','tanya','sagolili',7,'09365417455'),(8,'asd','as','asd',8,'097555'),(9,'as','ssssss','sssssssssssss',9,'asd'),(10,'asd','dddd','ddddddddd',10,'ddddddddddd');
+insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`addressId`,`contactNumber`) values (1,'toto','panizal','oracoy',1,'09754142411'),(2,'tata','natividad','evanz',2,'09368585441'),(4,'admin','admin','admin',3,'09754363944'),(5,'walkin ','walkkinnn','walkkinn',4,'09754352222'),(6,'fn','mn','ln',6,'0975555555'),(7,'ana111','tanya1','sagolili1',7,'09365417455'),(8,'asd','as','asd',8,'097555'),(9,'as','ssssss','sssssssssssss',9,'asd'),(10,'asd','dddd','ddddddddd',10,'ddddddddddd'),(11,'as','aaaaaaaaaaa','aaaaaaaaaaaaaaa',11,'asdasd'),(12,'asdasdasd','asda','asdasd',12,'asd');
 
 /*Table structure for table `status_table` */
 
@@ -575,8 +575,8 @@ CREATE TABLE `van_table` (
   `make` varchar(60) DEFAULT NULL,
   `model` varchar(60) DEFAULT NULL,
   `modelYear` varchar(60) DEFAULT NULL,
-  `color` varchar(60) DEFAULT NULL,
   `priceId` int(6) DEFAULT NULL,
+  `plateNumber` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`vanId`),
   KEY `FK_van_table12` (`priceId`),
   CONSTRAINT `FK_van_table12` FOREIGN KEY (`priceId`) REFERENCES `price_table` (`priceId`)

@@ -121,8 +121,10 @@
 
 
     <?php
-   
-    unset($_SESSION['do']);
+        if (isset($_SESSION['do'])) {
+            unset($_SESSION['do']);
+        }
+    
      ?>
     
   </body>

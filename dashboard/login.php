@@ -1,4 +1,5 @@
 <?php 
+include("controller.php");
 if (isset($_SESSION['adminId'])) {
   header("Location: home.php");
 }
@@ -182,21 +183,28 @@ if (isset($_SESSION['adminId'])) {
       })(document, window, jQuery);
     </script>
 
-    <?php if (isset($_GET['login']) and $_GET['login'] == 'failed'): ?>
+    <?php if (isset($_SESSION['do']) and $_SESSION['do'] == 'failed'): ?>
+
+
         <script>
-  $(document).ready(function(){
-   toastr["error"]("Login Failed! Incorrect username and/or password.", "Error");
-  });
-</script>
+          $(document).ready(function(){
+           toastr["error"]("Login Failed! Incorrect username and/or password.", "Error");
+          });
+        </script>
     <?php endif ?>
 
-    <?php if (isset($_GET['login']) and $_GET['login'] == 'logout'): ?>
+    <?php if (isset($_SESSION['do']) and $_SESSION['do'] == 'logout'): ?>
         <script>
-  $(document).ready(function(){
-   toastr["success"]("Successfully Logout!", "Message");
-  });
-</script>
+          $(document).ready(function(){
+           toastr["success"]("Successfully Logout!", "Message");
+          });
+        </script>
     <?php endif ?>
+
+    <?php 
+    if (isset($_SESSION['do'])) {
+       unset($_SESSION['do']);
+     } ?>
     
   </body>
 </html>

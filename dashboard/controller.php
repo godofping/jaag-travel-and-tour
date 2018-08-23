@@ -9,12 +9,19 @@ if (isset($_POST['from']) and $_POST['from'] == 'login') {
 		header("Location: home.php");
 	}
 	else
-	{
-		header("Location: login.php?login=failed");
+	{	
+		$_SESSION['do'] = 'failed';
+		header("Location: login.php");
 	}
 }
 
 
+if (isset($_GET['from']) and $_GET['from'] == 'logout') {
+	session_destroy();
+	session_start();
+	$_SESSION['do'] = 'logout';
+	header("Location: login.php");
+}
 
 if (isset($_POST['from']) and $_POST['from'] == 'add-walk-in-customer') {
 
@@ -41,6 +48,21 @@ if (isset($_POST['from']) and $_POST['from'] == 'update-walk-in-customer') {
 	mysqli_query($connection, "update profile_table set firstName = '" . $_POST['firstName'] . "', middleName = '" . $_POST['middleName'] . "', lastName = '" . $_POST['lastName'] . "', contactNumber = '" . $_POST['contactNumber'] . "' where profileId = '" . $res['profileId'] . "'");
 
 	$_SESSION['do'] = 'updated';
+	header("Location: list-of-walk-in-customers.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-walk-in-customer') {
+	
+	$qry = mysqli_query($connection, "select * from customer_view where customerId = '" . $_POST['customerId'] . "'");
+	$res = mysqli_fetch_assoc($qry);
+
+	mysqli_query($connection, "delete from address_table where addressId = '" . $res['addressId'] . "'");
+
+	mysqli_query($connection, "delete from profile_table where profileId = '" . $res['profileId'] . "'");
+
+	mysqli_query($connection, "delete from customer_table where customerId = '" . $res['customerId'] . "'");
+
+	$_SESSION['do'] = 'deleted';
 	header("Location: list-of-walk-in-customers.php");
 }
 

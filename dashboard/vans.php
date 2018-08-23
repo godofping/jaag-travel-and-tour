@@ -1,6 +1,6 @@
 <?php
 include("includes/connection.php");
-$_SESSION['current_page'] = "list-of-walk-in-customers";
+$_SESSION['current_page'] = "vans";
 include("includes/header.php");
 include("includes/side-menu.php");
 ?>
@@ -10,9 +10,9 @@ include("includes/side-menu.php");
       <div class="page-header">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-          <li class="breadcrumb-item active">Customers</li>
+          <li class="breadcrumb-item active">Van Rentals</li>
         </ol>
-        <h1 class="page-title">Walk-in Customers</h1>
+        <h1 class="page-title">Vans</h1>
         
       </div>
 
@@ -57,7 +57,7 @@ include("includes/side-menu.php");
                 $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 1");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
-                  <td><?php echo $res['customerId']; ?></td>
+                  <td>ID</td>
                   <td><?php echo $res['firstName']; ?></td>
                   <td><?php echo $res['middleName']; ?></td>
                   <td><?php echo $res['lastName']; ?></td>

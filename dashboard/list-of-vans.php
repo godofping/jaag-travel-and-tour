@@ -1,6 +1,6 @@
 <?php
 include("includes/connection.php");
-$_SESSION['current_page'] = "list-of-walk-in-customers";
+$_SESSION['current_page'] = "home";
 include("includes/header.php");
 include("includes/side-menu.php");
 ?>
@@ -37,7 +37,6 @@ include("includes/side-menu.php");
 
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>First Name</th>
                   <th>Middle Name</th>
                   <th>Last Name</th>
@@ -57,7 +56,6 @@ include("includes/side-menu.php");
                 $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 1");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
-                  <td><?php echo $res['customerId']; ?></td>
                   <td><?php echo $res['firstName']; ?></td>
                   <td><?php echo $res['middleName']; ?></td>
                   <td><?php echo $res['lastName']; ?></td>

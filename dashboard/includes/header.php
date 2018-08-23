@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="global/vendor/toastr/toastr.css">
     <link rel="stylesheet" href="assets/examples/css/advanced/toastr.css">
 
-    
+
 
 
 
@@ -147,7 +147,7 @@
                
          
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout.php" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
+                <a class="dropdown-item" href="controller.php?from=logout" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Logout</a>
               </div>
             </li>
             <li class="nav-item dropdown">
