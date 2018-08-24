@@ -580,11 +580,11 @@ CREATE TABLE `van_table` (
   `modelYear` varchar(60) DEFAULT NULL,
   `plateNumber` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`vanId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `van_table` */
 
-insert  into `van_table`(`vanId`,`make`,`model`,`modelYear`,`plateNumber`) values (1,'Toyota','Hi-Ace','2018','ABC-123');
+insert  into `van_table`(`vanId`,`make`,`model`,`modelYear`,`plateNumber`) values (1,'Toyota','Hi-Ace','2018','ABC-123'),(3,'Toyota','Hi-Ace','2015','MCD-524'),(4,'Nissan','NV350','2015','JDH-652'),(5,'Nissan','NV350','2016','LOK-897');
 
 /*Table structure for table `admin_view` */
 
@@ -638,6 +638,76 @@ DROP TABLE IF EXISTS `customer_view`;
  `buildingNumber` varchar(60) 
 )*/;
 
+/*Table structure for table `destination_view` */
+
+DROP TABLE IF EXISTS `destination_view`;
+
+/*!50001 DROP VIEW IF EXISTS `destination_view` */;
+/*!50001 DROP TABLE IF EXISTS `destination_view` */;
+
+/*!50001 CREATE TABLE  `destination_view`(
+ `destinationId` int(6) ,
+ `packageId` int(6) ,
+ `placeId` int(6) ,
+ `placeName` varchar(60) ,
+ `mapLocationCoordinate` varchar(60) 
+)*/;
+
+/*Table structure for table `package_view` */
+
+DROP TABLE IF EXISTS `package_view`;
+
+/*!50001 DROP VIEW IF EXISTS `package_view` */;
+/*!50001 DROP TABLE IF EXISTS `package_view` */;
+
+/*!50001 CREATE TABLE  `package_view`(
+ `packageId` int(6) ,
+ `destinationId` int(6) ,
+ `pax` int(6) ,
+ `priceId` int(6) ,
+ `packageDetails` text ,
+ `price` double 
+)*/;
+
+/*Table structure for table `van_rental_view` */
+
+DROP TABLE IF EXISTS `van_rental_view`;
+
+/*!50001 DROP VIEW IF EXISTS `van_rental_view` */;
+/*!50001 DROP TABLE IF EXISTS `van_rental_view` */;
+
+/*!50001 CREATE TABLE  `van_rental_view`(
+ `vanRentalId` int(6) ,
+ `vanId` int(6) ,
+ `customerId` int(6) ,
+ `dateRented` date ,
+ `statusId` int(6) ,
+ `departureAndArrivalId` int(6) ,
+ `priceId` int(6) ,
+ `price` double ,
+ `status` varchar(60) ,
+ `profileId` int(6) ,
+ `accountId` int(6) ,
+ `customerTypeId` int(6) ,
+ `customerType` varchar(60) ,
+ `userName` varchar(60) ,
+ `passWord` varchar(60) ,
+ `make` varchar(60) ,
+ `model` varchar(60) ,
+ `modelYear` varchar(60) ,
+ `plateNumber` varchar(60) ,
+ `firstName` varchar(60) ,
+ `middleName` varchar(60) ,
+ `lastName` varchar(60) ,
+ `addressId` int(6) ,
+ `contactNumber` varchar(60) ,
+ `province` varchar(60) ,
+ `city` varchar(60) ,
+ `barangay` varchar(60) ,
+ `street` varchar(60) ,
+ `buildingNumber` varchar(60) 
+)*/;
+
 /*Table structure for table `van_view` */
 
 DROP TABLE IF EXISTS `van_view`;
@@ -666,6 +736,27 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP VIEW IF EXISTS `customer_view` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customer_view` AS select `customer_table`.`customerId` AS `customerId`,`customer_table`.`profileId` AS `profileId`,`customer_table`.`accountId` AS `accountId`,`customer_table`.`customerTypeId` AS `customerTypeId`,`account_table`.`userName` AS `userName`,`account_table`.`passWord` AS `passWord`,`customer_type_table`.`customerType` AS `customerType`,`profile_table`.`firstName` AS `firstName`,`profile_table`.`middleName` AS `middleName`,`profile_table`.`lastName` AS `lastName`,`profile_table`.`addressId` AS `addressId`,`profile_table`.`contactNumber` AS `contactNumber`,`address_table`.`province` AS `province`,`address_table`.`city` AS `city`,`address_table`.`barangay` AS `barangay`,`address_table`.`street` AS `street`,`address_table`.`buildingNumber` AS `buildingNumber` from ((((`customer_table` join `profile_table` on((`customer_table`.`profileId` = `profile_table`.`profileId`))) join `account_table` on((`customer_table`.`accountId` = `account_table`.`accountId`))) join `customer_type_table` on((`customer_table`.`customerTypeId` = `customer_type_table`.`customerTypeId`))) join `address_table` on((`profile_table`.`addressId` = `address_table`.`addressId`))) */;
+
+/*View structure for view destination_view */
+
+/*!50001 DROP TABLE IF EXISTS `destination_view` */;
+/*!50001 DROP VIEW IF EXISTS `destination_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `destination_view` AS select `destination_table`.`destinationId` AS `destinationId`,`destination_table`.`packageId` AS `packageId`,`destination_table`.`placeId` AS `placeId`,`place_table`.`placeName` AS `placeName`,`place_table`.`mapLocationCoordinate` AS `mapLocationCoordinate` from (`destination_table` join `place_table` on((`destination_table`.`placeId` = `place_table`.`placeId`))) */;
+
+/*View structure for view package_view */
+
+/*!50001 DROP TABLE IF EXISTS `package_view` */;
+/*!50001 DROP VIEW IF EXISTS `package_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`destinationId` AS `destinationId`,`package_table`.`pax` AS `pax`,`package_table`.`priceId` AS `priceId`,`package_table`.`packageDetails` AS `packageDetails`,`price_table`.`price` AS `price` from (`package_table` join `price_table` on((`package_table`.`priceId` = `price_table`.`priceId`))) */;
+
+/*View structure for view van_rental_view */
+
+/*!50001 DROP TABLE IF EXISTS `van_rental_view` */;
+/*!50001 DROP VIEW IF EXISTS `van_rental_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `van_rental_view` AS select `van_rental_table`.`vanRentalId` AS `vanRentalId`,`van_rental_table`.`vanId` AS `vanId`,`van_rental_table`.`customerId` AS `customerId`,`van_rental_table`.`dateRented` AS `dateRented`,`van_rental_table`.`statusId` AS `statusId`,`van_rental_table`.`departureAndArrivalId` AS `departureAndArrivalId`,`van_rental_table`.`priceId` AS `priceId`,`price_table`.`price` AS `price`,`status_table`.`status` AS `status`,`customer_table`.`profileId` AS `profileId`,`customer_table`.`accountId` AS `accountId`,`customer_table`.`customerTypeId` AS `customerTypeId`,`customer_type_table`.`customerType` AS `customerType`,`account_table`.`userName` AS `userName`,`account_table`.`passWord` AS `passWord`,`van_table`.`make` AS `make`,`van_table`.`model` AS `model`,`van_table`.`modelYear` AS `modelYear`,`van_table`.`plateNumber` AS `plateNumber`,`profile_table`.`firstName` AS `firstName`,`profile_table`.`middleName` AS `middleName`,`profile_table`.`lastName` AS `lastName`,`profile_table`.`addressId` AS `addressId`,`profile_table`.`contactNumber` AS `contactNumber`,`address_table`.`province` AS `province`,`address_table`.`city` AS `city`,`address_table`.`barangay` AS `barangay`,`address_table`.`street` AS `street`,`address_table`.`buildingNumber` AS `buildingNumber` from ((((((((`van_rental_table` join `van_table` on((`van_rental_table`.`vanId` = `van_table`.`vanId`))) join `price_table` on((`van_rental_table`.`priceId` = `price_table`.`priceId`))) join `customer_table` on((`van_rental_table`.`customerId` = `customer_table`.`customerId`))) join `status_table` on((`van_rental_table`.`statusId` = `status_table`.`statusId`))) join `customer_type_table` on((`customer_table`.`customerTypeId` = `customer_type_table`.`customerTypeId`))) join `account_table` on((`customer_table`.`accountId` = `account_table`.`accountId`))) join `profile_table` on((`customer_table`.`profileId` = `profile_table`.`profileId`))) join `address_table` on((`profile_table`.`addressId` = `address_table`.`addressId`))) */;
 
 /*View structure for view van_view */
 
