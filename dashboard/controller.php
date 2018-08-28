@@ -83,4 +83,10 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-van') {
 	$_SESSION['do'] = 'deleted';
 	header("Location: list-of-vans.php");
 }
+
+if (isset($_POST['from']) and $_POST['from'] == 'add-place') {
+	mysqli_query($connection, "delete from van_table where vanId = '" . $_POST['vanId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-vans.php");
+}
  ?>

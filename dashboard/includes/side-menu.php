@@ -63,6 +63,7 @@
           </ul>
         </li>
         
+
         <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'packages'): ?>
           active open
         <?php endif ?>">
@@ -70,6 +71,34 @@
                   <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
                   <span class="site-menu-title">Packages</span>
               </a>
+        </li>
+
+        <li class="site-menu-item has-sub <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-detinations' ): ?>
+          active open
+        <?php endif ?>">
+          <a href="javascript:void(0)">
+            <i class="site-menu-icon md-settings" aria-hidden="true"></i>
+            <span class="site-menu-title">Settings</span>
+            <span class="site-menu-arrow"></span>
+          </a>
+          <ul class="site-menu-sub">
+            <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-detinations'): ?>
+              active
+            <?php endif ?>">
+              <a class="animsition-link" href="list-of-destinations.php">
+                <span class="site-menu-title">Destinations</span>
+              </a>
+            </li>
+
+            <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-van-rentals'): ?>
+              active
+            <?php endif ?>">
+              <a class="animsition-link" href="list-of-van-rentals.php">
+                <span class="site-menu-title">Rentals</span>
+              </a>
+            </li>
+
+          </ul>
         </li>
         
 

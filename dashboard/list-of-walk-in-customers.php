@@ -183,7 +183,7 @@ include("includes/side-menu.php");
     $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 1");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
-    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="addModal1"
+    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -283,7 +283,7 @@ include("includes/side-menu.php");
       </div>
     </div>
 
-    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="addModal1"
+    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
