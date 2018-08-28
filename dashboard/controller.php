@@ -148,7 +148,18 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-package') {
 if (isset($_POST['from']) and $_POST['from'] == 'add-inclusion') {
 	mysqli_query($connection, "insert into inclusion_table (inclusion, packageId) values ('" . $_POST['inclusion'] . "', '" . $_POST['packageId'] . "')");
 	$_SESSION['do'] = 'added';
-	header("Location: list-of-packages.php");
+	header("Location: list-of-inclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
 }
 
+if (isset($_POST['from']) and $_POST['from'] == 'update-inclusion') {
+	mysqli_query($connection, "update inclusion_table set inclusion = '" . $_POST['inclusion'] . "' where inclusionId = '" . $_POST['inclusionId'] . "'");
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-inclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-inclusion') {
+	mysqli_query($connection, "delete from inclusion_table where inclusionId = '" . $_POST['inclusionId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-inclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
  ?>

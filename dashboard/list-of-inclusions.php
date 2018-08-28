@@ -1,6 +1,6 @@
 <?php
 include("includes/connection.php");
-$_SESSION['current_page'] = "list-of-detinations";
+$_SESSION['current_page'] = "list-of-packages";
 include("includes/header.php");
 include("includes/side-menu.php");
 ?>
@@ -10,9 +10,9 @@ include("includes/side-menu.php");
       <div class="page-header">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-          <li class="breadcrumb-item active">Settings</li>
+          <li class="breadcrumb-item active"><a href="list-of-packages.php">Packages</a></li>
         </ol>
-        <h1 class="page-title">Destinations</h1>
+        <h1 class="page-title">Inclusions of "<?php echo $_GET['packageName']; ?>" Package</h1>
         
       </div>
 
@@ -38,8 +38,7 @@ include("includes/side-menu.php");
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Place</th>
-                  <th>GPS Coordinates</th>
+                  <th>Inclusion</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -47,13 +46,12 @@ include("includes/side-menu.php");
               <tbody>
 
                 <?php 
-                $qry = mysqli_query($connection, "select * from place_view");
+                $qry = mysqli_query($connection, "select * from inclusion_view");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
-                  <td><?php echo $res['placeId']; ?></td>
-                  <td><?php echo $res['placeName']; ?></td>
-                  <td><?php echo $res['latitude']; ?>, <?php echo $res['longtitude']; ?></td>
-                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['placeId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['placeId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
+                  <td><?php echo $res['inclusionId']; ?></td>
+                  <td><?php echo $res['inclusion']; ?></td>
+                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['inclusionId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['inclusionId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
                 </tr>
                 <?php } ?>
               </tbody>
@@ -87,30 +85,19 @@ include("includes/side-menu.php");
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="placeName">Place</label>
-                      <input type="text" class="form-control" id="placeName" name="placeName"  required="" />
+                      <label class="form-control-label" for="inclusion">Inclusion</label>
+                      <input type="text" class="form-control" id="inclusion" name="inclusion"  required="" />
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
 
-                    <div class="col-md-6">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="latitude">Latitude</label>
-                      <input type="number" step="any" class="form-control" id="latitude" name="latitude"  required="" />
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="longtitude">Longtitude</label>
-                      <input type="number" step="any" class="form-control" id="longtitude" name="longtitude"  required="" />
-                      </div>
-                    </div>
-
+                   
                   </div>
-                  <input type="text" name="from" value="add-place" hidden="">
+                  <input type="text" name="from" value="add-inclusion" hidden="">
+                  <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
+                  <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -121,10 +108,10 @@ include("includes/side-menu.php");
     </div>
 
   <?php 
-    $qry = mysqli_query($connection, "select * from place_view");
+    $qry = mysqli_query($connection, "select * from inclusion_view");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
-    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['placeId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['inclusionId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -132,40 +119,30 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Update place</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Update inclusion</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
 
+                  <form autocomplete="off" method="POST" action="controller.php">
+
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="placeName">Place</label>
-                      <input type="text" class="form-control" id="placeName" name="placeName" value="<?php echo $res['placeName'] ?>"  required="" />
+                      <label class="form-control-label" for="inclusion">Inclusion</label>
+                      <input type="text" class="form-control" id="inclusion" name="inclusion" value="<?php echo $res['inclusion'] ?>"  required="" />
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
 
-                    <div class="col-md-6">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="latitude">Latitude</label>
-                      <input type="number" step="any" class="form-control" id="latitude" name="latitude" value="<?php echo $res['latitude'] ?>"  required="" />
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="longtitude">Longtitude</label>
-                      <input type="number" step="any" class="form-control" id="longtitude" name="longtitude" value="<?php echo $res['longtitude'] ?>"  required="" />
-                      </div>
-                    </div>
-
+                   
                   </div>
-
-                  <input type="text" name="from" value="update-place" hidden="">
-                  <input type="text" name="placeId" value="<?php echo $res['placeId'] ?>" hidden="">
+                  <input type="text" name="from" value="update-inclusion" hidden="">
+                  <input type="text" name="inclusionId" value="<?php echo $res['inclusionId'] ?>" hidden="">
+                  <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
+                  <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">
                  
                 
           </div>
@@ -180,7 +157,7 @@ include("includes/side-menu.php");
       </div>
     </div>
 
-    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['placeId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['inclusionId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -188,7 +165,7 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Delete place</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Delete inclusion</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
@@ -202,8 +179,10 @@ include("includes/side-menu.php");
 
           <div class="modal-footer">
             <form method="POST" action="controller.php">
-              <input type="text" name="from" value="delete-place" hidden="">
-              <input type="text" name="placeId" value="<?php echo $res['placeId'] ?>" hidden="">
+              <input type="text" name="from" value="delete-inclusion" hidden="">
+              <input type="text" name="inclusionId" value="<?php echo $res['inclusionId'] ?>" hidden="">
+              <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
+              <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>
             </form>
               <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>

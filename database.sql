@@ -47,7 +47,7 @@ CREATE TABLE `address_table` (
 
 /*Data for the table `address_table` */
 
-insert  into `address_table`(`addressId`,`province`,`city`,`barangay`,`street`,`buildingNumber`) values (1,'Sultan Kudarat','Tacurong City','Poblacion','Malvar Street','22'),(2,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','44'),(3,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','65'),(4,'walk in custoemr','walk in custoemr','walk in custoemr','walk in custoemr','walk in custoemr'),(5,'asd','a5s9d5a','asdasd','59a5sdad','909'),(6,'asd','a5s9d5a','asdasd','59a5sdad','909'),(7,'Sultan Kudarat11232','Tacurong123','Hubog123','Di Makita Street123','44123'),(8,'asd54s','5asd45','as54d5','5asd5ad','50'),(9,'asd','asd','asd','asd','asd'),(10,'dddddddddddd','ddddddddddd','dddddddddddd','ddddddddddddd','dddddddddd'),(11,'asd','asd','sdasd','sdasda','asda'),(12,'asd','asda','asd','asd','asd');
+insert  into `address_table`(`addressId`,`province`,`city`,`barangay`,`street`,`buildingNumber`) values (1,'Sultan Kudarat','Tacurong City','Poblacion','Malvar Street','22'),(2,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','44'),(3,'Sultan Kudarat','Tacurong City','San Emmanuel','Idk Street','65'),(4,'Sultan Kudarat','Tacurong City','Poblacion','Lapu-lapu Street','36'),(5,'asd','a5s9d5a','asdasd','59a5sdad','909'),(6,'Sultan Kudarat','Tacurong City','Buenaflor','none','50'),(7,'Sultan Kudarat11232','Tacurong123','Hubog123','Di Makita Street123','44123'),(8,'asd54s','5asd45','as54d5','5asd5ad','50'),(9,'asd','asd','asd','asd','asd'),(10,'dddddddddddd','ddddddddddd','dddddddddddd','ddddddddddddd','dddddddddd'),(11,'asd','asd','sdasd','sdasda','asda'),(12,'asd1','asda1','asd1','asd1','asd1');
 
 /*Table structure for table `admin_table` */
 
@@ -198,7 +198,7 @@ CREATE TABLE `customer_table` (
 
 /*Data for the table `customer_table` */
 
-insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerTypeId`) values (1,1,2,2),(2,5,4,1),(3,6,4,1),(5,8,4,1),(6,9,4,1),(9,12,4,1);
+insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerTypeId`) values (1,1,2,2),(2,5,4,1),(3,6,4,1);
 
 /*Table structure for table `customer_type_table` */
 
@@ -301,7 +301,7 @@ CREATE TABLE `inclusion_table` (
   PRIMARY KEY (`inclusionId`),
   KEY `FK_inclusion_table` (`packageId`),
   CONSTRAINT `FK_inclusion_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inclusion_table` */
 
@@ -421,7 +421,7 @@ CREATE TABLE `place_table` (
   `latitude` double DEFAULT NULL,
   `longtitude` double DEFAULT NULL,
   PRIMARY KEY (`placeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `place_table` */
 
@@ -459,7 +459,7 @@ CREATE TABLE `profile_table` (
 
 /*Data for the table `profile_table` */
 
-insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`addressId`,`contactNumber`) values (1,'toto','panizal','oracoy',1,'09754142411'),(2,'tata','natividad','evanz',2,'09368585441'),(4,'admin','admin','admin',3,'09754363944'),(5,'walkin 1','walkkinnn1','walkkinn',4,'09754352222'),(6,'fn','mn','ln',6,'0975555555'),(7,'ana111','tanya1','sagolili1',7,'09365417455'),(8,'asd','as','asd',8,'097555'),(9,'as','ssssss','sssssssssssss',9,'asd'),(10,'asd','dddd','ddddddddd',10,'ddddddddddd'),(11,'as','aaaaaaaaaaa','aaaaaaaaaaaaaaa',11,'asdasd'),(12,'asdasdasd','asda','asdasd',12,'asd');
+insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`addressId`,`contactNumber`) values (1,'toto','panizal','oracoy',1,'09754142411'),(2,'tata','natividad','evanz',2,'09368585441'),(4,'admin','admin','admin',3,'09754363944'),(5,'Nita','Regan','Montero',4,'09169526266'),(6,'Felicity','Jailyn','Gubat',6,'0975555173'),(7,'ana111','tanya1','sagolili1',7,'09365417455'),(8,'asd','as','asd',8,'097555'),(9,'as','ssssss','sssssssssssss',9,'asd'),(10,'asd','dddd','ddddddddd',10,'ddddddddddd'),(11,'as','aaaaaaaaaaa','aaaaaaaaaaaaaaa',11,'asdasd'),(12,'asdasdasd1','asda1','asdasd1',12,'asd1');
 
 /*Table structure for table `status_table` */
 

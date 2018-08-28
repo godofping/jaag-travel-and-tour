@@ -57,7 +57,7 @@ include("includes/side-menu.php");
                   <td><?php echo $res['model']; ?></td>
                   <td><?php echo $res['modelYear']; ?></td>
                   <td><?php echo $res['plateNumber']; ?></td>
-                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"><i class="icon md-edit" aria-hidden="true" data-target="#updateModal<?php echo $res['vanId'] ?>" data-toggle="modal"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic"><i class="icon md-delete" aria-hidden="true" data-target="#deleteModal<?php echo $res['vanId'] ?>" data-toggle="modal"></i></button> </td>
+                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"  data-target="#updateModal<?php echo $res['vanId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['vanId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
                 </tr>
                 <?php } ?>
               </tbody>
