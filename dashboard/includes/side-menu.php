@@ -68,7 +68,7 @@
           active open
         <?php endif ?>">
           <a class="animsition-link" href="packages.php">
-                  <i class="site-menu-icon md-view-dashboard" aria-hidden="true"></i>
+                  <i class="site-menu-icon md-flower-alt" aria-hidden="true"></i>
                   <span class="site-menu-title">Packages</span>
               </a>
         </li>
@@ -90,13 +90,7 @@
               </a>
             </li>
 
-            <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-van-rentals'): ?>
-              active
-            <?php endif ?>">
-              <a class="animsition-link" href="list-of-van-rentals.php">
-                <span class="site-menu-title">Rentals</span>
-              </a>
-            </li>
+        
 
           </ul>
         </li>

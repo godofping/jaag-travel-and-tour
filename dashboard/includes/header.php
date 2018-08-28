@@ -42,6 +42,26 @@
     <link rel="stylesheet" href="assets/examples/css/pages/login-v2.css">
     <link rel="stylesheet" href="global/vendor/toastr/toastr.css">
     <link rel="stylesheet" href="assets/examples/css/advanced/toastr.css">
+    <link rel="stylesheet" href="global/vendor/select2/select2.css">
+        <link rel="stylesheet" href="global/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css">
+        <link rel="stylesheet" href="global/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css">
+        <link rel="stylesheet" href="global/vendor/bootstrap-select/bootstrap-select.css">
+        <link rel="stylesheet" href="global/vendor/icheck/icheck.css">
+        <link rel="stylesheet" href="global/vendor/switchery/switchery.css">
+        <link rel="stylesheet" href="global/vendor/asrange/asRange.css">
+        <link rel="stylesheet" href="global/vendor/ionrangeslider/ionrangeslider.min.css">
+        <link rel="stylesheet" href="global/vendor/asspinner/asSpinner.css">
+        <link rel="stylesheet" href="global/vendor/clockpicker/clockpicker.css">
+        <link rel="stylesheet" href="global/vendor/ascolorpicker/asColorPicker.css">
+        <link rel="stylesheet" href="global/vendor/bootstrap-touchspin/bootstrap-touchspin.css">
+        <link rel="stylesheet" href="global/vendor/jquery-labelauty/jquery-labelauty.css">
+        <link rel="stylesheet" href="global/vendor/bootstrap-datepicker/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="global/vendor/bootstrap-maxlength/bootstrap-maxlength.css">
+        <link rel="stylesheet" href="global/vendor/timepicker/jquery-timepicker.css">
+        <link rel="stylesheet" href="global/vendor/jquery-strength/jquery-strength.css">
+        <link rel="stylesheet" href="global/vendor/multi-select/multi-select.css">
+        <link rel="stylesheet" href="global/vendor/typeahead-js/typeahead.css">
+        <link rel="stylesheet" href="assets/examples/css/forms/advanced.css">
 
 
 

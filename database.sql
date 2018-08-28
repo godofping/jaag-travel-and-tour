@@ -369,6 +369,7 @@ DROP TABLE IF EXISTS `package_table`;
 
 CREATE TABLE `package_table` (
   `packageId` int(6) NOT NULL AUTO_INCREMENT,
+  `packageName` varchar(60) DEFAULT NULL,
   `destinationId` int(6) DEFAULT NULL,
   `pax` int(6) DEFAULT NULL,
   `priceId` int(6) DEFAULT NULL,
@@ -416,7 +417,7 @@ CREATE TABLE `place_table` (
   `latitude` double DEFAULT NULL,
   `longtitude` double DEFAULT NULL,
   PRIMARY KEY (`placeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `place_table` */
 
@@ -614,6 +615,7 @@ DROP TABLE IF EXISTS `package_view`;
 
 /*!50001 CREATE TABLE  `package_view`(
  `packageId` int(6) ,
+ `packageName` varchar(60) ,
  `destinationId` int(6) ,
  `pax` int(6) ,
  `priceId` int(6) ,
@@ -708,7 +710,7 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP TABLE IF EXISTS `package_view` */;
 /*!50001 DROP VIEW IF EXISTS `package_view` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`destinationId` AS `destinationId`,`package_table`.`pax` AS `pax`,`package_table`.`priceId` AS `priceId`,`package_table`.`packageDetails` AS `packageDetails`,`price_table`.`price` AS `price` from (`package_table` join `price_table` on((`package_table`.`priceId` = `price_table`.`priceId`))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`packageName` AS `packageName`,`package_table`.`destinationId` AS `destinationId`,`package_table`.`pax` AS `pax`,`package_table`.`priceId` AS `priceId`,`package_table`.`packageDetails` AS `packageDetails`,`price_table`.`price` AS `price` from (`package_table` join `price_table` on((`package_table`.`priceId` = `price_table`.`priceId`))) */;
 
 /*View structure for view place_view */
 

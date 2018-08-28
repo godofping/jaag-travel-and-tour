@@ -63,8 +63,6 @@ include("includes/side-menu.php");
               </tbody>
 
             </table>
-          
-
           </div>
 
         </div>
@@ -72,6 +70,8 @@ include("includes/side-menu.php");
       </div>
     </div>
     <!-- End Page -->
+
+
 
 
     <!-- Modal -->
@@ -83,41 +83,57 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Add van</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Add package</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
 
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="make">Make</label>
-                      <input type="text" class="form-control" id="make" name="make"  required="" />
+                      <label class="form-control-label" for="packageName">Package Name</label>
+                      <input type="text" class="form-control" id="packageName" name="packageName"  required="" />
                       </div>
                     </div>
+                   </div>
 
-                    <div class="col-md-4">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="model">Model</label>
-                      <input type="text" class="form-control" id="model" name="model"  required="" />
-                      </div>
-                    </div>
-                  
-                    <div class="col-md-4">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="modelYear">Model Year</label>
-                      <input type="text" class="form-control" id="modelYear" name="modelYear"  required="" />
-                      </div>
+                   <div class="row">
+                    <div class="col-md-12">
+	                  <div class="form-group form-material" data-plugin="formMaterial">
+	                    <label class="form-control-label" for="select">Select</label>
+	                    <select class="form-control" multiple name="places[]" data-plugin="select2" style="width: 100%;">
+	                  	<?php $qry = mysqli_query($connection, "select * from place_view");
+	                  	while ($res = mysqli_fetch_assoc($qry)) { ?>
+	                  		<option value="placeId"><?php echo $res['placeName']; ?></option>
+	                  	<?php }?>
+	                    </select>
+	                  </div>
                     </div>
                   </div>
                   
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                        <label class="form-control-label" for="plateNumber">Plate Number</label>
-                        <input type="text" class="form-control" id="plateNumber" name="plateNumber" required="" />
+                        <label class="form-control-label" for="pax">Pax</label>
+                        <input type="text" class="form-control" id="pax" name="pax" required="" />
                      </div>
                     </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="price">Price</label>
+                        <input type="number" step="any" class="form-control" id="price" name="price" required="" />
+                     </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                  	<div class="col-md-12">
+                  		<div class="form-group form-material" data-plugin="formMaterial">
+	                    	<label class="form-control-label" for="packageDetails">Package Details</label>
+	                    	<textarea class="form-control" id="packageDetails" name="packageDetails" rows="3" required=""></textarea>
+	                  	</div>
+                  	</div>
                   </div>
 
                   <input type="text" name="from" value="add-van" hidden="">
