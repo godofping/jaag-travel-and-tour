@@ -120,5 +120,29 @@ if (isset($_POST['from']) and $_POST['from'] == 'add-package') {
 	header("Location: list-of-packages.php");
 }
 
+if (isset($_POST['from']) and $_POST['from'] == 'update-package') {
+	mysqli_query($connection, "update price_table set price = '" . $_POST['price'] . "' where priceId = '" . $_POST['priceId'] . "'"); 
+
+	mysqli_query($connection, "update package_table set packageName = '" . $_POST['packageName'] . "', pax = '" . $_POST['pax'] . "', packageDetails = '" . $_POST['packageDetails'] . "' where packageId = '" . $_POST['packageId'] . "'");
+
+	mysqli_query($connection, "delete from destination_table where packageId = '" . $_POST['packageId'] . "'");
+
+	foreach ($_POST['places'] as $placeId)
+	{	
+		mysqli_query($connection, "insert into destination_table (packageId, placeId) values ('" . $_POST['packageId'] . "', '" . $placeId . "')");
+	}
+
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-packages.php");
+
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-package') {
+	mysqli_query($connection, "delete from package_table where packageId = '" . $_POST['packageId'] . "'");
+	mysqli_query($connection, "delete from price_table where priceId = '" . $_POST['priceId'] . "'");
+	mysqli_query($connection, "delete from destination_table where packageId = '" . $_POST['packageId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-packages.php");
+}
 
  ?>

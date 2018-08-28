@@ -39,6 +39,7 @@ include("includes/side-menu.php");
                 <tr>
                   <th>ID</th>
                   <th>Package Name</th>
+                  <th>Destinations</th>
                   <th>Pax</th>
                   <th>Price</th>
                   <th>Package Details</th>
@@ -56,6 +57,13 @@ include("includes/side-menu.php");
                 <tr>
                   <td><?php echo $res['packageId']; ?></td>
                   <td><?php echo $res['packageName']; ?></td>
+                  <td>Destinations:
+                  	<?php 
+                  	$qry1 = mysqli_query($connection, "select * from destination_view where packageId = '" . $res['packageId'] . "'");
+                  	while ($res1 = mysqli_fetch_assoc($qry1)) { ?>
+                  		<li><?php echo $res1['placeName']; ?></li>
+                  	<?php } ?>
+                  </td>
                   <td><?php echo $res['pax']; ?></td>
                   <td><?php echo $res['price']; ?></td>
                   <td><?php echo $res['packageDetails']; ?></td>
@@ -171,7 +179,7 @@ include("includes/side-menu.php");
                     <div class="col-md-12">
                       <div class="form-group form-material" data-plugin="formMaterial">
                       <label class="form-control-label" for="packageName">Package Name</label>
-                      <input type="text" class="form-control" id="packageName" name="packageName"  required="" />
+                      <input type="text" class="form-control" id="packageName" name="packageName" value="<?php echo $res['packageName'] ?>"  required="" />
                       </div>
                     </div>
                    </div>
@@ -181,9 +189,13 @@ include("includes/side-menu.php");
 	                  <div class="form-group form-material" data-plugin="formMaterial">
 	                    <label class="form-control-label" for="select">Destinations</label>
 	                    <select class="form-control" multiple name="places[]" data-plugin="select2" style="width: 100%;">
-	                  	<?php $qry = mysqli_query($connection, "select * from place_view order by placeName asc");
-	                  	while ($res = mysqli_fetch_assoc($qry)) { ?>
-	                  		<option value="<?php echo $res['placeId'] ?>"><?php echo $res['placeName']; ?></option>
+	                  	<?php $qry1 = mysqli_query($connection, "select * from place_view order by placeName asc");
+	                  	while ($res1 = mysqli_fetch_assoc($qry1)) { ?>
+	                  		<option <?php 
+	                  		$qry2 = mysqli_query($connection,"select * from destination_view where packageId = '" . $res['packageId'] . "' and placeId = '" . $res1['placeId'] . "'");
+	                  		if (mysqli_num_rows($qry2) > 0): ?>
+	                  			selected
+	                  		<?php endif ?> value="<?php echo $res1['placeId'] ?>"><?php echo $res1['placeName']; ?></option>
 	                  	<?php }?>
 	                    </select>
 	                  </div>
@@ -194,14 +206,14 @@ include("includes/side-menu.php");
                     <div class="col-md-4">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="pax">Pax</label>
-                        <input type="text" class="form-control" id="pax" name="pax" required="" />
+                        <input type="text" class="form-control" id="pax" name="pax" value="<?php echo $res['pax'] ?>" required="" />
                      </div>
                     </div>
 
                     <div class="col-md-4">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="price">Price</label>
-                        <input type="number" step="any" class="form-control" id="price" name="price" required="" />
+                        <input type="number" step="any" class="form-control" id="price" name="price" value="<?php echo $res['price'] ?>" required="" />
                      </div>
                     </div>
                   </div>
@@ -210,14 +222,14 @@ include("includes/side-menu.php");
                   	<div class="col-md-12">
                   		<div class="form-group form-material" data-plugin="formMaterial">
 	                    	<label class="form-control-label" for="packageDetails">Package Details</label>
-	                    	<textarea class="form-control" id="packageDetails" name="packageDetails" rows="3" required=""></textarea>
+	                    	<textarea class="form-control" id="packageDetails" name="packageDetails" rows="3" required=""><?php echo $res['packageDetails'] ?></textarea>
 	                  	</div>
                   	</div>
                   </div>
 
                   <input type="text" name="from" value="update-package" hidden="">
                   <input type="text" name="packageId" value="<?php echo $res['packageId'] ?>" hidden="">
-                 
+                  <input type="text" name="priceId" value="<?php echo $res['priceId'] ?>" hidden="">
                 
           </div>
 
@@ -239,7 +251,7 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Delete van</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Delete package</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
@@ -253,8 +265,9 @@ include("includes/side-menu.php");
 
           <div class="modal-footer">
             <form method="POST" action="controller.php">
-              <input type="text" name="from" value="delete-van" hidden="">
+              <input type="text" name="from" value="delete-package" hidden="">
               <input type="text" name="packageId" value="<?php echo $res['packageId'] ?>" hidden="">
+              <input type="text" name="priceId" value="<?php echo $res['priceId'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>
             </form>
               <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
