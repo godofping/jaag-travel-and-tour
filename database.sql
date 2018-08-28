@@ -317,9 +317,11 @@ CREATE TABLE `media_location_table` (
   `mediaLocationId` int(6) NOT NULL AUTO_INCREMENT,
   `mediaLocation` text,
   PRIMARY KEY (`mediaLocationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `media_location_table` */
+
+insert  into `media_location_table`(`mediaLocationId`,`mediaLocation`) values (1,'package_media/510e54be3280a0ffc28f0a05ccb3d548siargao-surigao-province.jpg'),(2,'package_media/8f02fb3dceac38700ac2321ed7e6b47aSurigao-del-Sur-Bogac-Spring.png'),(3,'package_media/d17a69c9270a3c4842f6b2f00073b60aRiv.jpg');
 
 /*Table structure for table `mode_of_payment_table` */
 
@@ -365,9 +367,11 @@ CREATE TABLE `package_media_table` (
   KEY `FK_package_media_table123123123` (`mediaLocationId`),
   CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
   CONSTRAINT `FK_package_media_table123123123` FOREIGN KEY (`mediaLocationId`) REFERENCES `media_location_table` (`mediaLocationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_media_table` */
+
+insert  into `package_media_table`(`packageMediaId`,`mediaLocationId`,`packageId`) values (1,1,1),(2,2,1),(3,3,1);
 
 /*Table structure for table `package_table` */
 
@@ -656,6 +660,20 @@ DROP TABLE IF EXISTS `inclusion_view`;
  `packageId` int(6) 
 )*/;
 
+/*Table structure for table `package_media_view` */
+
+DROP TABLE IF EXISTS `package_media_view`;
+
+/*!50001 DROP VIEW IF EXISTS `package_media_view` */;
+/*!50001 DROP TABLE IF EXISTS `package_media_view` */;
+
+/*!50001 CREATE TABLE  `package_media_view`(
+ `packageMediaId` int(6) ,
+ `mediaLocationId` int(6) ,
+ `packageId` int(6) ,
+ `mediaLocation` text 
+)*/;
+
 /*Table structure for table `package_view` */
 
 DROP TABLE IF EXISTS `package_view`;
@@ -774,6 +792,13 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP VIEW IF EXISTS `inclusion_view` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `inclusion_view` AS select `inclusion_table`.`inclusionId` AS `inclusionId`,`inclusion_table`.`inclusion` AS `inclusion`,`inclusion_table`.`packageId` AS `packageId` from `inclusion_table` */;
+
+/*View structure for view package_media_view */
+
+/*!50001 DROP TABLE IF EXISTS `package_media_view` */;
+/*!50001 DROP VIEW IF EXISTS `package_media_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_media_view` AS select `package_media_table`.`packageMediaId` AS `packageMediaId`,`package_media_table`.`mediaLocationId` AS `mediaLocationId`,`package_media_table`.`packageId` AS `packageId`,`media_location_table`.`mediaLocation` AS `mediaLocation` from (`package_media_table` join `media_location_table` on((`package_media_table`.`mediaLocationId` = `media_location_table`.`mediaLocationId`))) */;
 
 /*View structure for view package_view */
 
