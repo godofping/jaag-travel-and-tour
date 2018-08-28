@@ -66,4 +66,119 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-walk-in-customer') {
 	header("Location: list-of-walk-in-customers.php");
 }
 
+if (isset($_POST['from']) and $_POST['from'] == 'add-van') {
+	mysqli_query($connection, "insert into van_table (make, model, modelYear, plateNumber) values ('" . $_POST['make'] . "', '" . $_POST['model'] . "', '" . $_POST['modelYear'] . "', '" . $_POST['plateNumber'] . "')");
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-vans.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-van') {
+	mysqli_query($connection, "update van_table set make = '" . $_POST['make'] . "', model = '" . $_POST['model'] . "', modelYear = '" . $_POST['modelYear'] . "', plateNumber = '" . $_POST['plateNumber'] . "' where vanId = '" . $_POST['vanId'] . "'");
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-vans.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-van') {
+	mysqli_query($connection, "delete from van_table where vanId = '" . $_POST['vanId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-vans.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'add-place') {
+	mysqli_query($connection, "insert into place_table (placeName, longtitude, latitude) values ('" . $_POST['placeName'] . "', '" . $_POST['longtitude'] . "', '" . $_POST['latitude'] . "')");
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-destinations.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-place') {
+	mysqli_query($connection, "update place_table set placeName = '" . $_POST['placeName'] . "', longtitude = '" . $_POST['longtitude'] . "', latitude = '" . $_POST['latitude'] . "' where placeId = '" . $_POST['placeId'] . "'");
+	$_SESSION['do'] = 'updated' ;
+	header("Location: list-of-destinations.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-place') {
+	mysqli_query($connection, "delete from place_table where placeId = '" . $_POST['placeId'] . "'");
+	$_SESSION['do'] = 'delete';
+	header("Location: list-of-destinations.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'add-package') {
+
+	mysqli_query($connection, "insert into price_table (price) values ('" . $_POST['price'] . "')");
+	$priceId = mysqli_insert_id($connection);
+
+	mysqli_query($connection, "insert into package_table (packageName, pax, priceId, packageDetails) values ('" . $_POST['packageName'] . "', '" . $_POST['pax'] . "', '" . $priceId . "', '" . $_POST['packageDetails'] . "')");
+	$packageId = mysqli_insert_id($connection);
+
+	foreach ($_POST['places'] as $placeId)
+	{	
+		mysqli_query($connection, "insert into destination_table (packageId, placeId) values ('" . $packageId . "', '" . $placeId . "')");
+	  
+	}
+
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-packages.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-package') {
+	mysqli_query($connection, "update price_table set price = '" . $_POST['price'] . "' where priceId = '" . $_POST['priceId'] . "'"); 
+
+	mysqli_query($connection, "update package_table set packageName = '" . $_POST['packageName'] . "', pax = '" . $_POST['pax'] . "', packageDetails = '" . $_POST['packageDetails'] . "' where packageId = '" . $_POST['packageId'] . "'");
+
+	mysqli_query($connection, "delete from destination_table where packageId = '" . $_POST['packageId'] . "'");
+
+	foreach ($_POST['places'] as $placeId)
+	{	
+		mysqli_query($connection, "insert into destination_table (packageId, placeId) values ('" . $_POST['packageId'] . "', '" . $placeId . "')");
+	}
+
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-packages.php");
+
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-package') {
+	mysqli_query($connection, "delete from package_table where packageId = '" . $_POST['packageId'] . "'");
+	mysqli_query($connection, "delete from price_table where priceId = '" . $_POST['priceId'] . "'");
+	mysqli_query($connection, "delete from destination_table where packageId = '" . $_POST['packageId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-packages.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'add-inclusion') {
+	mysqli_query($connection, "insert into inclusion_table (inclusion, packageId) values ('" . $_POST['inclusion'] . "', '" . $_POST['packageId'] . "')");
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-inclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-inclusion') {
+	mysqli_query($connection, "update inclusion_table set inclusion = '" . $_POST['inclusion'] . "' where inclusionId = '" . $_POST['inclusionId'] . "'");
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-inclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-inclusion') {
+	mysqli_query($connection, "delete from inclusion_table where inclusionId = '" . $_POST['inclusionId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-inclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'add-exclusion') {
+	mysqli_query($connection, "insert into exclusion_table (exclusion, packageId) values ('" . $_POST['exclusion'] . "', '" . $_POST['packageId'] . "')");
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-exclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-exclusion') {
+	mysqli_query($connection, "update exclusion_table set exclusion = '" . $_POST['exclusion'] . "' where exclusionId = '" . $_POST['exclusionId'] . "'");
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-exclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-exclusion') {
+	mysqli_query($connection, "delete from exclusion_table where exclusionId = '" . $_POST['exclusionId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-exclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
  ?>

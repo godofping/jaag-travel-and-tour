@@ -1,6 +1,6 @@
 <?php
 include("includes/connection.php");
-$_SESSION['current_page'] = "list-of-vans";
+$_SESSION['current_page'] = "list-of-van-rentals";
 include("includes/header.php");
 include("includes/side-menu.php");
 ?>
@@ -12,7 +12,7 @@ include("includes/side-menu.php");
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
           <li class="breadcrumb-item active">Van Rentals</li>
         </ol>
-        <h1 class="page-title">Vans</h1>
+        <h1 class="page-title">Rentals</h1>
         
       </div>
 
@@ -57,7 +57,7 @@ include("includes/side-menu.php");
                   <td><?php echo $res['model']; ?></td>
                   <td><?php echo $res['modelYear']; ?></td>
                   <td><?php echo $res['plateNumber']; ?></td>
-                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"  data-target="#updateModal<?php echo $res['vanId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['vanId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
+                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['vanId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['vanId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
                 </tr>
                 <?php } ?>
               </tbody>
