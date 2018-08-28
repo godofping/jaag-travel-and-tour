@@ -145,4 +145,10 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-package') {
 	header("Location: list-of-packages.php");
 }
 
+if (isset($_POST['from']) and $_POST['from'] == 'add-inclusion') {
+	mysqli_query($connection, "insert into inclusion_table (inclusion, packageId) values ('" . $_POST['inclusion'] . "', '" . $_POST['packageId'] . "')");
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-packages.php");
+}
+
  ?>

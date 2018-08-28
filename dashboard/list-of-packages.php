@@ -67,8 +67,14 @@ include("includes/side-menu.php");
                   <td><?php echo $res['pax']; ?></td>
                   <td><?php echo $res['price']; ?></td>
                   <td><?php echo $res['packageDetails']; ?></td>
-                  <td></td>
-                  <td></td>
+                  <td>
+                  	<?php $qry2 = mysqli_query($connection, "select * from inclusion_view where packageId = '" . $res['packageId'] . "'");
+                  	while ($res2 = mysqli_fetch_assoc($qry2)) {?>
+                  	 <li><?php echo $res2['inclusion']; ?> </li>
+                  	 <?php } ?>
+                  	<button type="button" class="btn btn-info btn-xs" data-target="#addInclusionModal<?php echo $res['packageId'] ?>" data-toggle="modal">add</button>
+                  </td>
+                  <td><button type="button" class="btn btn-info btn-xs" data-target="#addExclusionModal<?php echo $res['packageId'] ?>" data-toggle="modal">add</button></td>
                   <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"><i class="icon md-edit" aria-hidden="true" data-target="#updateModal<?php echo $res['packageId'] ?>" data-toggle="modal"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic"><i class="icon md-delete" aria-hidden="true" data-target="#deleteModal<?php echo $res['packageId'] ?>" data-toggle="modal"></i></button> </td>
                 </tr>
                 <?php } ?>
@@ -157,6 +163,8 @@ include("includes/side-menu.php");
         </div>
       </div>
     </div>
+
+
 
   <?php 
     $qry = mysqli_query($connection, "select * from package_view");
@@ -275,6 +283,39 @@ include("includes/side-menu.php");
 
      
 
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade modal-fill-in" id="addInclusionModal<?php echo $res['packageId'] ?>" aria-hidden="false" aria-labelledby="addModal0"
+      role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-simple">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Add inclusion</h3>
+          </div>
+          <div class="modal-body">
+            <form autocomplete="off" method="POST" action="controller.php">
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                      <label class="form-control-label" for="inclusion">Inclusion</label>
+                      <input type="text" class="form-control" id="inclusion" name="inclusion"  required="" />
+                      </div>
+                    </div>
+                   </div>
+
+                  <input type="text" name="from" value="add-inclusion" hidden="">
+                  <input type="text" name="packageId" value="<?php echo $res['packageId'] ?>" hidden>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          </form>
         </div>
       </div>
     </div>

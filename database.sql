@@ -252,11 +252,11 @@ CREATE TABLE `destination_table` (
   KEY `FK_destination_table` (`placeId`),
   CONSTRAINT `FK_destination_table` FOREIGN KEY (`placeId`) REFERENCES `place_table` (`placeId`),
   CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `destination_table` */
 
-insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (1,1,4),(2,1,3);
+insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (15,1,4),(16,1,3);
 
 /*Table structure for table `employee_table` */
 
@@ -301,9 +301,11 @@ CREATE TABLE `inclusion_table` (
   PRIMARY KEY (`inclusionId`),
   KEY `FK_inclusion_table` (`packageId`),
   CONSTRAINT `FK_inclusion_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inclusion_table` */
+
+insert  into `inclusion_table`(`inclusionId`,`inclusion`,`packageId`) values (1,'TRANSPORTATION',1);
 
 /*Table structure for table `media_location_table` */
 
@@ -378,7 +380,7 @@ CREATE TABLE `package_table` (
   PRIMARY KEY (`packageId`),
   KEY `FK_package_table3` (`priceId`),
   CONSTRAINT `FK_package_table3` FOREIGN KEY (`priceId`) REFERENCES `price_table` (`priceId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_table` */
 
@@ -433,7 +435,7 @@ CREATE TABLE `price_table` (
   `priceId` int(6) NOT NULL AUTO_INCREMENT,
   `price` double DEFAULT NULL,
   PRIMARY KEY (`priceId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `price_table` */
 
@@ -610,6 +612,35 @@ DROP TABLE IF EXISTS `customer_view`;
  `buildingNumber` varchar(60) 
 )*/;
 
+/*Table structure for table `destination_view` */
+
+DROP TABLE IF EXISTS `destination_view`;
+
+/*!50001 DROP VIEW IF EXISTS `destination_view` */;
+/*!50001 DROP TABLE IF EXISTS `destination_view` */;
+
+/*!50001 CREATE TABLE  `destination_view`(
+ `destinationId` int(6) ,
+ `packageId` int(6) ,
+ `placeId` int(6) ,
+ `placeName` varchar(60) ,
+ `latitude` double ,
+ `longtitude` double 
+)*/;
+
+/*Table structure for table `inclusion_view` */
+
+DROP TABLE IF EXISTS `inclusion_view`;
+
+/*!50001 DROP VIEW IF EXISTS `inclusion_view` */;
+/*!50001 DROP TABLE IF EXISTS `inclusion_view` */;
+
+/*!50001 CREATE TABLE  `inclusion_view`(
+ `inclusionId` int(6) ,
+ `inclusion` varchar(200) ,
+ `packageId` int(6) 
+)*/;
+
 /*Table structure for table `package_view` */
 
 DROP TABLE IF EXISTS `package_view`;
@@ -707,6 +738,20 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP VIEW IF EXISTS `customer_view` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customer_view` AS select `customer_table`.`customerId` AS `customerId`,`customer_table`.`profileId` AS `profileId`,`customer_table`.`accountId` AS `accountId`,`customer_table`.`customerTypeId` AS `customerTypeId`,`account_table`.`userName` AS `userName`,`account_table`.`passWord` AS `passWord`,`customer_type_table`.`customerType` AS `customerType`,`profile_table`.`firstName` AS `firstName`,`profile_table`.`middleName` AS `middleName`,`profile_table`.`lastName` AS `lastName`,`profile_table`.`addressId` AS `addressId`,`profile_table`.`contactNumber` AS `contactNumber`,`address_table`.`province` AS `province`,`address_table`.`city` AS `city`,`address_table`.`barangay` AS `barangay`,`address_table`.`street` AS `street`,`address_table`.`buildingNumber` AS `buildingNumber` from ((((`customer_table` join `profile_table` on((`customer_table`.`profileId` = `profile_table`.`profileId`))) join `account_table` on((`customer_table`.`accountId` = `account_table`.`accountId`))) join `customer_type_table` on((`customer_table`.`customerTypeId` = `customer_type_table`.`customerTypeId`))) join `address_table` on((`profile_table`.`addressId` = `address_table`.`addressId`))) */;
+
+/*View structure for view destination_view */
+
+/*!50001 DROP TABLE IF EXISTS `destination_view` */;
+/*!50001 DROP VIEW IF EXISTS `destination_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `destination_view` AS select `destination_table`.`destinationId` AS `destinationId`,`destination_table`.`packageId` AS `packageId`,`destination_table`.`placeId` AS `placeId`,`place_table`.`placeName` AS `placeName`,`place_table`.`latitude` AS `latitude`,`place_table`.`longtitude` AS `longtitude` from (`destination_table` join `place_table` on((`destination_table`.`placeId` = `place_table`.`placeId`))) */;
+
+/*View structure for view inclusion_view */
+
+/*!50001 DROP TABLE IF EXISTS `inclusion_view` */;
+/*!50001 DROP VIEW IF EXISTS `inclusion_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `inclusion_view` AS select `inclusion_table`.`inclusionId` AS `inclusionId`,`inclusion_table`.`inclusion` AS `inclusion`,`inclusion_table`.`packageId` AS `packageId` from `inclusion_table` */;
 
 /*View structure for view package_view */
 
