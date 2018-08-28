@@ -288,26 +288,6 @@ CREATE TABLE `exclusion_table` (
 
 /*Data for the table `exclusion_table` */
 
-/*Table structure for table `gallery_table` */
-
-DROP TABLE IF EXISTS `gallery_table`;
-
-CREATE TABLE `gallery_table` (
-  `galleryId` int(6) NOT NULL AUTO_INCREMENT,
-  `vanId` int(6) DEFAULT NULL,
-  `packageId` int(6) DEFAULT NULL,
-  `announcementId` int(6) DEFAULT NULL,
-  PRIMARY KEY (`galleryId`),
-  KEY `FK_gallery_table` (`vanId`),
-  KEY `FK_gallery_table1` (`packageId`),
-  KEY `FK_gallery_table12` (`announcementId`),
-  CONSTRAINT `FK_gallery_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
-  CONSTRAINT `FK_gallery_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
-  CONSTRAINT `FK_gallery_table12` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `gallery_table` */
-
 /*Table structure for table `inclusion_table` */
 
 DROP TABLE IF EXISTS `inclusion_table`;
@@ -334,22 +314,6 @@ CREATE TABLE `media_location_table` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `media_location_table` */
-
-/*Table structure for table `media_table` */
-
-DROP TABLE IF EXISTS `media_table`;
-
-CREATE TABLE `media_table` (
-  `mediaId` int(6) NOT NULL AUTO_INCREMENT,
-  `mediaLocation` varchar(200) DEFAULT NULL,
-  `description` text,
-  `galleryId` int(6) DEFAULT NULL,
-  PRIMARY KEY (`mediaId`),
-  KEY `FK_media_table` (`galleryId`),
-  CONSTRAINT `FK_media_table` FOREIGN KEY (`galleryId`) REFERENCES `gallery_table` (`galleryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `media_table` */
 
 /*Table structure for table `mode_of_payment_table` */
 
@@ -485,7 +449,7 @@ CREATE TABLE `profile_table` (
 
 /*Data for the table `profile_table` */
 
-insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`addressId`,`contactNumber`) values (1,'toto','panizal','oracoy',1,'09754142411'),(2,'tata','natividad','evanz',2,'09368585441'),(4,'admin','admin','admin',3,'09754363944'),(5,'walkin ','walkkinnn','walkkinn',4,'09754352222'),(6,'fn','mn','ln',6,'0975555555'),(7,'ana111','tanya1','sagolili1',7,'09365417455'),(8,'asd','as','asd',8,'097555'),(9,'as','ssssss','sssssssssssss',9,'asd'),(10,'asd','dddd','ddddddddd',10,'ddddddddddd'),(11,'as','aaaaaaaaaaa','aaaaaaaaaaaaaaa',11,'asdasd'),(12,'asdasdasd','asda','asdasd',12,'asd');
+insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`addressId`,`contactNumber`) values (1,'toto','panizal','oracoy',1,'09754142411'),(2,'tata','natividad','evanz',2,'09368585441'),(4,'admin','admin','admin',3,'09754363944'),(5,'walkin 1','walkkinnn1','walkkinn',4,'09754352222'),(6,'fn','mn','ln',6,'0975555555'),(7,'ana111','tanya1','sagolili1',7,'09365417455'),(8,'asd','as','asd',8,'097555'),(9,'as','ssssss','sssssssssssss',9,'asd'),(10,'asd','dddd','ddddddddd',10,'ddddddddddd'),(11,'as','aaaaaaaaaaa','aaaaaaaaaaaaaaa',11,'asdasd'),(12,'asdasdasd','asda','asdasd',12,'asd');
 
 /*Table structure for table `status_table` */
 
@@ -669,6 +633,19 @@ DROP TABLE IF EXISTS `package_view`;
  `price` double 
 )*/;
 
+/*Table structure for table `place_view` */
+
+DROP TABLE IF EXISTS `place_view`;
+
+/*!50001 DROP VIEW IF EXISTS `place_view` */;
+/*!50001 DROP TABLE IF EXISTS `place_view` */;
+
+/*!50001 CREATE TABLE  `place_view`(
+ `placeId` int(6) ,
+ `placeName` varchar(60) ,
+ `mapLocationCoordinate` varchar(60) 
+)*/;
+
 /*Table structure for table `van_rental_view` */
 
 DROP TABLE IF EXISTS `van_rental_view`;
@@ -750,6 +727,13 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP VIEW IF EXISTS `package_view` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`destinationId` AS `destinationId`,`package_table`.`pax` AS `pax`,`package_table`.`priceId` AS `priceId`,`package_table`.`packageDetails` AS `packageDetails`,`price_table`.`price` AS `price` from (`package_table` join `price_table` on((`package_table`.`priceId` = `price_table`.`priceId`))) */;
+
+/*View structure for view place_view */
+
+/*!50001 DROP TABLE IF EXISTS `place_view` */;
+/*!50001 DROP VIEW IF EXISTS `place_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `place_view` AS select `place_table`.`placeId` AS `placeId`,`place_table`.`placeName` AS `placeName`,`place_table`.`mapLocationCoordinate` AS `mapLocationCoordinate` from `place_table` */;
 
 /*View structure for view van_rental_view */
 
