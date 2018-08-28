@@ -151,7 +151,7 @@ include("includes/side-menu.php");
     </div>
 
   <?php 
-    $qry = mysqli_query($connection, "select * from van_view");
+    $qry = mysqli_query($connection, "select * from package_view");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
     <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['packageId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
@@ -168,38 +168,54 @@ include("includes/side-menu.php");
             <form autocomplete="off" method="POST" action="controller.php">
 
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="make">Make</label>
-                      <input type="text" class="form-control" id="make" name="make" value="<?php echo $res['make'] ?>" required="" />
+                      <label class="form-control-label" for="packageName">Package Name</label>
+                      <input type="text" class="form-control" id="packageName" name="packageName"  required="" />
                       </div>
                     </div>
+                   </div>
 
-                    <div class="col-md-4">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="model">Model</label>
-                      <input type="text" class="form-control" id="model" name="model" value="<?php echo $res['model'] ?>" required="" />
-                      </div>
-                    </div>
-                  
-                    <div class="col-md-4">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="modelYear">Model Year</label>
-                      <input type="text" class="form-control" id="modelYear" name="modelYear" value="<?php echo $res['modelYear'] ?>" required="" />
-                      </div>
+                   <div class="row">
+                    <div class="col-md-12">
+	                  <div class="form-group form-material" data-plugin="formMaterial">
+	                    <label class="form-control-label" for="select">Destinations</label>
+	                    <select class="form-control" multiple name="places[]" data-plugin="select2" style="width: 100%;">
+	                  	<?php $qry = mysqli_query($connection, "select * from place_view order by placeName asc");
+	                  	while ($res = mysqli_fetch_assoc($qry)) { ?>
+	                  		<option value="<?php echo $res['placeId'] ?>"><?php echo $res['placeName']; ?></option>
+	                  	<?php }?>
+	                    </select>
+	                  </div>
                     </div>
                   </div>
                   
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                        <label class="form-control-label" for="plateNumber">Plate Number</label>
-                        <input type="text" class="form-control" id="plateNumber" name="plateNumber" value="<?php echo $res['plateNumber'] ?>" required="" />
+                        <label class="form-control-label" for="pax">Pax</label>
+                        <input type="text" class="form-control" id="pax" name="pax" required="" />
+                     </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="price">Price</label>
+                        <input type="number" step="any" class="form-control" id="price" name="price" required="" />
                      </div>
                     </div>
                   </div>
 
-                  <input type="text" name="from" value="update-van" hidden="">
+                  <div class="row">
+                  	<div class="col-md-12">
+                  		<div class="form-group form-material" data-plugin="formMaterial">
+	                    	<label class="form-control-label" for="packageDetails">Package Details</label>
+	                    	<textarea class="form-control" id="packageDetails" name="packageDetails" rows="3" required=""></textarea>
+	                  	</div>
+                  	</div>
+                  </div>
+
+                  <input type="text" name="from" value="update-package" hidden="">
                   <input type="text" name="packageId" value="<?php echo $res['packageId'] ?>" hidden="">
                  
                 
