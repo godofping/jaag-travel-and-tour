@@ -212,10 +212,7 @@ if (isset($_POST['from']) and $_POST['from'] == 'add-package-image') {
 	mysqli_query($connection, "update media_location_table set mediaLocation = '" . $target_file . "' where mediaLocationId = '" . $_POST['mediaLocationId'] . "'");
 	$mediaLocationId = mysqli_insert_id($connection);
 
-
-
-
-	$_SESSION['do'] = 'added';
+	$_SESSION['do'] = 'updated';
 	header("Location: list-of-package-images.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
 
 }
