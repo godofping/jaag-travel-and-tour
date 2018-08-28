@@ -62,6 +62,8 @@
         <link rel="stylesheet" href="global/vendor/multi-select/multi-select.css">
         <link rel="stylesheet" href="global/vendor/typeahead-js/typeahead.css">
         <link rel="stylesheet" href="assets/examples/css/forms/advanced.css">
+        <link rel="stylesheet" href="global/vendor/blueimp-file-upload/jquery.fileupload.css">
+        <link rel="stylesheet" href="global/vendor/dropify/dropify.css">
 
 
 

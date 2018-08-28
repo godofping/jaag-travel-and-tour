@@ -98,6 +98,21 @@
         <script src="global/vendor/typeahead-js/bloodhound.min.js"></script>
         <script src="global/vendor/typeahead-js/typeahead.jquery.min.js"></script>
         <script src="global/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+        <script src="global/vendor/jquery-ui/jquery-ui.js"></script>
+        <script src="global/vendor/blueimp-tmpl/tmpl.js"></script>
+        <script src="global/vendor/blueimp-canvas-to-blob/canvas-to-blob.js"></script>
+        <script src="global/vendor/blueimp-load-image/load-image.all.min.js"></script>
+        <script src="global/vendor/blueimp-file-upload/jquery.fileupload.js"></script>
+        <script src="global/vendor/blueimp-file-upload/jquery.fileupload-process.js"></script>
+        <script src="global/vendor/blueimp-file-upload/jquery.fileupload-image.js"></script>
+        <script src="global/vendor/blueimp-file-upload/jquery.fileupload-audio.js"></script>
+        <script src="global/vendor/blueimp-file-upload/jquery.fileupload-video.js"></script>
+        <script src="global/vendor/blueimp-file-upload/jquery.fileupload-validate.js"></script>
+        <script src="global/vendor/blueimp-file-upload/jquery.fileupload-ui.js"></script>
+        <script src="global/vendor/dropify/dropify.min.js"></script>
+        <script src="global/js/Plugin/dropify.js"></script>
+    
+        <script src="assets/examples/js/forms/uploads.js"></script>
 
     <!-- Scripts -->
     <script src="global/js/Component.js"></script>

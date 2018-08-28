@@ -46,7 +46,7 @@ include("includes/side-menu.php");
               <tbody>
 
                 <?php 
-                $qry = mysqli_query($connection, "select * from inclusion_view");
+                $qry = mysqli_query($connection, "select * from inclusion_view where packageId = '" . $_GET['packageId'] . "'");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
                   <td><?php echo $res['inclusionId']; ?></td>
@@ -108,7 +108,7 @@ include("includes/side-menu.php");
     </div>
 
   <?php 
-    $qry = mysqli_query($connection, "select * from inclusion_view");
+    $qry = mysqli_query($connection, "select * from inclusion_view where packageId = '" . $_GET['packageId'] . "'");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
     <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['inclusionId'] ?>" aria-hidden="false" aria-labelledby="updateModal"

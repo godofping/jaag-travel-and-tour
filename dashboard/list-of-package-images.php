@@ -12,7 +12,7 @@ include("includes/side-menu.php");
           <li class="breadcrumb-item"><a href="home.php">Home</a></li>
           <li class="breadcrumb-item active"><a href="list-of-packages.php">Packages</a></li>
         </ol>
-        <h1 class="page-title">Exclusions of "<?php echo $_GET['packageName']; ?>" Package</h1>
+        <h1 class="page-title">Images of "<?php echo $_GET['packageName']; ?>" Package</h1>
         
       </div>
 
@@ -33,30 +33,27 @@ include("includes/side-menu.php");
 
 
         
-            <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
-
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Exclusion</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-
-              <tbody>
 
                 <?php 
-                $qry = mysqli_query($connection, "select * from exclusion_view where packageId = '" . $_GET['packageId'] . "'");
+                $qry = mysqli_query($connection, "select * from package_media_view where packageId = '" . $_GET['packageId'] . "'");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
-                <tr>
-                  <td><?php echo $res['exclusionId']; ?></td>
-                  <td><?php echo $res['exclusion']; ?></td>
-                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['exclusionId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['exclusionId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
-                </tr>
+                  <div class="col-md-4">
+                      <div class="example">
+                        <div class="card">
+                          <img class="card-img-top w-full" src="<?php echo $res['mediaLocation']; ?>">
+                          <div class="card-block">
+                            <h4 class="card-title">ID: <?php echo $res['mediaLocationId']; ?></h4>
+                            <p class="card-text"></p>
+                            <button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['mediaLocationId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['mediaLocationId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              
                 <?php } ?>
-              </tbody>
+            
 
-            </table>
+         
           
 
           </div>
@@ -80,13 +77,13 @@ include("includes/side-menu.php");
             <h3 class="modal-title" id="exampleFillExModalTitle">Add place</h3>
           </div>
           <div class="modal-body">
-            <form autocomplete="off" method="POST" action="controller.php">
+            <form autocomplete="off" method="POST" action="controller.php" enctype="multipart/form-data">
 
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="exclusion">Exclusion</label>
-                      <input type="text" class="form-control" id="exclusion" name="exclusion"  required="" />
+                      <label class="form-control-label" for="exclusion">Image</label>
+                      <input type="file" name="mediaLocation" id="input-file-max-fs" data-plugin="dropify" data-max-file-size="2M" required="">
                       </div>
                     </div>
                   </div>
@@ -95,7 +92,7 @@ include("includes/side-menu.php");
 
                    
                   </div>
-                  <input type="text" name="from" value="add-exclusion" hidden="">
+                  <input type="text" name="from" value="add-package-image" hidden="">
                   <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
                   <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">
           </div>
@@ -108,10 +105,10 @@ include("includes/side-menu.php");
     </div>
 
   <?php 
-    $qry = mysqli_query($connection, "select * from exclusion_view where packageId = '" . $_GET['packageId'] . "'");
+    $qry = mysqli_query($connection, "select * from package_media_view where packageId = '" . $_GET['packageId'] . "'");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
-    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['exclusionId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['mediaLocationId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -122,15 +119,13 @@ include("includes/side-menu.php");
             <h3 class="modal-title" id="exampleFillExModalTitle">Update exclusion</h3>
           </div>
           <div class="modal-body">
-            <form autocomplete="off" method="POST" action="controller.php">
-
-                  <form autocomplete="off" method="POST" action="controller.php">
+            <form autocomplete="off" method="POST" action="controller.php" enctype="multipart/form-data">
 
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="exclusion">Exclusion</label>
-                      <input type="text" class="form-control" id="exclusion" name="exclusion" value="<?php echo $res['exclusion'] ?>"  required="" />
+                      <label class="form-control-label" for="exclusion">Image</label>
+                      <input type="file" name="mediaLocation" id="input-file-max-fs" data-plugin="dropify" data-max-file-size="2M" required="" data-default-file="<?php echo $res['mediaLocation'] ?>">
                       </div>
                     </div>
                   </div>
@@ -139,9 +134,9 @@ include("includes/side-menu.php");
 
                    
                   </div>
-                  <input type="text" name="from" value="update-exclusion" hidden="">
-                  <input type="text" name="exclusionId" value="<?php echo $res['exclusionId'] ?>" hidden="">
+                  <input type="text" name="from" value="update-package-image" hidden="">
                   <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
+                  <input type="text" name="mediaLocationId" value="<?php echo $res['mediaLocationId'] ?>" hidden="">
                   <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">
                  
                 
@@ -157,7 +152,7 @@ include("includes/side-menu.php");
       </div>
     </div>
 
-    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['exclusionId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['mediaLocationId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -180,7 +175,7 @@ include("includes/side-menu.php");
           <div class="modal-footer">
             <form method="POST" action="controller.php">
               <input type="text" name="from" value="delete-exclusion" hidden="">
-              <input type="text" name="exclusionId" value="<?php echo $res['exclusionId'] ?>" hidden="">
+              <input type="text" name="mediaLocationId" value="<?php echo $res['mediaLocationId'] ?>" hidden="">
               <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
               <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>
