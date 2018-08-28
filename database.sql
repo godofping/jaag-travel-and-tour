@@ -286,9 +286,11 @@ CREATE TABLE `exclusion_table` (
   PRIMARY KEY (`exclusionId`),
   KEY `FK_exclusion_table` (`packageId`),
   CONSTRAINT `FK_exclusion_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `exclusion_table` */
+
+insert  into `exclusion_table`(`exclusionId`,`exclusion`,`packageId`) values (1,'MEALS',1),(2,'BOATING',1),(3,'ENTRANCES AND OTHER RIDES @alameda',1);
 
 /*Table structure for table `inclusion_table` */
 
@@ -301,11 +303,11 @@ CREATE TABLE `inclusion_table` (
   PRIMARY KEY (`inclusionId`),
   KEY `FK_inclusion_table` (`packageId`),
   CONSTRAINT `FK_inclusion_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inclusion_table` */
 
-insert  into `inclusion_table`(`inclusionId`,`inclusion`,`packageId`) values (1,'TRANSPORTATION',1);
+insert  into `inclusion_table`(`inclusionId`,`inclusion`,`packageId`) values (1,'TRANSPORTATION',1),(5,'ACCOMODATION',1);
 
 /*Table structure for table `media_location_table` */
 
@@ -628,6 +630,19 @@ DROP TABLE IF EXISTS `destination_view`;
  `longtitude` double 
 )*/;
 
+/*Table structure for table `exclusion_view` */
+
+DROP TABLE IF EXISTS `exclusion_view`;
+
+/*!50001 DROP VIEW IF EXISTS `exclusion_view` */;
+/*!50001 DROP TABLE IF EXISTS `exclusion_view` */;
+
+/*!50001 CREATE TABLE  `exclusion_view`(
+ `exclusionId` int(6) ,
+ `exclusion` varchar(200) ,
+ `packageId` int(6) 
+)*/;
+
 /*Table structure for table `inclusion_view` */
 
 DROP TABLE IF EXISTS `inclusion_view`;
@@ -745,6 +760,13 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP VIEW IF EXISTS `destination_view` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `destination_view` AS select `destination_table`.`destinationId` AS `destinationId`,`destination_table`.`packageId` AS `packageId`,`destination_table`.`placeId` AS `placeId`,`place_table`.`placeName` AS `placeName`,`place_table`.`latitude` AS `latitude`,`place_table`.`longtitude` AS `longtitude` from (`destination_table` join `place_table` on((`destination_table`.`placeId` = `place_table`.`placeId`))) */;
+
+/*View structure for view exclusion_view */
+
+/*!50001 DROP TABLE IF EXISTS `exclusion_view` */;
+/*!50001 DROP VIEW IF EXISTS `exclusion_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `exclusion_view` AS select `exclusion_table`.`exclusionId` AS `exclusionId`,`exclusion_table`.`exclusion` AS `exclusion`,`exclusion_table`.`packageId` AS `packageId` from `exclusion_table` */;
 
 /*View structure for view inclusion_view */
 

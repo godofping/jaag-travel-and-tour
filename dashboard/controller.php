@@ -162,4 +162,23 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-inclusion') {
 	$_SESSION['do'] = 'deleted';
 	header("Location: list-of-inclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
 }
+
+if (isset($_POST['from']) and $_POST['from'] == 'add-exclusion') {
+	mysqli_query($connection, "insert into exclusion_table (exclusion, packageId) values ('" . $_POST['exclusion'] . "', '" . $_POST['packageId'] . "')");
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-exclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-exclusion') {
+	mysqli_query($connection, "update exclusion_table set exclusion = '" . $_POST['exclusion'] . "' where exclusionId = '" . $_POST['exclusionId'] . "'");
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-exclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-exclusion') {
+	mysqli_query($connection, "delete from exclusion_table where exclusionId = '" . $_POST['exclusionId'] . "'");
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-exclusions.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
+}
+
  ?>

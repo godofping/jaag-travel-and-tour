@@ -77,7 +77,17 @@ include("includes/side-menu.php");
                   	 <a href="list-of-inclusions.php?packageId=<?php echo $res['packageId'];?>&packageName=<?php echo $res['packageName'] ?>"><button type="button" class="btn btn-info btn-xs">MANAGE</button></a>
                   	
                   </td>
-                  <td><button type="button" class="btn btn-info btn-xs" data-target="#addExclusionModal<?php echo $res['packageId'] ?>" data-toggle="modal">add</button></td>
+                  <td>
+                    
+                    <?php $qry2 = mysqli_query($connection, "select * from exclusion_view where packageId = '" . $res['packageId'] . "'");
+                    while ($res2 = mysqli_fetch_assoc($qry2)) {?>
+                     <li><?php echo $res2['exclusion']; ?> </li>
+                     <?php } ?>
+
+                     <a href="list-of-exclusions.php?packageId=<?php echo $res['packageId'];?>&packageName=<?php echo $res['packageName'] ?>"><button type="button" class="btn btn-info btn-xs">MANAGE</button></a>
+                    
+                  </td>
+
                   <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['packageId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['packageId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
                 </tr>
                 <?php } ?>
