@@ -52,7 +52,7 @@ include("includes/side-menu.php");
                 <tr>
                   <td><?php echo $res['placeId']; ?></td>
                   <td><?php echo $res['placeName']; ?></td>
-                  <td><?php echo $res['mapLocationCoordinate']; ?></td>
+                  <td><?php echo $res['latitude']; ?>, <?php echo $res['longtitude']; ?></td>
                   <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"><i class="icon md-edit" aria-hidden="true" data-target="#updateModal<?php echo $res['placeId'] ?>" data-toggle="modal"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic"><i class="icon md-delete" aria-hidden="true" data-target="#deleteModal<?php echo $res['placeId'] ?>" data-toggle="modal"></i></button> </td>
                 </tr>
                 <?php } ?>
@@ -95,17 +95,21 @@ include("includes/side-menu.php");
 
                   <div class="row">
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="mapLocationCoordinate">GPS Coordinates</label>
-                      <input type="text" class="form-control" id="mapLocationCoordinate" name="mapLocationCoordinate"  required="" />
+                      <label class="form-control-label" for="latitude">Latitude</label>
+                      <input type="number" step="any" class="form-control" id="latitude" name="latitude"  required="" />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                      <label class="form-control-label" for="longtitude">Longtitude</label>
+                      <input type="number" step="any" class="form-control" id="longtitude" name="longtitude"  required="" />
                       </div>
                     </div>
 
                   </div>
-                  
-                  
-            
                   <input type="text" name="from" value="add-place" hidden="">
           </div>
           <div class="modal-footer">
@@ -128,44 +132,39 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Update walk-in customer</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Update place</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
 
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="make">Make</label>
-                      <input type="text" class="form-control" id="make" name="make" value="<?php echo $res['make'] ?>" required="" />
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="model">Model</label>
-                      <input type="text" class="form-control" id="model" name="model" value="<?php echo $res['model'] ?>" required="" />
-                      </div>
-                    </div>
-                  
-                    <div class="col-md-4">
-                      <div class="form-group form-material" data-plugin="formMaterial">
-                      <label class="form-control-label" for="modelYear">Model Year</label>
-                      <input type="text" class="form-control" id="modelYear" name="modelYear" value="<?php echo $res['modelYear'] ?>" required="" />
+                      <label class="form-control-label" for="placeName">Place</label>
+                      <input type="text" class="form-control" id="placeName" name="placeName" value="<?php echo $res['placeName'] ?>"  required="" />
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="row">
-                    <div class="col-md-4">
+
+                    <div class="col-md-6">
                       <div class="form-group form-material" data-plugin="formMaterial">
-                        <label class="form-control-label" for="plateNumber">Plate Number</label>
-                        <input type="text" class="form-control" id="plateNumber" name="plateNumber" value="<?php echo $res['plateNumber'] ?>" required="" />
-                     </div>
+                      <label class="form-control-label" for="latitude">Latitude</label>
+                      <input type="number" step="any" class="form-control" id="latitude" name="latitude" value="<?php echo $res['latitude'] ?>"  required="" />
+                      </div>
                     </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                      <label class="form-control-label" for="longtitude">Longtitude</label>
+                      <input type="number" step="any" class="form-control" id="longtitude" name="longtitude" value="<?php echo $res['longtitude'] ?>"  required="" />
+                      </div>
+                    </div>
+
                   </div>
 
-                  <input type="text" name="from" value="update-van" hidden="">
+                  <input type="text" name="from" value="update-place" hidden="">
                   <input type="text" name="placeId" value="<?php echo $res['placeId'] ?>" hidden="">
                  
                 
@@ -189,7 +188,7 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Delete van</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Delete place</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
@@ -203,7 +202,7 @@ include("includes/side-menu.php");
 
           <div class="modal-footer">
             <form method="POST" action="controller.php">
-              <input type="text" name="from" value="delete-van" hidden="">
+              <input type="text" name="from" value="delete-place" hidden="">
               <input type="text" name="placeId" value="<?php echo $res['placeId'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>
             </form>

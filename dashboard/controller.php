@@ -85,8 +85,20 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-van') {
 }
 
 if (isset($_POST['from']) and $_POST['from'] == 'add-place') {
-	mysqli_query($connection, "insert into place_table (placeName, mapLocationCoordinate) values ('" . $_POST['placeName'] . "', '" . $_POST['mapLocationCoordinate'] . "')");
+	mysqli_query($connection, "insert into place_table (placeName, longtitude, latitude) values ('" . $_POST['placeName'] . "', '" . $_POST['longtitude'] . "', '" . $_POST['latitude'] . "')");
 	$_SESSION['do'] = 'added';
+	header("Location: list-of-destinations.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-place') {
+	mysqli_query($connection, "update place_table set placeName = '" . $_POST['placeName'] . "', longtitude = '" . $_POST['longtitude'] . "', latitude = '" . $_POST['latitude'] . "' where placeId = '" . $_POST['placeId'] . "'");
+	$_SESSION['do'] = 'updated' ;
+	header("Location: list-of-destinations.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-place') {
+	mysqli_query($connection, "delete from place_table where placeId = '" . $_POST['placeId'] . "'");
+	$_SESSION['do'] = 'delete';
 	header("Location: list-of-destinations.php");
 }
  ?>

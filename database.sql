@@ -416,9 +416,11 @@ CREATE TABLE `place_table` (
   `latitude` double DEFAULT NULL,
   `longtitude` double DEFAULT NULL,
   PRIMARY KEY (`placeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `place_table` */
+
+insert  into `place_table`(`placeId`,`placeName`,`latitude`,`longtitude`) values (1,'Surigao City',9.7571,125.5138),(2,'Lake Sebu',6.2447,124.5528);
 
 /*Table structure for table `price_table` */
 
