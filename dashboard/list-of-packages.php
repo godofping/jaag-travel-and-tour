@@ -1,6 +1,6 @@
 <?php
 include("includes/connection.php");
-$_SESSION['current_page'] = "packages";
+$_SESSION['current_page'] = "list-of-packages";
 include("includes/header.php");
 include("includes/side-menu.php");
 ?>
@@ -38,10 +38,12 @@ include("includes/side-menu.php");
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Make</th>
-                  <th>Model</th>
-                  <th>Model Year</th>
-                  <th>Plate Number</th>
+                  <th>Package Name</th>
+                  <th>Pax</th>
+                  <th>Price</th>
+                  <th>Package Details</th>
+                  <th>Inclusions</th>
+                  <th>Exclusions</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -49,15 +51,17 @@ include("includes/side-menu.php");
               <tbody>
 
                 <?php 
-                $qry = mysqli_query($connection, "select * from van_view");
+                $qry = mysqli_query($connection, "select * from package_view");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
-                  <td><?php echo $res['vanId']; ?></td>
-                  <td><?php echo $res['make']; ?></td>
-                  <td><?php echo $res['model']; ?></td>
-                  <td><?php echo $res['modelYear']; ?></td>
-                  <td><?php echo $res['plateNumber']; ?></td>
-                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"><i class="icon md-edit" aria-hidden="true" data-target="#updateModal<?php echo $res['vanId'] ?>" data-toggle="modal"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic"><i class="icon md-delete" aria-hidden="true" data-target="#deleteModal<?php echo $res['vanId'] ?>" data-toggle="modal"></i></button> </td>
+                  <td><?php echo $res['packageId']; ?></td>
+                  <td><?php echo $res['packageName']; ?></td>
+                  <td><?php echo $res['pax']; ?></td>
+                  <td><?php echo $res['price']; ?></td>
+                  <td><?php echo $res['packageDetails']; ?></td>
+                  <td></td>
+                  <td></td>
+                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic"><i class="icon md-edit" aria-hidden="true" data-target="#updateModal<?php echo $res['packageId'] ?>" data-toggle="modal"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic"><i class="icon md-delete" aria-hidden="true" data-target="#deleteModal<?php echo $res['packageId'] ?>" data-toggle="modal"></i></button> </td>
                 </tr>
                 <?php } ?>
               </tbody>
@@ -100,11 +104,11 @@ include("includes/side-menu.php");
                    <div class="row">
                     <div class="col-md-12">
 	                  <div class="form-group form-material" data-plugin="formMaterial">
-	                    <label class="form-control-label" for="select">Select</label>
+	                    <label class="form-control-label" for="select">Destinations</label>
 	                    <select class="form-control" multiple name="places[]" data-plugin="select2" style="width: 100%;">
-	                  	<?php $qry = mysqli_query($connection, "select * from place_view");
+	                  	<?php $qry = mysqli_query($connection, "select * from place_view order by placeName asc");
 	                  	while ($res = mysqli_fetch_assoc($qry)) { ?>
-	                  		<option value="placeId"><?php echo $res['placeName']; ?></option>
+	                  		<option value="<?php echo $res['placeId'] ?>"><?php echo $res['placeName']; ?></option>
 	                  	<?php }?>
 	                    </select>
 	                  </div>
@@ -136,7 +140,7 @@ include("includes/side-menu.php");
                   	</div>
                   </div>
 
-                  <input type="text" name="from" value="add-van" hidden="">
+                  <input type="text" name="from" value="add-package" hidden="">
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -150,7 +154,7 @@ include("includes/side-menu.php");
     $qry = mysqli_query($connection, "select * from van_view");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
-    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['vanId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['packageId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -196,7 +200,7 @@ include("includes/side-menu.php");
                   </div>
 
                   <input type="text" name="from" value="update-van" hidden="">
-                  <input type="text" name="vanId" value="<?php echo $res['vanId'] ?>" hidden="">
+                  <input type="text" name="packageId" value="<?php echo $res['packageId'] ?>" hidden="">
                  
                 
           </div>
@@ -211,7 +215,7 @@ include("includes/side-menu.php");
       </div>
     </div>
 
-    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['vanId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['packageId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -234,7 +238,7 @@ include("includes/side-menu.php");
           <div class="modal-footer">
             <form method="POST" action="controller.php">
               <input type="text" name="from" value="delete-van" hidden="">
-              <input type="text" name="vanId" value="<?php echo $res['vanId'] ?>" hidden="">
+              <input type="text" name="packageId" value="<?php echo $res['packageId'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>
             </form>
               <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>

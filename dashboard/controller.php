@@ -101,4 +101,24 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-place') {
 	$_SESSION['do'] = 'delete';
 	header("Location: list-of-destinations.php");
 }
+
+if (isset($_POST['from']) and $_POST['from'] == 'add-package') {
+
+	mysqli_query($connection, "insert into price_table (price) values ('" . $_POST['price'] . "')");
+	$priceId = mysqli_insert_id($connection);
+
+	mysqli_query($connection, "insert into package_table (packageName, pax, priceId, packageDetails) values ('" . $_POST['packageName'] . "', '" . $_POST['pax'] . "', '" . $priceId . "', '" . $_POST['packageDetails'] . "')");
+	$packageId = mysqli_insert_id($connection);
+
+	foreach ($_POST['places'] as $placeId)
+	{	
+		mysqli_query($connection, "insert into destination_table (packageId, placeId) values ('" . $packageId . "', '" . $placeId . "')");
+	  
+	}
+
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-packages.php");
+}
+
+
  ?>

@@ -64,10 +64,10 @@
         </li>
         
 
-        <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'packages'): ?>
+        <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-packages'): ?>
           active open
         <?php endif ?>">
-          <a class="animsition-link" href="packages.php">
+          <a class="animsition-link" href="list-of-packages.php">
                   <i class="site-menu-icon md-flower-alt" aria-hidden="true"></i>
                   <span class="site-menu-title">Packages</span>
               </a>

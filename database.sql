@@ -252,9 +252,11 @@ CREATE TABLE `destination_table` (
   KEY `FK_destination_table` (`placeId`),
   CONSTRAINT `FK_destination_table` FOREIGN KEY (`placeId`) REFERENCES `place_table` (`placeId`),
   CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `destination_table` */
+
+insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (1,1,4),(2,1,3);
 
 /*Table structure for table `employee_table` */
 
@@ -370,17 +372,17 @@ DROP TABLE IF EXISTS `package_table`;
 CREATE TABLE `package_table` (
   `packageId` int(6) NOT NULL AUTO_INCREMENT,
   `packageName` varchar(60) DEFAULT NULL,
-  `destinationId` int(6) DEFAULT NULL,
   `pax` int(6) DEFAULT NULL,
   `priceId` int(6) DEFAULT NULL,
   `packageDetails` text,
   PRIMARY KEY (`packageId`),
-  KEY `FK_booking_table` (`destinationId`),
   KEY `FK_package_table3` (`priceId`),
   CONSTRAINT `FK_package_table3` FOREIGN KEY (`priceId`) REFERENCES `price_table` (`priceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_table` */
+
+insert  into `package_table`(`packageId`,`packageName`,`pax`,`priceId`,`packageDetails`) values (1,'BRITANIA TOUR + ALAMEDA',30,1,'THIS IS A TEST');
 
 /*Table structure for table `payment_transaction_table` */
 
@@ -417,11 +419,11 @@ CREATE TABLE `place_table` (
   `latitude` double DEFAULT NULL,
   `longtitude` double DEFAULT NULL,
   PRIMARY KEY (`placeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `place_table` */
 
-insert  into `place_table`(`placeId`,`placeName`,`latitude`,`longtitude`) values (1,'Surigao City',9.7571,125.5138),(2,'Lake Sebu',6.2447,124.5528);
+insert  into `place_table`(`placeId`,`placeName`,`latitude`,`longtitude`) values (1,'Surigao City',9.7571,125.5138),(2,'Lake Sebu',6.2447,124.5528),(3,'Britania',8.70073,126.207406),(4,'Alameda',8.733654,126.202285);
 
 /*Table structure for table `price_table` */
 
@@ -431,9 +433,11 @@ CREATE TABLE `price_table` (
   `priceId` int(6) NOT NULL AUTO_INCREMENT,
   `price` double DEFAULT NULL,
   PRIMARY KEY (`priceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `price_table` */
+
+insert  into `price_table`(`priceId`,`price`) values (1,999);
 
 /*Table structure for table `profile_table` */
 
@@ -548,7 +552,7 @@ CREATE TABLE `van_table` (
   `modelYear` varchar(60) DEFAULT NULL,
   `plateNumber` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`vanId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `van_table` */
 
@@ -616,7 +620,6 @@ DROP TABLE IF EXISTS `package_view`;
 /*!50001 CREATE TABLE  `package_view`(
  `packageId` int(6) ,
  `packageName` varchar(60) ,
- `destinationId` int(6) ,
  `pax` int(6) ,
  `priceId` int(6) ,
  `packageDetails` text ,
@@ -710,7 +713,7 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP TABLE IF EXISTS `package_view` */;
 /*!50001 DROP VIEW IF EXISTS `package_view` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`packageName` AS `packageName`,`package_table`.`destinationId` AS `destinationId`,`package_table`.`pax` AS `pax`,`package_table`.`priceId` AS `priceId`,`package_table`.`packageDetails` AS `packageDetails`,`price_table`.`price` AS `price` from (`package_table` join `price_table` on((`package_table`.`priceId` = `price_table`.`priceId`))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`packageName` AS `packageName`,`package_table`.`pax` AS `pax`,`package_table`.`priceId` AS `priceId`,`package_table`.`packageDetails` AS `packageDetails`,`price_table`.`price` AS `price` from (`package_table` join `price_table` on((`package_table`.`priceId` = `price_table`.`priceId`))) */;
 
 /*View structure for view place_view */
 
