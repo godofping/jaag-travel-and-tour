@@ -85,8 +85,8 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-van') {
 }
 
 if (isset($_POST['from']) and $_POST['from'] == 'add-place') {
-	mysqli_query($connection, "delete from van_table where vanId = '" . $_POST['vanId'] . "'");
-	$_SESSION['do'] = 'deleted';
-	header("Location: list-of-vans.php");
+	mysqli_query($connection, "insert into place_table (placeName, mapLocationCoordinate) values ('" . $_POST['placeName'] . "', '" . $_POST['mapLocationCoordinate'] . "')");
+	$_SESSION['do'] = 'added';
+	header("Location: list-of-destinations.php");
 }
  ?>

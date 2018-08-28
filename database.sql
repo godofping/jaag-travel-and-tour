@@ -413,7 +413,8 @@ DROP TABLE IF EXISTS `place_table`;
 CREATE TABLE `place_table` (
   `placeId` int(6) NOT NULL AUTO_INCREMENT,
   `placeName` varchar(60) DEFAULT NULL,
-  `mapLocationCoordinate` varchar(60) DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `longtitude` double DEFAULT NULL,
   PRIMARY KEY (`placeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -602,21 +603,6 @@ DROP TABLE IF EXISTS `customer_view`;
  `buildingNumber` varchar(60) 
 )*/;
 
-/*Table structure for table `destination_view` */
-
-DROP TABLE IF EXISTS `destination_view`;
-
-/*!50001 DROP VIEW IF EXISTS `destination_view` */;
-/*!50001 DROP TABLE IF EXISTS `destination_view` */;
-
-/*!50001 CREATE TABLE  `destination_view`(
- `destinationId` int(6) ,
- `packageId` int(6) ,
- `placeId` int(6) ,
- `placeName` varchar(60) ,
- `mapLocationCoordinate` varchar(60) 
-)*/;
-
 /*Table structure for table `package_view` */
 
 DROP TABLE IF EXISTS `package_view`;
@@ -643,7 +629,8 @@ DROP TABLE IF EXISTS `place_view`;
 /*!50001 CREATE TABLE  `place_view`(
  `placeId` int(6) ,
  `placeName` varchar(60) ,
- `mapLocationCoordinate` varchar(60) 
+ `latitude` double ,
+ `longtitude` double 
 )*/;
 
 /*Table structure for table `van_rental_view` */
@@ -714,13 +701,6 @@ DROP TABLE IF EXISTS `van_view`;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customer_view` AS select `customer_table`.`customerId` AS `customerId`,`customer_table`.`profileId` AS `profileId`,`customer_table`.`accountId` AS `accountId`,`customer_table`.`customerTypeId` AS `customerTypeId`,`account_table`.`userName` AS `userName`,`account_table`.`passWord` AS `passWord`,`customer_type_table`.`customerType` AS `customerType`,`profile_table`.`firstName` AS `firstName`,`profile_table`.`middleName` AS `middleName`,`profile_table`.`lastName` AS `lastName`,`profile_table`.`addressId` AS `addressId`,`profile_table`.`contactNumber` AS `contactNumber`,`address_table`.`province` AS `province`,`address_table`.`city` AS `city`,`address_table`.`barangay` AS `barangay`,`address_table`.`street` AS `street`,`address_table`.`buildingNumber` AS `buildingNumber` from ((((`customer_table` join `profile_table` on((`customer_table`.`profileId` = `profile_table`.`profileId`))) join `account_table` on((`customer_table`.`accountId` = `account_table`.`accountId`))) join `customer_type_table` on((`customer_table`.`customerTypeId` = `customer_type_table`.`customerTypeId`))) join `address_table` on((`profile_table`.`addressId` = `address_table`.`addressId`))) */;
 
-/*View structure for view destination_view */
-
-/*!50001 DROP TABLE IF EXISTS `destination_view` */;
-/*!50001 DROP VIEW IF EXISTS `destination_view` */;
-
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `destination_view` AS select `destination_table`.`destinationId` AS `destinationId`,`destination_table`.`packageId` AS `packageId`,`destination_table`.`placeId` AS `placeId`,`place_table`.`placeName` AS `placeName`,`place_table`.`mapLocationCoordinate` AS `mapLocationCoordinate` from (`destination_table` join `place_table` on((`destination_table`.`placeId` = `place_table`.`placeId`))) */;
-
 /*View structure for view package_view */
 
 /*!50001 DROP TABLE IF EXISTS `package_view` */;
@@ -733,7 +713,7 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP TABLE IF EXISTS `place_view` */;
 /*!50001 DROP VIEW IF EXISTS `place_view` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `place_view` AS select `place_table`.`placeId` AS `placeId`,`place_table`.`placeName` AS `placeName`,`place_table`.`mapLocationCoordinate` AS `mapLocationCoordinate` from `place_table` */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `place_view` AS select `place_table`.`placeId` AS `placeId`,`place_table`.`placeName` AS `placeName`,`place_table`.`latitude` AS `latitude`,`place_table`.`longtitude` AS `longtitude` from `place_table` */;
 
 /*View structure for view van_rental_view */
 
