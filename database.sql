@@ -88,15 +88,9 @@ DROP TABLE IF EXISTS `book_payment_transaction_table`;
 CREATE TABLE `book_payment_transaction_table` (
   `bookPaymentTransactionId` int(6) NOT NULL AUTO_INCREMENT,
   `bookId` int(6) DEFAULT NULL,
-  `amount` double DEFAULT NULL,
-  `datePaid` varchar(60) DEFAULT NULL,
   `modeOfPaymentId` int(6) DEFAULT NULL,
-  `status` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`bookPaymentTransactionId`),
-  KEY `FK_payment_transaction_table12142535142563` (`status`),
   KEY `FK_payment_transaction_table612536412653` (`bookId`),
-  KEY `FK_book_payment_transaction_tableas4d565a4sd` (`amount`),
-  KEY `FK_book_payment_transaction_table23a4sd2as46as` (`datePaid`),
   KEY `FK_book_payment_transaction2a4s645asd_table` (`modeOfPaymentId`),
   CONSTRAINT `FK_book_payment_transaction_table` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`),
   CONSTRAINT `FK_payment_transaction_table612536412653` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`)
@@ -342,16 +336,10 @@ DROP TABLE IF EXISTS `van_rental_payment_transaction_table`;
 CREATE TABLE `van_rental_payment_transaction_table` (
   `vanRentalPaymentTransactionId` int(6) NOT NULL AUTO_INCREMENT,
   `vanRentalId` int(6) DEFAULT NULL,
-  `amount` double DEFAULT NULL,
   `modeOfPaymentId` int(6) DEFAULT NULL,
-  `status` varchar(60) DEFAULT NULL,
-  `datePaid` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`vanRentalPaymentTransactionId`),
   KEY `FK_van_rental_payment_transaction_tabl212335126` (`vanRentalId`),
-  KEY `FK_van_rental_payment_transaction12563412333` (`status`),
-  KEY `FK_van_rental_payment_transaction_a6+5s4da4sdtable` (`amount`),
   KEY `FK_van_rent5as4d65al_payment_transaction_table` (`modeOfPaymentId`),
-  KEY `FK_van_rental_payment_trans54asd56action_table` (`datePaid`),
   CONSTRAINT `FK_van_rental_payment_transaction_tabl212335126` FOREIGN KEY (`vanRentalId`) REFERENCES `van_rental_table` (`vanRentalId`),
   CONSTRAINT `FK_van_rental_payment_transaction_table1` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
