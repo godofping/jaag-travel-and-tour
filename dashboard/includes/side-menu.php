@@ -62,6 +62,15 @@
 
           </ul>
         </li>
+
+        <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'home'): ?>
+          active open
+        <?php endif ?>">
+          <a class="animsition-link" href="home.php">
+                  <i class="site-menu-icon md-book" aria-hidden="true"></i>
+                  <span class="site-menu-title">Bookings</span>
+              </a>
+        </li>
         
 
         <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-packages'): ?>

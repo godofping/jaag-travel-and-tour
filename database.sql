@@ -109,13 +109,10 @@ CREATE TABLE `book_table` (
   `dateBooked` date DEFAULT NULL,
   `status` varchar(60) DEFAULT NULL,
   `numberOfPax` int(6) DEFAULT NULL,
-  `departureAndArrivalId` int(6) DEFAULT NULL,
   PRIMARY KEY (`bookId`),
   KEY `FK_book_table` (`packageId`),
   KEY `FK_book_table1` (`status`),
-  KEY `FK_book_table12` (`departureAndArrivalId`),
-  CONSTRAINT `FK_book_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`),
-  CONSTRAINT `FK_book_table12` FOREIGN KEY (`departureAndArrivalId`) REFERENCES `departure_and_arrival_table` (`departureAndArrivalId`)
+  CONSTRAINT `FK_book_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `book_table` */
@@ -253,11 +250,11 @@ CREATE TABLE `package_media_table` (
   PRIMARY KEY (`packageMediaId`),
   KEY `FK_package_media_table1` (`packageId`),
   CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_media_table` */
 
-insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (1,1,'package_media/e597241c94e879f998dc8d99a944ee81Enchanted-River-11.jpg'),(2,1,'package_media/5ed4a784c2491d572cad56b00549e979Surigao-del-Sur-Bogac-Spring.png');
+insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (1,1,'package_media/4672e5d2a36c08056102f8897790b2e6Riv.jpg'),(2,1,'package_media/5ed4a784c2491d572cad56b00549e979Surigao-del-Sur-Bogac-Spring.png');
 
 /*Table structure for table `package_table` */
 
@@ -271,12 +268,15 @@ CREATE TABLE `package_table` (
   `inclusion` text,
   `exclusion` text,
   `price` double DEFAULT NULL,
-  PRIMARY KEY (`packageId`)
+  `departureAndArrivalId` int(6) DEFAULT NULL,
+  PRIMARY KEY (`packageId`),
+  KEY `FK_package_table123` (`departureAndArrivalId`),
+  CONSTRAINT `FK_package_table123` FOREIGN KEY (`departureAndArrivalId`) REFERENCES `departure_and_arrival_table` (`departureAndArrivalId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_table` */
 
-insert  into `package_table`(`packageId`,`packageName`,`pax`,`packageDetails`,`inclusion`,`exclusion`,`price`) values (1,'BRITANIA TOUR + ALAMEDA',30,'THIS IS A TEST','TRANSPORTATION','MEALS',999),(3,'SURIGAO PACKAGE',20,'SAMEPLE DETAILS','TRANSPORTATION','MEALS',999);
+insert  into `package_table`(`packageId`,`packageName`,`pax`,`packageDetails`,`inclusion`,`exclusion`,`price`,`departureAndArrivalId`) values (1,'BRITANIA TOUR + ALAMEDA',30,'THIS IS A TEST','TRANSPORTATION','MEALS',999,NULL),(3,'SURIGAO PACKAGE',20,'SAMEPLE DETAILS','TRANSPORTATION','MEALS',999,NULL);
 
 /*Table structure for table `place_table` */
 
