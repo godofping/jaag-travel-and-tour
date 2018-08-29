@@ -1,6 +1,6 @@
 <!-- Footer -->
     <footer class="site-footer bg-light-blue-a200">
-      <div class="site-footer-legal">© 2018 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">JAAG</a></div>
+      <div class="site-footer-legal">© 2018 @ JAAG</div>
       <div class="site-footer-right">
         Crafted with <i class="red-600 icon md-favorite"></i> by STI
       </div>
