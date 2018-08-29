@@ -1,4 +1,4 @@
-<div class="site-menubar">
+<div class="site-menubar bg-light-blue-50">
       <ul class="site-menu">
         <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'home'): ?>
           active open

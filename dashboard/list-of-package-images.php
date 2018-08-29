@@ -39,14 +39,15 @@ include("includes/side-menu.php");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                   <div class="col-md-6">
                       <div class="example">
-                        <div class="card">
-                          <img class="card-img-top w-full" src="<?php echo $res['mediaLocation']; ?>">
-                          <div class="card-block">
-                            <h4 class="card-title cover-image"><?php echo $res['mediaLocation']; ?></h4>
-                            <p class="card-text"></p>
-                            <button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['packageMediaId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['packageMediaId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button>
-                          </div>
+                      
+                        <div class="card bg-yellow-a100">
+                        <img class="card-img-top img-fluid w-full" src="<?php echo $res['mediaLocation']; ?>">
+                        <div class="card-block">
+                          <h4 class="card-title">ID: <?php echo $res['packageMediaId']; ?></h4>
+                          <p class="card-text"><?php echo $res['mediaLocation']; ?></p>
+                          <div class="float-right"><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['packageMediaId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['packageMediaId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button></div>
                         </div>
+                      </div>
                       </div>
                     </div>
               

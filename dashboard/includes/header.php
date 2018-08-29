@@ -115,7 +115,7 @@
      
       </div>
     
-      <div class="navbar-container container-fluid">
+      <div class="navbar-container container-fluid bg-light-blue-a200">
         <!-- Navbar Collapse -->
         <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
           <!-- Navbar Toolbar -->
@@ -173,7 +173,7 @@
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Notifications"
+              <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" 
                 aria-expanded="false" data-animation="scale-up" role="button">
                 <i class="icon md-notifications" aria-hidden="true"></i>
                 <span class="badge badge-pill badge-danger up">5</span>
@@ -209,28 +209,7 @@
                           </div>
                         </div>
                       </a>
-                      <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <i class="icon md-settings bg-red-600 white icon-circle" aria-hidden="true"></i>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Settings updated</h6>
-                            <time class="media-meta" datetime="2017-06-11T14:05:00+08:00">2 days ago</time>
-                          </div>
-                        </div>
-                      </a>
-                      <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
-                        <div class="media">
-                          <div class="pr-10">
-                            <i class="icon md-calendar bg-blue-600 white icon-circle" aria-hidden="true"></i>
-                          </div>
-                          <div class="media-body">
-                            <h6 class="media-heading">Event started</h6>
-                            <time class="media-meta" datetime="2017-06-10T13:50:18+08:00">3 days ago</time>
-                          </div>
-                        </div>
-                      </a>
+                      
                       <a class="list-group-item dropdown-item" href="javascript:void(0)" role="menuitem">
                         <div class="media">
                           <div class="pr-10">

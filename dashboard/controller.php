@@ -165,8 +165,8 @@ if (isset($_POST['from']) and $_POST['from'] == 'update-package-image') {
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     move_uploaded_file($_FILES["mediaLocation"]["tmp_name"], $target_file);
 
-	mysqli_query($connection, "update media_location_table set mediaLocation = '" . $target_file . "' where mediaLocationId = '" . $_POST['mediaLocationId'] . "'");
-	$mediaLocationId = mysqli_insert_id($connection);
+	mysqli_query($connection, "update package_media_table set mediaLocation = '" . $target_file . "' where packageMediaId = '" . $_POST['packageMediaId'] . "'");
+	
 
 	$_SESSION['do'] = 'updated';
 	header("Location: list-of-package-images.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
@@ -175,7 +175,7 @@ if (isset($_POST['from']) and $_POST['from'] == 'update-package-image') {
 
 if (isset($_POST['from']) and $_POST['from'] == 'delete-package-image') {
 
-	mysqli_query($connection, "delete from media_location_table where mediaLocationId = '" . $_POST['mediaLocationId'] . "'");
+	mysqli_query($connection, "delete from package_media_table where packageMediaId = '" . $_POST['packageMediaId'] . "'");
 
 	$_SESSION['do'] = 'deleted';
 	header("Location: list-of-package-images.php?packageId=".$_POST['packageId']."&packageName=".$_POST['packageName']."");
