@@ -40,6 +40,7 @@ include("includes/side-menu.php");
                   <th>ID</th>
                   <th>Package Name</th>
                   <th>Destinations</th>
+                  <th>Date of Departure and Return</th>
                   <th>Pax</th>
                   <th>Price</th>
                   <th>Package Details</th>
@@ -65,6 +66,7 @@ include("includes/side-menu.php");
                   		<li><?php echo $res1['placeName']; ?></li>
                   	<?php } ?>
                   </td>
+                  <td>Departure: <?php echo $res['departureDate']; ?> <br> Return: <?php echo $res['returnDate']; ?></td>
                   <td><?php echo $res['pax']; ?></td>
                   <td><?php echo $res['price']; ?></td>
                   <td><?php echo $res['packageDetails']; ?></td>
@@ -126,16 +128,33 @@ include("includes/side-menu.php");
 	                  </div>
                     </div>
                   </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="departureDate">Departure Date</label>
+                        <input type="date" min="<?php echo date("Y-m-d") ?>" class="form-control" id="departureDate" name="departureDate" required="" />
+                     </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="returnDate">Return Date</label>
+                        <input type="date" min="<?php echo date("Y-m-d") ?>" class="form-control" id="returnDate" name="returnDate" required="" />
+                     </div>
+                    </div>
+                  </div>
+
                   
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="pax">Pax</label>
                         <input type="number" class="form-control" id="pax" name="pax" required="" />
                      </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="price">Price</label>
                         <input type="number" step="any" class="form-control" id="price" name="price" required="" />
@@ -222,16 +241,32 @@ include("includes/side-menu.php");
 	                  </div>
                     </div>
                   </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="departureDate">Departure Date</label>
+                        <input type="date" min="<?php echo date("Y-m-d") ?>" class="form-control" id="departureDate" name="departureDate" value="<?php echo $res['departureDate'] ?>" required="" />
+                     </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="returnDate">Return Date</label>
+                        <input type="date" min="<?php echo date("Y-m-d") ?>" class="form-control" id="returnDate" name="returnDate" value="<?php echo $res['returnDate'] ?>" required="" />
+                     </div>
+                    </div>
+                  </div>
                   
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="pax">Pax</label>
                         <input type="number" class="form-control" id="pax" name="pax" value="<?php echo $res['pax'] ?>" required="" />
                      </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="price">Price</label>
                         <input type="number" step="any" class="form-control" id="price" name="price" value="<?php echo $res['price'] ?>" required="" />
@@ -266,6 +301,7 @@ include("includes/side-menu.php");
 
                   <input type="text" name="from" value="update-package" hidden="">
                   <input type="text" name="packageId" value="<?php echo $res['packageId'] ?>" hidden="">
+                  <input type="text" name="departureAndReturnDateId" value="<?php echo $res['departureAndReturnDateId'] ?>" hidden="">
                   <input type="text" name="priceId" value="<?php echo $res['priceId'] ?>" hidden="">
                 
           </div>
@@ -280,8 +316,7 @@ include("includes/side-menu.php");
       </div>
     </div>
 
-    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['packageId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
-      role="dialog" tabindex="-1">
+    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['packageId'] ?>" aria-hidden="false" role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
           <div class="modal-header">
@@ -304,6 +339,7 @@ include("includes/side-menu.php");
             <form method="POST" action="controller.php">
               <input type="text" name="from" value="delete-package" hidden="">
               <input type="text" name="packageId" value="<?php echo $res['packageId'] ?>" hidden="">
+              <input type="text" name="departureAndReturnDateId" value="<?php echo $res['departureAndReturnDateId'] ?>" hidden="">
               <input type="text" name="priceId" value="<?php echo $res['priceId'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>
             </form>

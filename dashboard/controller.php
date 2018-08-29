@@ -102,7 +102,10 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-place') {
 if (isset($_POST['from']) and $_POST['from'] == 'add-package') {
 
 
-	mysqli_query($connection, "insert into package_table (packageName, pax, packageDetails, price, inclusion, exclusion) values ('" . $_POST['packageName'] . "', '" . $_POST['pax'] . "', '" . $_POST['packageDetails'] . "', '" . $_POST['price'] . "', '" . $_POST['inclusion'] . "', '" . $_POST['exclusion'] . "')");
+	mysqli_query($connection, "insert into departure_and_return_date_table (departureDate, returnDate) values ('" . $_POST['departureDate'] . "', '" . $_POST['returnDate'] . "')");
+	$departureAndReturnDateId = mysqli_insert_id($connection);
+
+	mysqli_query($connection, "insert into package_table (packageName, pax, packageDetails, price, inclusion, exclusion, departureAndReturnDateId) values ('" . $_POST['packageName'] . "', '" . $_POST['pax'] . "', '" . $_POST['packageDetails'] . "', '" . $_POST['price'] . "', '" . $_POST['inclusion'] . "', '" . $_POST['exclusion'] . "', '" . $departureAndReturnDateId . "')");
 	$packageId = mysqli_insert_id($connection);
 
 	foreach ($_POST['places'] as $placeId)
@@ -116,6 +119,8 @@ if (isset($_POST['from']) and $_POST['from'] == 'add-package') {
 }
 
 if (isset($_POST['from']) and $_POST['from'] == 'update-package') {
+
+	mysqli_query($connection, "update departure_and_return_date_table set departureDate = '" . $_POST['departureDate'] . "', returnDate = '" . $_POST['returnDate'] . "' where departureAndReturnDateId = '" . $_POST['departureAndReturnDateId'] . "'");
 
 	mysqli_query($connection, "update package_table set packageName = '" . $_POST['packageName'] . "', pax = '" . $_POST['pax'] . "', packageDetails = '" . $_POST['packageDetails'] . "',price = '" . $_POST['price'] . "', inclusion = '" . $_POST['inclusion'] . "', exclusion = '" . $_POST['exclusion'] . "' where packageId = '" . $_POST['packageId'] . "'");
 
@@ -132,6 +137,7 @@ if (isset($_POST['from']) and $_POST['from'] == 'update-package') {
 }
 
 if (isset($_POST['from']) and $_POST['from'] == 'delete-package') {
+	mysqli_query($connection, "delete from departure_and_return_date_table where departureAndReturnDateId = '" . $_POST['departureAndReturnDateId'] . "'");
 	mysqli_query($connection, "delete from destination_table where packageId = '" . $_POST['packageId'] . "'");
 	mysqli_query($connection, "delete from package_table where packageId = '" . $_POST['packageId'] . "'");
 	$_SESSION['do'] = 'deleted';

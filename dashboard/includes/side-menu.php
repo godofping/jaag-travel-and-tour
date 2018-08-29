@@ -63,10 +63,10 @@
           </ul>
         </li>
 
-        <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'home'): ?>
+        <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-bookings'): ?>
           active open
         <?php endif ?>">
-          <a class="animsition-link" href="home.php">
+          <a class="animsition-link" href="list-of-bookings.php">
                   <i class="site-menu-icon md-book" aria-hidden="true"></i>
                   <span class="site-menu-title">Bookings</span>
               </a>
@@ -103,6 +103,26 @@
             <?php endif ?>">
               <a class="animsition-link" href="list-of-destinations.php">
                 <span class="site-menu-title">Van Rentals</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="site-menu-item has-sub <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-detinations' ): ?>
+          active open
+        <?php endif ?>">
+          <a href="javascript:void(0)">
+            <i class="site-menu-icon md-library" aria-hidden="true"></i>
+            <span class="site-menu-title">Reports</span>
+            <span class="site-menu-arrow"></span>
+          </a>
+          <ul class="site-menu-sub">
+            <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-detinations'): ?>
+              active
+            <?php endif ?>">
+              <a class="animsition-link" href="list-of-destinations.php">
+                <span class="site-menu-title">Destinations</span>
               </a>
             </li>
 
