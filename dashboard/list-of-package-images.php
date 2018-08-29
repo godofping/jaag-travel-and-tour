@@ -42,7 +42,7 @@ include("includes/side-menu.php");
                         <div class="card">
                           <img class="card-img-top w-full" src="<?php echo $res['mediaLocation']; ?>">
                           <div class="card-block">
-                            <h4 class="card-title cover-image">ID: <?php echo $res['packageMediaId']; ?></h4>
+                            <h4 class="card-title cover-image"><?php echo $res['mediaLocation']; ?></h4>
                             <p class="card-text"></p>
                             <button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['packageMediaId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['packageMediaId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button>
                           </div>
