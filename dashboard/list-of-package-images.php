@@ -42,9 +42,9 @@ include("includes/side-menu.php");
                         <div class="card">
                           <img class="card-img-top w-full" src="<?php echo $res['mediaLocation']; ?>">
                           <div class="card-block">
-                            <h4 class="card-title">ID: <?php echo $res['packageMediaId']; ?></h4>
+                            <h4 class="card-title cover-image">ID: <?php echo $res['packageMediaId']; ?></h4>
                             <p class="card-text"></p>
-                            <button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['mediaLocationId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['mediaLocationId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['packageMediaId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['packageMediaId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button>
                           </div>
                         </div>
                       </div>
@@ -108,7 +108,7 @@ include("includes/side-menu.php");
     $qry = mysqli_query($connection, "select * from package_media_view where packageId = '" . $_GET['packageId'] . "'");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
-    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['mediaLocationId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['packageMediaId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -136,7 +136,7 @@ include("includes/side-menu.php");
                   </div>
                   <input type="text" name="from" value="update-package-image" hidden="">
                   <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
-                  <input type="text" name="mediaLocationId" value="<?php echo $res['mediaLocationId'] ?>" hidden="">
+                  <input type="text" name="packageMediaId" value="<?php echo $res['packageMediaId'] ?>" hidden="">
                   <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">
                  
                 
@@ -152,7 +152,7 @@ include("includes/side-menu.php");
       </div>
     </div>
 
-    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['mediaLocationId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['packageMediaId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -175,7 +175,7 @@ include("includes/side-menu.php");
           <div class="modal-footer">
             <form method="POST" action="controller.php">
               <input type="text" name="from" value="delete-package-image" hidden="">
-              <input type="text" name="mediaLocationId" value="<?php echo $res['mediaLocationId'] ?>" hidden="">
+              <input type="text" name="packageMediaId" value="<?php echo $res['packageMediaId'] ?>" hidden="">
               <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
               <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>

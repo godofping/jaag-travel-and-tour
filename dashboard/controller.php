@@ -147,10 +147,9 @@ if (isset($_POST['from']) and $_POST['from'] == 'add-package-image') {
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     move_uploaded_file($_FILES["mediaLocation"]["tmp_name"], $target_file);
 
-	mysqli_query($connection, "insert into media_location_table (mediaLocation) values ('" . $target_file . "')");
-	$mediaLocationId = mysqli_insert_id($connection);
 
-	mysqli_query($connection, "insert into package_media_table (mediaLocationId, packageId) values ('" . $mediaLocationId . "', '" . $_POST['packageId'] . "')");
+
+	mysqli_query($connection, "insert into package_media_table (mediaLocation, packageId) values ('" . $target_file . "', '" . $_POST['packageId'] . "')");
 
 
 	$_SESSION['do'] = 'added';

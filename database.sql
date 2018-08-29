@@ -183,7 +183,7 @@ CREATE TABLE `destination_table` (
   KEY `FK_destination_table` (`placeId`),
   CONSTRAINT `FK_destination_table` FOREIGN KEY (`placeId`) REFERENCES `place_table` (`placeId`),
   CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `destination_table` */
 
@@ -253,9 +253,11 @@ CREATE TABLE `package_media_table` (
   PRIMARY KEY (`packageMediaId`),
   KEY `FK_package_media_table1` (`packageId`),
   CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_media_table` */
+
+insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (1,1,'package_media/e597241c94e879f998dc8d99a944ee81Enchanted-River-11.jpg'),(2,1,'package_media/5ed4a784c2491d572cad56b00549e979Surigao-del-Sur-Bogac-Spring.png');
 
 /*Table structure for table `package_table` */
 
@@ -270,7 +272,7 @@ CREATE TABLE `package_table` (
   `exclusion` text,
   `price` double DEFAULT NULL,
   PRIMARY KEY (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_table` */
 
@@ -286,7 +288,7 @@ CREATE TABLE `place_table` (
   `latitude` double DEFAULT NULL,
   `longtitude` double DEFAULT NULL,
   PRIMARY KEY (`placeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `place_table` */
 
@@ -382,7 +384,7 @@ CREATE TABLE `van_table` (
   `modelYear` varchar(60) DEFAULT NULL,
   `plateNumber` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`vanId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `van_table` */
 
