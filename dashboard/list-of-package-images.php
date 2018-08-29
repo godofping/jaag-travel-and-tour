@@ -32,17 +32,17 @@ include("includes/side-menu.php");
           </div>
 
 
-        
+          <div class="row">
 
                 <?php 
                 $qry = mysqli_query($connection, "select * from package_media_view where packageId = '" . $_GET['packageId'] . "'");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                       <div class="example">
                         <div class="card">
                           <img class="card-img-top w-full" src="<?php echo $res['mediaLocation']; ?>">
                           <div class="card-block">
-                            <h4 class="card-title">ID: <?php echo $res['mediaLocationId']; ?></h4>
+                            <h4 class="card-title">ID: <?php echo $res['packageMediaId']; ?></h4>
                             <p class="card-text"></p>
                             <button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['mediaLocationId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['mediaLocationId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button>
                           </div>
@@ -52,7 +52,7 @@ include("includes/side-menu.php");
               
                 <?php } ?>
             
-
+              </div>
          
           
 
@@ -174,7 +174,7 @@ include("includes/side-menu.php");
 
           <div class="modal-footer">
             <form method="POST" action="controller.php">
-              <input type="text" name="from" value="delete-exclusion" hidden="">
+              <input type="text" name="from" value="delete-package-image" hidden="">
               <input type="text" name="mediaLocationId" value="<?php echo $res['mediaLocationId'] ?>" hidden="">
               <input type="text" name="packageId" value="<?php echo $_GET['packageId'] ?>" hidden="">
               <input type="text" name="packageName" value="<?php echo $_GET['packageName'] ?>" hidden="">

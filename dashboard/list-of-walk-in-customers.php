@@ -54,7 +54,7 @@ include("includes/side-menu.php");
               <tbody>
 
                 <?php 
-                $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 1");
+                $qry = mysqli_query($connection, "select * from customer_view where customerType = 'Walk-in'");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
                   <td><?php echo $res['customerId']; ?></td>
@@ -180,7 +180,7 @@ include("includes/side-menu.php");
     </div>
 
   <?php 
-    $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 1");
+    $qry = mysqli_query($connection, "select * from customer_view where customerType = 'Walk-in'");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
     <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="updateModal"

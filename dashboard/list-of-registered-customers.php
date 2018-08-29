@@ -48,7 +48,7 @@ include("includes/side-menu.php");
               <tbody>
 
                 <?php 
-                $qry = mysqli_query($connection, "select * from customer_view where customerTypeId = 2");
+                $qry = mysqli_query($connection, "select * from customer_view where customerType = 'Registered'");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
                   <td><?php echo $res['customerId']; ?></td>

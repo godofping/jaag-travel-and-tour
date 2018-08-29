@@ -68,26 +68,8 @@ include("includes/side-menu.php");
                   <td><?php echo $res['pax']; ?></td>
                   <td><?php echo $res['price']; ?></td>
                   <td><?php echo $res['packageDetails']; ?></td>
-                  <td>
-                  	
-                  	<!-- <?php $qry2 = mysqli_query($connection, "select * from inclusion_view where packageId = '" . $res['packageId'] . "'");
-                  	while ($res2 = mysqli_fetch_assoc($qry2)) {?>
-                  	 <li><?php echo $res2['inclusion']; ?> </li>
-                  	 <?php } ?> -->
-
-                  	 <a href="list-of-inclusions.php?packageId=<?php echo $res['packageId'];?>&packageName=<?php echo $res['packageName'] ?>"><button type="button" class="btn btn-info btn-xs">MANAGE</button></a>
-                  	
-                  </td>
-                  <td>
-                    
-                    <!-- <?php $qry2 = mysqli_query($connection, "select * from exclusion_view where packageId = '" . $res['packageId'] . "'");
-                    while ($res2 = mysqli_fetch_assoc($qry2)) {?>
-                     <li><?php echo $res2['exclusion']; ?> </li>
-                     <?php } ?> -->
-
-                     <a href="list-of-exclusions.php?packageId=<?php echo $res['packageId'];?>&packageName=<?php echo $res['packageName'] ?>"><button type="button" class="btn btn-info btn-xs">MANAGE</button></a>
-                    
-                  </td>
+                  <td><?php echo $res['inclusion']; ?></td>
+                  <td><?php echo $res['exclusion']; ?></td>
 
                   <td><a href="list-of-package-images.php?packageId=<?php echo $res['packageId'];?>&packageName=<?php echo $res['packageName'] ?>"><button type="button" class="btn btn-info btn-xs">MANAGE</button></a></td>
 
@@ -135,7 +117,7 @@ include("includes/side-menu.php");
                     <div class="col-md-12">
 	                  <div class="form-group form-material" data-plugin="formMaterial">
 	                    <label class="form-control-label" for="select">Destinations</label>
-	                    <select class="form-control" multiple name="places[]" data-plugin="select2" style="width: 100%;">
+	                    <select class="form-control" multiple name="places[]" data-plugin="select2" style="width: 100%;" required="">
 	                  	<?php $qry = mysqli_query($connection, "select * from place_view order by placeName asc");
 	                  	while ($res = mysqli_fetch_assoc($qry)) { ?>
 	                  		<option value="<?php echo $res['placeId'] ?>"><?php echo $res['placeName']; ?></option>
@@ -149,7 +131,7 @@ include("includes/side-menu.php");
                     <div class="col-md-4">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="pax">Pax</label>
-                        <input type="text" class="form-control" id="pax" name="pax" required="" />
+                        <input type="number" class="form-control" id="pax" name="pax" required="" />
                      </div>
                     </div>
 
@@ -158,6 +140,21 @@ include("includes/side-menu.php");
                         <label class="form-control-label" for="price">Price</label>
                         <input type="number" step="any" class="form-control" id="price" name="price" required="" />
                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="inclusion">Inclusion</label>
+                        <textarea class="form-control" id="inclusion" name="inclusion" rows="2" required=""></textarea>
+                      </div>
+                    </div>
+          
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="exclusion">Exclusion</label>
+                        <textarea class="form-control" id="exclusion" name="exclusion" rows="2" required=""></textarea>
+                      </div>
                     </div>
                   </div>
 
@@ -212,7 +209,7 @@ include("includes/side-menu.php");
                     <div class="col-md-12">
 	                  <div class="form-group form-material" data-plugin="formMaterial">
 	                    <label class="form-control-label" for="select">Destinations</label>
-	                    <select class="form-control" multiple name="places[]" data-plugin="select2" style="width: 100%;">
+	                    <select class="form-control" multiple name="places[]" data-plugin="select2" style="width: 100%;" required="">
 	                  	<?php $qry1 = mysqli_query($connection, "select * from place_view order by placeName asc");
 	                  	while ($res1 = mysqli_fetch_assoc($qry1)) { ?>
 	                  		<option <?php 
@@ -230,7 +227,7 @@ include("includes/side-menu.php");
                     <div class="col-md-4">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="pax">Pax</label>
-                        <input type="text" class="form-control" id="pax" name="pax" value="<?php echo $res['pax'] ?>" required="" />
+                        <input type="number" class="form-control" id="pax" name="pax" value="<?php echo $res['pax'] ?>" required="" />
                      </div>
                     </div>
 
@@ -239,6 +236,22 @@ include("includes/side-menu.php");
                         <label class="form-control-label" for="price">Price</label>
                         <input type="number" step="any" class="form-control" id="price" name="price" value="<?php echo $res['price'] ?>" required="" />
                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="inclusion">Inclusion</label>
+                        <textarea class="form-control" id="inclusion" name="inclusion" rows="2" required=""><?php echo $res['inclusion'] ?></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="exclusion">Exclusion</label>
+                        <textarea class="form-control" id="exclusion" name="exclusion" rows="2" required=""><?php echo $res['exclusion'] ?></textarea>
+                      </div>
                     </div>
                   </div>
 
