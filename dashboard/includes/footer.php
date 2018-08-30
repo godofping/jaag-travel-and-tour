@@ -178,7 +178,11 @@
                 toastr["success"]("Successfully deleted!", "Message");
             <?php endif ?>
             <?php if ($_SESSION['do'] == 'updated-password-failed'): ?>
-                toastr["error"]("Update password failed!! Please try again.", "Error");
+                toastr["error"]("Update password failed! Please try again.", "Error");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'username-taken'): ?>
+
+                toastr["error"]("Username is already taken! Please try another one.", "Error");
             <?php endif ?>
         </script>
 

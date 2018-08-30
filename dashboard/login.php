@@ -72,7 +72,7 @@ if (isset($_SESSION['adminId'])) {
 
 
     <!-- Page -->
-    <div class="page" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <div <div class="page bg-grey-300"> data-animsition-in="fade-in" data-animsition-out="fade-out">
       <div class="page-content">
         <div class="page-brand-info">
           <div class="brand">

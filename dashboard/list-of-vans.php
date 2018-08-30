@@ -5,7 +5,7 @@ include("includes/header.php");
 include("includes/side-menu.php");
 ?>
      <!-- Page -->
-    <div class="page">
+    <div <div class="page bg-grey-300">>
 
       <div class="page-header">
         <ol class="breadcrumb">
@@ -18,7 +18,7 @@ include("includes/side-menu.php");
 
       <div class="page-content">
         <!-- Panel Table Tools -->
-        <div class="panel">
+        <div <div class="panel bg-grey-100">
           <header class="panel-heading">
             <h3 class="panel-title"></h3>
           </header>

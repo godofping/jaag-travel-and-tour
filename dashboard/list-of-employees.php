@@ -5,7 +5,7 @@ include("includes/header.php");
 include("includes/side-menu.php");
 ?>
      <!-- Page -->
-    <div class="page">
+    <div class="page bg-grey-300">
 
       <div class="page-header">
         <ol class="breadcrumb">
@@ -17,7 +17,7 @@ include("includes/side-menu.php");
 
       <div class="page-content">
         <!-- Panel Table Tools -->
-        <div class="panel">
+        <div class="panel bg-grey-100">
           <header class="panel-heading">
             <h3 class="panel-title"></h3>
           </header>
@@ -46,6 +46,7 @@ include("includes/side-menu.php");
                   <th>Barangay</th>
                   <th>City</th>
                   <th>Province</th>
+                  <th>Username</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -56,7 +57,7 @@ include("includes/side-menu.php");
                 $qry = mysqli_query($connection, "select * from employee_view");
                 while ($res = mysqli_fetch_assoc($qry)) { ?>
                 <tr>
-                  <td><?php echo $res['customerId']; ?></td>
+                  <td><?php echo $res['employeeId']; ?></td>
                   <td><?php echo $res['firstName']; ?></td>
                   <td><?php echo $res['middleName']; ?></td>
                   <td><?php echo $res['lastName']; ?></td>
@@ -66,7 +67,8 @@ include("includes/side-menu.php");
                   <td><?php echo $res['barangay']; ?></td>
                   <td><?php echo $res['city']; ?></td>
                   <td><?php echo $res['province']; ?></td>
-                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['customerId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['customerId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
+                  <td><?php echo $res['userName']; ?></td>
+                  <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['employeeId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['employeeId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
                 </tr>
                 <?php } ?>
               </tbody>
@@ -92,7 +94,7 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Add walk-in customer</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Add employee</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
@@ -166,9 +168,23 @@ include("includes/side-menu.php");
                     </div>
 
                   </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="userName">Username</label>
+                        <input type="text" class="form-control" id="userName" name="userName" required="" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group form-material" data-plugin="formMaterial">
+                        <label class="form-control-label" for="passWord">Password</label>
+                        <input type="password" class="form-control" id="passWord" name="passWord" required="" />
+                      </div>
+                    </div>
+                  </div>
 
 
-                  <input type="text" name="from" value="add-walk-in-customer" hidden="">
+                  <input type="text" name="from" value="add-employee" hidden="">
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -179,10 +195,10 @@ include("includes/side-menu.php");
     </div>
 
   <?php 
-    $qry = mysqli_query($connection, "select * from customer_view where customerType = 'Walk-in'");
+    $qry = mysqli_query($connection, "select * from employee_view");
     while ($res = mysqli_fetch_assoc($qry)) { ?>
 
-    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="updateModal<?php echo $res['employeeId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -190,7 +206,7 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Update walk-in customer</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Update employee</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
@@ -263,11 +279,13 @@ include("includes/side-menu.php");
                       </div>
                     </div>
 
+        
+
                   </div>
 
 
-                  <input type="text" name="from" value="update-walk-in-customer" hidden="">
-                  <input type="text" name="customerId" value="<?php echo $res['customerId'] ?>" hidden="">
+                  <input type="text" name="from" value="update-employee" hidden="">
+                  <input type="text" name="employeeId" value="<?php echo $res['employeeId'] ?>" hidden="">
                   <input type="text" name="profileId" value="<?php echo $res['profileId'] ?>" hidden="">
                   
                  
@@ -284,7 +302,7 @@ include("includes/side-menu.php");
       </div>
     </div>
 
-    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['customerId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
+    <div class="modal fade modal-fill-in" id="deleteModal<?php echo $res['employeeId'] ?>" aria-hidden="false" aria-labelledby="updateModal"
       role="dialog" tabindex="-1">
       <div class="modal-dialog modal-simple">
         <div class="modal-content">
@@ -292,7 +310,7 @@ include("includes/side-menu.php");
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            <h3 class="modal-title" id="exampleFillInModalTitle">Delete walk-in customer</h3>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Delete employee</h3>
           </div>
           <div class="modal-body">
             <form autocomplete="off" method="POST" action="controller.php">
@@ -307,7 +325,7 @@ include("includes/side-menu.php");
           <div class="modal-footer">
             <form method="POST" action="controller.php">
               <input type="text" name="from" value="delete-walk-in-customer" hidden="">
-              <input type="text" name="customerId" value="<?php echo $res['customerId'] ?>" hidden="">
+              <input type="text" name="employeeId" value="<?php echo $res['employeeId'] ?>" hidden="">
               <input type="text" name="profileId" value="<?php echo $res['profileId'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>
             </form>

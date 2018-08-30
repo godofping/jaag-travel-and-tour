@@ -217,15 +217,52 @@ if (isset($_POST['from']) and $_POST['from'] == 'update-password-profile') {
 	{
 		$_SESSION['do'] = 'updated-password-failed';
 	}
-
-	
-
-	
 	header("Location: profile.php");
 
 }
 
+if (isset($_POST['from']) and $_POST['from'] == 'add-employee') {
+	$qry = mysqli_query($connection,"select * from account_table where userName = '" . $_POST['userName'] . "'");
+	if (mysqli_num_rows($qry) == 0) {
+		mysqli_query($connection, "insert into profile_table (firstName, middleName, lastName, contactNumber, province, city, barangay, street, buildingNumber) values ('" . $_POST['firstName'] . "', '" . $_POST['middleName'] . "', '" . $_POST['lastName'] . "', '" . $_POST['contactNumber'] . "','" . $_POST['province'] . "', '" . $_POST['city'] . "', '" . $_POST['barangay'] . "', '" . $_POST['street'] . "', '" . $_POST['buildingNumber'] . "')");
+		$profileId = mysqli_insert_id($connection);
+
+		mysqli_query($connection, "insert into account_table (userName, passWord) values ('" . $_POST['userName'] . "', '" . md5($_POST['passWord']) . "')");
+
+		$accountId = mysqli_insert_id($connection);
+
+		mysqli_query($connection, "insert into employee_table (profileId, accountId) values ('" . $profileId . "', '" . $accountId . "')");
+
+		$_SESSION['do'] = 'added';
+	}
+	else
+	{
+		$_SESSION['do'] = 'username-taken';
+	}
+
+	header("Location: list-of-employees.php");
+
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'update-employee') {
+	
 
 
+
+	mysqli_query($connection, "update profile_table set firstName = '" . $_POST['firstName'] . "', middleName = '" . $_POST['middleName'] . "', lastName = '" . $_POST['lastName'] . "', contactNumber = '" . $_POST['contactNumber'] . "',province = '" . $_POST['province'] . "',city = '" . $_POST['city'] . "', barangay = '" . $_POST['barangay'] . "', street = '" . $_POST['street'] . "', buildingNumber = '" . $_POST['buildingNumber'] . "' where profileId = '" . $_POST['profileId'] . "'");
+
+	$_SESSION['do'] = 'updated';
+	header("Location: list-of-employees.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'delete-employee') {
+	
+	mysqli_query($connection, "delete from profile_table where profileId = '" . $_POST['profileId'] . "'");
+
+	mysqli_query($connection, "delete from employee_table where employeeId = '" . $_POST['employeeId'] . "'");
+
+	$_SESSION['do'] = 'deleted';
+	header("Location: list-of-walk-in-customers.php");
+}
 
  ?>

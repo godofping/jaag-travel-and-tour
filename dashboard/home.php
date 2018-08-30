@@ -6,7 +6,7 @@ include("includes/side-menu.php");
 ?>
 
      <!-- Page -->
-    <div class="page">
+    <div <div class="page bg-grey-300">>
       <div class="page-content container-fluid">
         <div class="row" data-plugin="matchHeight" data-by-row="true">
           <div class="col-xl-3 col-md-6">
