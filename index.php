@@ -1,175 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Jaag Travel and Tours">
-    <meta name="author" content="STI">
-    <title>Panagea | Premium site template for travel agencies, hotels and restaurant listing.</title>
-
-    <!-- Favicons-->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
-
-    <!-- BASE CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	<link href="css/vendors.css" rel="stylesheet">
-
-    <!-- YOUR CUSTOM CSS -->
-    <link href="css/custom.css" rel="stylesheet">
-	
-	<!-- Modernizr -->
-	<script src="js/modernizr.js"></script>
-
-</head>
-
-<body>
-		
-	<div id="page">
-		
-	<header class="header menu_fixed">
-		<div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
-		<div id="logo">
-			<a href="index.html">
-				<img src="img/logo_2x.png" width="150" height="36" data-retina="true" alt="" class="logo_normal">
-				<img src="img/logo_sticky.png" width="150" height="36" data-retina="true" alt="" class="logo_sticky">
-			</a>
-		</div>
-		<ul id="top_menu">
-			<li><a href="cart-1.html" class="cart-menu-btn" title="Cart"><strong>0</strong></a></li>
-			<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In">Sign In</a></li>
-			
-		</ul>
-		<!-- /top_menu -->
-		<a href="#menu" class="btn_mobile">
-			<div class="hamburger hamburger--spin" id="hamburger">
-				<div class="hamburger-box">
-					<div class="hamburger-inner"></div>
-				</div>
-			</div>
-		</a>
-		<nav id="menu" class="main-menu">
-			<ul>
-				<li><span><a href="#0">Home</a></span>
-				
-				</li>
-				<li><span><a href="#0">Tours</a></span>
-					<ul>
-						<li><a href="tours-grid-isotope.html">Tours grid isotope</a></li>
-						<li><a href="tours-grid-sidebar.html">Tours grid sidebar</a></li>
-						<li><a href="tours-grid-sidebar-2.html">Tours grid sidebar 2</a></li>
-						<li><a href="tours-grid.html">Tours grid simple</a></li>
-						<li><a href="tours-list-isotope.html">Tours list isotope</a></li>
-						<li><a href="tours-list-sidebar.html">Tours list sidebar</a></li>
-						<li><a href="tours-list-sidebar-2.html">Tours list sidebar 2</a></li>
-						<li><a href="tours-list.html">Tours list simple</a></li>
-						<li><a href="tour-detail.html">Tour detail</a></li>
-					</ul>
-				</li>
-				<li><span><a href="#0">Hotels</a></span>
-					<ul>
-						<li><a href="hotels-grid-isotope.html">Hotel grid isotope</a></li>
-						<li><a href="hotels-grid-sidebar.html">Hotel grid sidebar</a></li>
-						<li><a href="hotels-grid-sidebar-2.html">Hotel grid sidebar 2</a></li>
-						<li><a href="hotels-grid.html">Hotel grid simple</a></li>
-						<li><a href="hotels-list-isotope.html">Hotel list isotope</a></li>
-						<li><a href="hotels-list-sidebar.html">Hotel list sidebar</a></li>
-						<li><a href="hotels-list-sidebar-2.html">Hotel list sidebar 2</a></li>
-						<li><a href="hotels-list.html">Hotel list simple</a></li>
-						<li><a href="hotel-detail.html">Hotel detail</a></li>
-					</ul>
-				</li>
-				<li><span><a href="#0">Eat &amp; Drink</a></span>
-					<ul>
-						<li><a href="restaurants-grid-isotope.html">Restaurant grid isotope</a></li>
-						<li><a href="restaurants-grid-sidebar.html">Restaurant grid sidebar</a></li>
-						<li><a href="restaurants-grid-sidebar-2.html">Restaurant grid sidebar 2</a></li>
-						<li><a href="restaurants-grid.html">Restaurant grid simple</a></li>
-						<li><a href="restaurants-list-isotope.html">Restaurant list isotope</a></li>
-						<li><a href="restaurants-list-sidebar.html">Restaurant list sidebar</a></li>
-						<li><a href="restaurants-list-sidebar-2.html">Restaurant list sidebar 2</a></li>
-						<li><a href="restaurants-list.html">Restaurant list simple</a></li>
-						<li><a href="restaurant-detail.html">Restaurant detail</a></li>
-					</ul>
-				</li>
-				<li><span><a href="#0">Pages</a></span>
-					<ul>
-						<li><a href="about.html">About</a></li>
-						<li><a href="media-gallery.html">Media gallery</a></li>
-						<li><a href="help.html">Help Section</a></li>
-						<li><a href="faq.html">Faq Section</a></li>
-						<li><a href="wishlist.html">Wishlist page</a></li>
-						<li><a href="contacts.html">Contacts</a></li>
-						<li><a href="login.html">Login</a></li>
-						<li><a href="register.html">Register</a></li>
-						<li><a href="blog.html">Blog</a></li>
-					</ul>
-				</li>
-				<li><span><a href="#0">Extra</a></span>
-					<ul>
-                    	<li><a href="menu-options.html">Menu Position Options</a></li>
-                    	<li><a href="tour-detail-singlemonth-datepicker.html">Single month Datepicker</a></li>
-						<li><a href="404.html">404 Error page</a></li>
-						<li><a href="cart-1.html">Cart page 1</a></li>
-						<li><a href="cart-2.html">Cart page 2</a></li>
-						<li><a href="cart-3.html">Cart page 3</a></li>
-						<li><a href="pricing-tables.html">Responsive pricing tables</a></li>
-						<li><a href="coming_soon/index.html">Coming soon</a></li>
-						<li><a href="invoice.html">Invoice</a></li>
-						<li><a href="icon-pack-1.html">Icon pack 1</a></li>
-						<li><a href="icon-pack-2.html">Icon pack 2</a></li>
-						<li><a href="icon-pack-3.html">Icon pack 3</a></li>
-						<li><a href="icon-pack-4.html">Icon pack 4</a></li>
-                        <li><a href="hamburgers.html">Animated Hamburgers</a></li>
-					</ul>
-				</li>
-				<li><span><a href="#0">Buy template</a></span></li>
-			</ul>
-		</nav>
-	</header>
-	<!-- /header -->
+<?php 
+include("dashboard/includes/connection.php");
+include("includes/header.php");
+ ?>
 	
 	<main>
 		<section class="header-video">
 			<div id="hero_video">
 				<div class="wrapper">
 				<div class="container">
-					<h3>Book unique experiences</h3>
-					<p>Expolore top rated tours, hotels and restaurants around the world</p>
-					<form>
-						<div class="row no-gutters custom-search-input-2">
-							<div class="col-lg-4">
-								<div class="form-group">
-									<input class="form-control" type="text" placeholder="What are you looking for...">
-									<i class="icon_search"></i>
-								</div>
-							</div>
-							<div class="col-lg-3">
-								<div class="form-group">
-									<input class="form-control" type="text" placeholder="Where">
-									<i class="icon_pin_alt"></i>
-								</div>
-							</div>
-							<div class="col-lg-3">
-								<select class="wide">
-									<option>All Categories</option>	
-									<option>Tours</option>
-									<option>Hotels</option>
-									<option>Restaurants</option>
-								</select>
-							</div>
-							<div class="col-lg-2">
-								<input type="submit" class="btn_search" value="Search">
-							</div>
-						</div>
-						<!-- /row -->
-					</form>
+					<h3>JAAG TRAVEL AND TOUR</h3>
+					<p>travel while you can</p>
+				
 				</div>
 			</div>
 			</div>
@@ -181,11 +22,14 @@
 		<div class="container-fluid margin_80_0">
 			<div class="main_title_2">
 				<span><em></em></span>
-				<h2>Our Popular Tours</h2>
-				<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+				<h2>Our Available Package</h2>
+				<p>here is some of our packages.</p>
 			</div>
 			<div id="reccomended" class="owl-carousel owl-theme">
-				<div class="item">
+				<?php
+				$qry = mysqli_query($connection, "select * from package_view");
+				 ?>
+				 <div class="item">
 					<div class="box_grid">
 						<figure>
 							<a href="#0" class="wish_bt"></a>
@@ -193,7 +37,7 @@
 							<small>Historic</small>
 						</figure>
 						<div class="wrapper">
-							<h3><a href="tour-detail.html">Arc Triomphe</a></h3>
+							<h3><a href="tour-detail.html">Arc rex</a></h3>
 							<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
 							<span class="price">From <strong>$54</strong> /per person</span>
 						</div>
@@ -204,101 +48,9 @@
 					</div>
 				</div>
 				<!-- /item -->
-				<div class="item">
-					<div class="box_grid">
-						<figure>
-							<a href="#0" class="wish_bt"></a>
-							<a href="tour-detail.html"><img src="img/tour_2.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-							<small>Churches</small>
-						</figure>
-						<div class="wrapper">
-							<h3><a href="tour-detail.html">Notredam</a></h3>
-							<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-							<span class="price">From <strong>$124</strong> /per person</span>
-						</div>
-						<ul>
-							<li><i class="icon_clock_alt"></i> 1h 30min</li>
-							<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /item -->
-				<div class="item">
-					<div class="box_grid">
-						<figure>
-							<a href="#0" class="wish_bt"></a>
-							<a href="tour-detail.html"><img src="img/tour_3.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-							<small>Historic</small>
-						</figure>
-						<div class="wrapper">
-							<h3><a href="tour-detail.html">Versailles</a></h3>
-							<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-							<span class="price">From <strong>$25</strong> /per person</span>
-						</div>
-						<ul>
-							<li><i class="icon_clock_alt"></i> 1h 30min</li>
-							<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /item -->
-				<div class="item">
-					<div class="box_grid">
-						<figure>
-							<a href="#0" class="wish_bt"></a>
-							<a href="tour-detail.html"><img src="img/tour_3.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-							<small>Historic</small>
-						</figure>
-						<div class="wrapper">
-							<h3><a href="tour-detail.html">Versailles</a></h3>
-							<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-							<span class="price">From <strong>$25</strong> /per person</span>
-						</div>
-						<ul>
-							<li><i class="icon_clock_alt"></i> 1h 30min</li>
-							<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /item -->
-				<div class="item">
-					<div class="box_grid">
-						<figure>
-							<a href="#0" class="wish_bt"></a>
-							<a href="tour-detail.html"><img src="img/tour_4.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-							<small>Museum</small>
-						</figure>
-						<div class="wrapper">
-							<h3><a href="tour-detail.html">Pompidue Museum</a></h3>
-							<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-							<span class="price">From <strong>$45</strong> /per person</span>
-						</div>
-						<ul>
-							<li><i class="icon_clock_alt"></i> 2h 30min</li>
-							<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>9.0</strong></div></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /item -->
-				<div class="item">
-					<div class="box_grid">
-						<figure>
-							<a href="#0" class="wish_bt"></a>
-							<a href="tour-detail.html"><img src="img/tour_5.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-							<small>Walking</small>
-						</figure>
-						<div class="wrapper">
-							<h3><a href="tour-detail.html">Tour Eiffel</a></h3>
-							<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-							<span class="price">From <strong>$65</strong> /per person</span>
-						</div>
-						<ul>
-							<li><i class="icon_clock_alt"></i> 1h 30min</li>
-							<li><div class="score"><span>Good<em>350 Reviews</em></span><strong>7.5</strong></div></li>
-						</ul>
-					</div>
-				</div>
-				<!-- /item -->
+				<?php } ?>
+			
+				
 			</div>
 			<!-- /carousel -->
 			<div class="container">
@@ -532,7 +284,7 @@
 		<div class="container margin_60_35">
 			<div class="row">
 				<div class="col-lg-5 col-md-12 p-r-5">
-					<p><img src="img/logo.png" width="150" height="36" data-retina="true" alt=""></p>
+					<p><img src="img/logo_2x.png" width="150" height="36" data-retina="true" alt=""></p>
 					<p>Mea nibh meis philosophia eu. Duis legimus efficiantur ea sea. Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu. Nihil facilisi indoctum an vix, ut delectus expetendis vis.</p>
 					<div class="follow_us">
 						<ul>
