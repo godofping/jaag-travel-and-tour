@@ -163,11 +163,11 @@ CREATE TABLE `departure_and_return_date_table` (
   `departureDate` date DEFAULT NULL,
   `returnDate` date DEFAULT NULL,
   PRIMARY KEY (`departureAndReturnDateId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `departure_and_return_date_table` */
 
-insert  into `departure_and_return_date_table`(`departureAndReturnDateId`,`departureDate`,`returnDate`) values (1,'2018-09-18','2018-09-21'),(4,'2018-09-12','2018-09-15');
+insert  into `departure_and_return_date_table`(`departureAndReturnDateId`,`departureDate`,`returnDate`) values (1,'2018-09-18','2018-09-21'),(4,'2018-09-12','2018-09-15'),(5,'2018-09-26','2018-09-28');
 
 /*Table structure for table `destination_table` */
 
@@ -182,11 +182,11 @@ CREATE TABLE `destination_table` (
   KEY `FK_destination_table` (`placeId`),
   CONSTRAINT `FK_destination_table` FOREIGN KEY (`placeId`) REFERENCES `place_table` (`placeId`),
   CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `destination_table` */
 
-insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (21,4,1),(25,7,5);
+insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (21,4,1),(25,7,5),(26,8,2);
 
 /*Table structure for table `employee_table` */
 
@@ -254,11 +254,11 @@ CREATE TABLE `package_media_table` (
   PRIMARY KEY (`packageMediaId`),
   KEY `FK_package_media_table1` (`packageId`),
   CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_media_table` */
 
-insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (4,4,'package_media/ad279697b2ee4b44a47f27014f80cb55Enchanted-River-11.jpg'),(6,7,'package_media/c614cf51883d67cce54d124a52ea65ccBUDA TOUR.jpg');
+insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (4,4,'package_media/ad279697b2ee4b44a47f27014f80cb55Enchanted-River-11.jpg'),(6,7,'package_media/c614cf51883d67cce54d124a52ea65ccBUDA TOUR.jpg'),(7,8,'package_media/21ef1a1a75d3dfa643e0c9a4bd6abc7edownload.jpg'),(8,8,'package_media/b49fe98311f4ea999a7dccdb1febcd6eFootpath to Hikong Alo  Seven Falls Lake Sebu.jpg'),(9,8,'package_media/a928768403dd16a045da2a2af50b0614images.jpg'),(10,8,'package_media/511474af2373dd62896b0fd179758b22LAKE SEBU TOUR.jpg');
 
 /*Table structure for table `package_table` */
 
@@ -274,14 +274,15 @@ CREATE TABLE `package_table` (
   `price` double DEFAULT NULL,
   `departureAndReturnDateId` int(6) DEFAULT NULL,
   `packageStatus` varchar(60) DEFAULT NULL,
+  `datePosted` date DEFAULT NULL,
   PRIMARY KEY (`packageId`),
   KEY `FK_package_table123` (`departureAndReturnDateId`),
   CONSTRAINT `FK_package_table123` FOREIGN KEY (`departureAndReturnDateId`) REFERENCES `departure_and_return_date_table` (`departureAndReturnDateId`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_table` */
 
-insert  into `package_table`(`packageId`,`packageName`,`pax`,`packageDetails`,`inclusion`,`exclusion`,`price`,`departureAndReturnDateId`,`packageStatus`) values (4,'SURIGAO TOUR',13,'THIS IS A 3 DAY TRIP. ','TRANSPORTATION','MEALS, ACCOMODATIONS',4000,1,NULL),(7,'Buda',14,'THIS IS A DAY TOUR','TRANSPORATION','MEALS',999,4,NULL);
+insert  into `package_table`(`packageId`,`packageName`,`pax`,`packageDetails`,`inclusion`,`exclusion`,`price`,`departureAndReturnDateId`,`packageStatus`,`datePosted`) values (4,'SURIGAO TOUR',13,'THIS IS A 3 DAY TRIP. ','TRANSPORTATION','MEALS, ACCOMODATIONS',4000,1,'open','2018-08-30'),(7,'Buda',14,'THIS IS A DAY TOUR','TRANSPORATION','MEALS',999,4,'open','2018-08-30'),(8,'LAKE SEBU TOUR',15,'NONE','TRANSPORTATION, BUFFET LUNCH, BOATING, 7 FALLS ENTRANCE','HOTEL',700,5,'open','2018-08-30');
 
 /*Table structure for table `place_table` */
 
@@ -512,6 +513,8 @@ DROP TABLE IF EXISTS `package_view`;
  `inclusion` text ,
  `exclusion` text ,
  `price` double ,
+ `packageStatus` varchar(60) ,
+ `datePosted` date ,
  `departureAndReturnDateId` int(6) ,
  `departureDate` date ,
  `returnDate` date 
@@ -586,7 +589,7 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP TABLE IF EXISTS `package_view` */;
 /*!50001 DROP VIEW IF EXISTS `package_view` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`packageName` AS `packageName`,`package_table`.`pax` AS `pax`,`package_table`.`packageDetails` AS `packageDetails`,`package_table`.`inclusion` AS `inclusion`,`package_table`.`exclusion` AS `exclusion`,`package_table`.`price` AS `price`,`package_table`.`departureAndReturnDateId` AS `departureAndReturnDateId`,`departure_and_return_date_table`.`departureDate` AS `departureDate`,`departure_and_return_date_table`.`returnDate` AS `returnDate` from (`package_table` join `departure_and_return_date_table` on((`package_table`.`departureAndReturnDateId` = `departure_and_return_date_table`.`departureAndReturnDateId`))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`packageName` AS `packageName`,`package_table`.`pax` AS `pax`,`package_table`.`packageDetails` AS `packageDetails`,`package_table`.`inclusion` AS `inclusion`,`package_table`.`exclusion` AS `exclusion`,`package_table`.`price` AS `price`,`package_table`.`packageStatus` AS `packageStatus`,`package_table`.`datePosted` AS `datePosted`,`package_table`.`departureAndReturnDateId` AS `departureAndReturnDateId`,`departure_and_return_date_table`.`departureDate` AS `departureDate`,`departure_and_return_date_table`.`returnDate` AS `returnDate` from (`package_table` join `departure_and_return_date_table` on((`package_table`.`departureAndReturnDateId` = `departure_and_return_date_table`.`departureAndReturnDateId`))) */;
 
 /*View structure for view place_view */
 

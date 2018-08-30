@@ -28,22 +28,27 @@ include("includes/header.php");
 			<div id="reccomended" class="owl-carousel owl-theme">
 				<?php
 				$qry = mysqli_query($connection, "select * from package_view where packageStatus = 'open'");
-				while ($res = mysqli_fetch_assoc($qry)) { ?>
+				while ($res = mysqli_fetch_assoc($qry)) { 
+
+					$qry1 = mysqli_query($connection, "select * from package_media_view where packageId = '" . $res['packageId'] . "' LIMIT 1");
+					$res1 = mysqli_fetch_assoc($qry1);
+
+					?>
 				 <div class="item">
 					<div class="box_grid">
 						<figure>
-							<a href="#0" class="wish_bt"></a>
-							<a href="tour-detail.html"><img src="img/tour_1.jpg" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
-							<small>Historic</small>
+					
+							<a href="tour-detail.php?packageId=<?php echo $res['packageId'] ?>"><img src="<?php echo "dashboard/". $res1['mediaLocation'];?>" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>Read more</span></div></a>
+							<small><?php echo $res['packageStatus']; ?></small>
 						</figure>
 						<div class="wrapper">
 							<h3><a href="tour-detail.html"><?php echo $res['packageName']; ?></a></h3>
-							<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-							<span class="price">From <strong>$54</strong> /per person</span>
+							<p><?php echo $res['packageDetails']; ?></p>
+							<span class="price">From <strong>₱<?php echo $res['price']; ?></strong> /per person</span>
 						</div>
 						<ul>
-							<li><i class="icon_clock_alt"></i> 1h 30min</li>
-							<li><div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div></li>
+							<li><i class="icon_clock_alt"></i><?php echo $res['datePosted']; ?></li>
+							<li><div class="score"><span>Package ID<em><!-- 350 Reviews --></em></span><strong><?php echo $res['packageId']; ?></strong></div></li>
 						</ul>
 					</div>
 				</div>
@@ -61,141 +66,14 @@ include("includes/header.php");
 		</div>
 		<!-- /container -->
 		
-		<div class="container-fluid margin_30_95 pl-lg-5 pr-lg-5">
-			<section class="add_bottom_45">
-				<div class="main_title_3">
-					<span><em></em></span>
-					<h2>Popular Hotels and Accommodations</h2>
-					<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
-				</div>
-				<div class="row">
-					<div class="col-xl-3 col-lg-6 col-md-6">
-						<a href="hotel-detail.html" class="grid_item">
-							<figure>
-								<div class="score"><strong>8.9</strong></div>
-								<img src="img/hotel_1.jpg" class="img-fluid" alt="">
-								<div class="info">
-									<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
-									<h3>Mariott Hotel</h3>
-								</div>
-							</figure>
-						</a>
-					</div>
-					<!-- /grid_item -->
-					<div class="col-xl-3 col-lg-6 col-md-6">
-						<a href="hotel-detail.html" class="grid_item">
-							<figure>
-								<div class="score"><strong>7.9</strong></div>
-								<img src="img/hotel_2.jpg" class="img-fluid" alt="">
-								<div class="info">
-									<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
-									<h3>Concorde Hotel </h3>
-								</div>
-							</figure>
-						</a>
-					</div>
-					<!-- /grid_item -->
-					<div class="col-xl-3 col-lg-6 col-md-6">
-						<a href="hotel-detail.html" class="grid_item">
-							<figure>
-								<div class="score"><strong>7.0</strong></div>
-								<img src="img/hotel_3.jpg" class="img-fluid" alt="">
-								<div class="info">
-									<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
-									<h3>Louvre Hotel</h3>
-								</div>
-							</figure>
-						</a>
-					</div>
-					<!-- /grid_item -->
-					<div class="col-xl-3 col-lg-6 col-md-6">
-						<a href="hotel-detail.html" class="grid_item">
-							<figure>
-								<div class="score"><strong>8.9</strong></div>
-								<img src="img/hotel_4.jpg" class="img-fluid" alt="">
-								<div class="info">
-									<div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
-									<h3>Park Yatt Hotel</h3>
-								</div>
-							</figure>
-						</a>
-					</div>
-					<!-- /grid_item -->
-				</div>
-				<!-- /row -->
-				<a href="hotels-grid-isotope.html"><strong>View all (157) <i class="arrow_carrot-right"></i></strong></a>
-			</section>
-			<!-- /section -->
-			
-			<section>
-				<div class="main_title_3">
-					<span><em></em></span>
-					<h2>Popular Restaurants</h2>
-					<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
-				</div>
-				<div class="row">
-					<div class="col-xl-3 col-lg-6 col-md-6">
-						<a href="restaurant-detail.html" class="grid_item">
-							<figure>
-								<div class="score"><strong>8.5</strong></div>
-								<img src="img/restaurant_1.jpg" class="img-fluid" alt="">
-								<div class="info">
-									<h3>Da Alfredo</h3>
-								</div>
-							</figure>
-						</a>
-					</div>
-					<!-- /grid_item -->
-					<div class="col-xl-3 col-lg-6 col-md-6">
-						<a href="restaurant-detail.html" class="grid_item">
-							<figure>
-								<div class="score"><strong>7.9</strong></div>
-								<img src="img/restaurant_2.jpg" class="img-fluid" alt="">
-								<div class="info">
-									<h3>Slow Food</h3>
-								</div>
-							</figure>
-						</a>
-					</div>
-					<!-- /grid_item -->
-					<div class="col-xl-3 col-lg-6 col-md-6">
-						<a href="restaurant-detail.html" class="grid_item">
-							<figure>
-								<div class="score"><strong>7.5</strong></div>
-								<img src="img/restaurant_3.jpg" class="img-fluid" alt="">
-								<div class="info">
-									<h3>Bella Napoli</h3>
-								</div>
-							</figure>
-						</a>
-					</div>
-					<!-- /grid_item -->
-					<div class="col-xl-3 col-lg-6 col-md-6">
-						<a href="restaurant-detail.html" class="grid_item">
-							<figure>
-								<div class="score"><strong>9.0</strong></div>
-								<img src="img/restaurant_4.jpg" class="img-fluid" alt="">
-								<div class="info">
-									<h3>Marcus</h3>
-								</div>
-							</figure>
-						</a>
-					</div>
-					<!-- /grid_item -->
-				</div>
-				<!-- /row -->
-				<a href="restaurants-grid-isotope.html"><strong>View all (157) <i class="arrow_carrot-right"></i></strong></a>
-			</section>
-			<!-- /section -->
-		</div>
-		<!-- /container -->
+
 
 		<div class="bg_color_1">
 			<div class="container margin_80_55">
 				<div class="main_title_2">
 					<span><em></em></span>
-					<h3>News and Events</h3>
-					<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+					<h3>Announcements</h3>
+					<p>get updated</p>
 				</div>
 				<div class="row">
 					<div class="col-lg-6">
@@ -256,7 +134,7 @@ include("includes/header.php");
 					<!-- /box_news -->
 				</div>
 				<!-- /row -->
-				<p class="btn_home_align"><a href="blog.html" class="btn_1 rounded">View all news</a></p>
+				<p class="btn_home_align"><a href="blog.html" class="btn_1 rounded">View all announcements</a></p>
 			</div>
 			<!-- /container -->
 		</div>

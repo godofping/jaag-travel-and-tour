@@ -47,6 +47,7 @@ include("includes/side-menu.php");
                   <th>Inclusions</th>
                   <th>Exclusions</th>
                   <th>Images</th>
+                  <th>Date Posted</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -75,6 +76,7 @@ include("includes/side-menu.php");
                   <td><?php echo $res['exclusion']; ?></td>
 
                   <td><a href="list-of-package-images.php?packageId=<?php echo $res['packageId'];?>&packageName=<?php echo $res['packageName'] ?>"><button type="button" class="btn btn-info btn-xs">MANAGE</button></a></td>
+                  <td><?php echo $res['datePosted']; ?></td>
                   <td><?php echo $res['packageStatus']; ?></td>
 
                   <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['packageId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['packageId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
@@ -167,14 +169,14 @@ include("includes/side-menu.php");
                     <div class="col-md-6">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="inclusion">Inclusion</label>
-                        <textarea class="form-control" id="inclusion" name="inclusion" rows="2" required=""></textarea>
+                        <textarea class="form-control" id="inclusion" name="inclusion" rows="2"></textarea>
                       </div>
                     </div>
           
                     <div class="col-md-6">
                       <div class="form-group form-material" data-plugin="formMaterial">
                         <label class="form-control-label" for="exclusion">Exclusion</label>
-                        <textarea class="form-control" id="exclusion" name="exclusion" rows="2" required=""></textarea>
+                        <textarea class="form-control" id="exclusion" name="exclusion" rows="2"></textarea>
                       </div>
                     </div>
                   </div>
@@ -183,7 +185,7 @@ include("includes/side-menu.php");
                   	<div class="col-md-12">
                   		<div class="form-group form-material" data-plugin="formMaterial">
 	                    	<label class="form-control-label" for="packageDetails">Package Details</label>
-	                    	<textarea class="form-control" id="packageDetails" name="packageDetails" rows="3" required=""></textarea>
+	                    	<textarea class="form-control" id="packageDetails" name="packageDetails" rows="3"></textarea>
 	                  	</div>
                   	</div>
                   </div>
