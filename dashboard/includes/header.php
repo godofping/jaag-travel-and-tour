@@ -141,10 +141,19 @@
 
 
           <?php 
-          $qry = mysqli_query($connection, "select * from admin_view where adminId = '" . $_SESSION['adminId'] . "'");
-          $res = mysqli_fetch_assoc($qry);
 
-
+          if (isset($_SESSION['accountType']) and $_SESSION['accountType'] == 'admin') {
+            $qry = mysqli_query($connection, "select * from admin_view where accountId = '" . $_SESSION['accountId'] . "'");
+            $res = mysqli_fetch_assoc($qry);
+          }
+          elseif (isset($_SESSION['accountType']) and $_SESSION['accountType'] == 'employee') {
+            $qry = mysqli_query($connection, "select * from employee_view where accountId = '" . $_SESSION['accountId'] . "'");
+            $res = mysqli_fetch_assoc($qry);
+          }
+          else
+          {
+            echo "<script type='text/javascript'>window.top.location='controller.php?from=login-first';</script>"; exit;
+          }
            ?>
     
           <!-- Navbar Toolbar Right -->
@@ -165,7 +174,7 @@
                 </span>
               </a>
               <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-account" aria-hidden="true"></i> Profile</a>
+                <a class="dropdown-item" href="profile.php" role="menuitem"><i class="icon md-account" aria-hidden="true"></i> Profile</a>
                
          
                 <div class="dropdown-divider"></div>

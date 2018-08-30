@@ -4,6 +4,7 @@ $_SESSION['current_page'] = "home";
 include("includes/header.php");
 include("includes/side-menu.php");
 ?>
+
      <!-- Page -->
     <div class="page">
       <div class="page-content container-fluid">

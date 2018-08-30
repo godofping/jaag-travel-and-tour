@@ -184,11 +184,17 @@ if (isset($_SESSION['adminId'])) {
     </script>
 
     <?php if (isset($_SESSION['do']) and $_SESSION['do'] == 'failed'): ?>
-
-
         <script>
           $(document).ready(function(){
            toastr["error"]("Login Failed! Incorrect username and/or password.", "Error");
+          });
+        </script>
+    <?php endif ?>
+
+    <?php if (isset($_SESSION['do']) and $_SESSION['do'] == 'login-first'): ?>
+        <script>
+          $(document).ready(function(){
+           toastr["error"]("Opps! Please login first!", "Error");
           });
         </script>
     <?php endif ?>
@@ -200,6 +206,8 @@ if (isset($_SESSION['adminId'])) {
           });
         </script>
     <?php endif ?>
+
+
 
     <?php 
     if (isset($_SESSION['do'])) {

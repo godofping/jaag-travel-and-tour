@@ -60,7 +60,7 @@ CREATE TABLE `announcement_media_table` (
   `mediaLocation` text,
   PRIMARY KEY (`announcementMediaId`),
   KEY `FK_announcement_media_table` (`announcementId`),
-  CONSTRAINT `FK_announcement_media_table` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`)
+  CONSTRAINT `FK_announcement_media_table` FOREIGN KEY (`announcementId`) REFERENCES `announcement_table` (`announcementId`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `announcement_media_table` */
@@ -76,7 +76,7 @@ CREATE TABLE `announcement_table` (
   `accountId` int(6) DEFAULT NULL,
   PRIMARY KEY (`announcementId`),
   KEY `FK_announcement_table1` (`accountId`),
-  CONSTRAINT `FK_announcement_table1` FOREIGN KEY (`accountId`) REFERENCES `account_table` (`accountId`)
+  CONSTRAINT `FK_announcement_table1` FOREIGN KEY (`accountId`) REFERENCES `account_table` (`accountId`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `announcement_table` */
@@ -93,7 +93,7 @@ CREATE TABLE `book_payment_transaction_table` (
   KEY `FK_payment_transaction_table612536412653` (`bookId`),
   KEY `FK_book_payment_transaction2a4s645asd_table` (`modeOfPaymentId`),
   CONSTRAINT `FK_book_payment_transaction_table` FOREIGN KEY (`modeOfPaymentId`) REFERENCES `mode_of_payment_table` (`modeOfPaymentId`),
-  CONSTRAINT `FK_payment_transaction_table612536412653` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`)
+  CONSTRAINT `FK_payment_transaction_table612536412653` FOREIGN KEY (`bookId`) REFERENCES `book_table` (`bookId`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `book_payment_transaction_table` */
@@ -107,12 +107,12 @@ CREATE TABLE `book_table` (
   `customerId` int(6) DEFAULT NULL,
   `packageId` int(6) DEFAULT NULL,
   `dateBooked` date DEFAULT NULL,
-  `status` varchar(60) DEFAULT NULL,
+  `bookStatus` varchar(60) DEFAULT NULL,
   `numberOfPax` int(6) DEFAULT NULL,
   PRIMARY KEY (`bookId`),
   KEY `FK_book_table` (`packageId`),
-  KEY `FK_book_table1` (`status`),
-  CONSTRAINT `FK_book_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
+  KEY `FK_book_table1` (`bookStatus`),
+  CONSTRAINT `FK_book_table` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `book_table` */
@@ -147,25 +147,27 @@ CREATE TABLE `customer_table` (
   KEY `FK_registered_customer_table` (`profileId`),
   KEY `FK_customer_table` (`customerType`),
   CONSTRAINT `FK_registered_customer_table` FOREIGN KEY (`profileId`) REFERENCES `profile_table` (`profileId`),
-  CONSTRAINT `FK_registered_customer_table1` FOREIGN KEY (`accountId`) REFERENCES `account_table` (`accountId`)
+  CONSTRAINT `FK_registered_customer_table1` FOREIGN KEY (`accountId`) REFERENCES `account_table` (`accountId`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `customer_table` */
 
 insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerType`) values (11,16,6,'Walk-in'),(12,17,6,'Walk-in');
 
-/*Table structure for table `departure_and_arrival_table` */
+/*Table structure for table `departure_and_return_date_table` */
 
-DROP TABLE IF EXISTS `departure_and_arrival_table`;
+DROP TABLE IF EXISTS `departure_and_return_date_table`;
 
-CREATE TABLE `departure_and_arrival_table` (
-  `departureAndArrivalId` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `departure_and_return_date_table` (
+  `departureAndReturnDateId` int(6) NOT NULL AUTO_INCREMENT,
   `departureDate` date DEFAULT NULL,
-  `arrivalDate` date DEFAULT NULL,
-  PRIMARY KEY (`departureAndArrivalId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `returnDate` date DEFAULT NULL,
+  PRIMARY KEY (`departureAndReturnDateId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
-/*Data for the table `departure_and_arrival_table` */
+/*Data for the table `departure_and_return_date_table` */
+
+insert  into `departure_and_return_date_table`(`departureAndReturnDateId`,`departureDate`,`returnDate`) values (1,'2018-09-18','2018-09-21');
 
 /*Table structure for table `destination_table` */
 
@@ -179,12 +181,12 @@ CREATE TABLE `destination_table` (
   KEY `FK_destination_table1` (`packageId`),
   KEY `FK_destination_table` (`placeId`),
   CONSTRAINT `FK_destination_table` FOREIGN KEY (`placeId`) REFERENCES `place_table` (`placeId`),
-  CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 /*Data for the table `destination_table` */
 
-insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (18,1,4),(19,1,3),(20,3,1);
+insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (21,4,1);
 
 /*Table structure for table `employee_table` */
 
@@ -213,7 +215,7 @@ CREATE TABLE `mode_of_payment_table` (
   `nameOfRemittance` varchar(60) DEFAULT NULL,
   `amount` double DEFAULT NULL,
   `datePaid` date DEFAULT NULL,
-  `status` varchar(60) DEFAULT NULL,
+  `paymentStatus` varchar(60) DEFAULT NULL,
   `transactionCode` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`modeOfPaymentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -249,12 +251,12 @@ CREATE TABLE `package_media_table` (
   `mediaLocation` text,
   PRIMARY KEY (`packageMediaId`),
   KEY `FK_package_media_table1` (`packageId`),
-  CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_media_table` */
 
-insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (1,1,'package_media/4672e5d2a36c08056102f8897790b2e6Riv.jpg'),(2,1,'package_media/5ed4a784c2491d572cad56b00549e979Surigao-del-Sur-Bogac-Spring.png');
+insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (4,4,'package_media/ad279697b2ee4b44a47f27014f80cb55Enchanted-River-11.jpg');
 
 /*Table structure for table `package_table` */
 
@@ -268,15 +270,16 @@ CREATE TABLE `package_table` (
   `inclusion` text,
   `exclusion` text,
   `price` double DEFAULT NULL,
-  `departureAndArrivalId` int(6) DEFAULT NULL,
+  `departureAndReturnDateId` int(6) DEFAULT NULL,
+  `packageStatus` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`packageId`),
-  KEY `FK_package_table123` (`departureAndArrivalId`),
-  CONSTRAINT `FK_package_table123` FOREIGN KEY (`departureAndArrivalId`) REFERENCES `departure_and_arrival_table` (`departureAndArrivalId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  KEY `FK_package_table123` (`departureAndReturnDateId`),
+  CONSTRAINT `FK_package_table123` FOREIGN KEY (`departureAndReturnDateId`) REFERENCES `departure_and_return_date_table` (`departureAndReturnDateId`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_table` */
 
-insert  into `package_table`(`packageId`,`packageName`,`pax`,`packageDetails`,`inclusion`,`exclusion`,`price`,`departureAndArrivalId`) values (1,'BRITANIA TOUR + ALAMEDA',30,'THIS IS A TEST','TRANSPORTATION','MEALS',999,NULL),(3,'SURIGAO PACKAGE',20,'SAMEPLE DETAILS','TRANSPORTATION','MEALS',999,NULL);
+insert  into `package_table`(`packageId`,`packageName`,`pax`,`packageDetails`,`inclusion`,`exclusion`,`price`,`departureAndReturnDateId`,`packageStatus`) values (4,'SURIGAO TOUR',13,'THIS IS A 3 DAY TRIP. ','TRANSPORTATION','MEALS, ACCOMODATIONS',4000,1,NULL);
 
 /*Table structure for table `place_table` */
 
@@ -357,17 +360,17 @@ CREATE TABLE `van_rental_table` (
   `vanId` int(6) DEFAULT NULL,
   `customerId` int(6) DEFAULT NULL,
   `dateRented` date DEFAULT NULL,
-  `status` varchar(60) DEFAULT NULL,
-  `departureAndArrivalId` int(6) DEFAULT NULL,
+  `vanRentalStatus` varchar(60) DEFAULT NULL,
+  `departureAndReturnDateId` int(6) DEFAULT NULL,
   `price` double DEFAULT NULL,
   PRIMARY KEY (`vanRentalId`),
   KEY `FK_van_rental_table` (`vanId`),
   KEY `FK_van_rental_table2` (`customerId`),
-  KEY `FK_van_rental_table4` (`status`),
-  KEY `FK_van_rental_table12` (`departureAndArrivalId`),
+  KEY `FK_van_rental_table4` (`vanRentalStatus`),
+  KEY `FK_van_rental_table12` (`departureAndReturnDateId`),
   KEY `FK_van_rental_table123123` (`price`),
   CONSTRAINT `FK_van_rental_table` FOREIGN KEY (`vanId`) REFERENCES `van_table` (`vanId`),
-  CONSTRAINT `FK_van_rental_table12` FOREIGN KEY (`departureAndArrivalId`) REFERENCES `departure_and_arrival_table` (`departureAndArrivalId`),
+  CONSTRAINT `FK_van_rental_table123` FOREIGN KEY (`departureAndReturnDateId`) REFERENCES `departure_and_return_date_table` (`departureAndReturnDateId`) ON DELETE SET NULL,
   CONSTRAINT `FK_van_rental_table2` FOREIGN KEY (`customerId`) REFERENCES `customer_table` (`customerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -455,6 +458,30 @@ DROP TABLE IF EXISTS `destination_view`;
  `longtitude` double 
 )*/;
 
+/*Table structure for table `employee_view` */
+
+DROP TABLE IF EXISTS `employee_view`;
+
+/*!50001 DROP VIEW IF EXISTS `employee_view` */;
+/*!50001 DROP TABLE IF EXISTS `employee_view` */;
+
+/*!50001 CREATE TABLE  `employee_view`(
+ `employeeId` int(6) ,
+ `profileId` int(6) ,
+ `accountId` int(6) ,
+ `userName` varchar(60) ,
+ `passWord` varchar(60) ,
+ `firstName` varchar(60) ,
+ `middleName` varchar(60) ,
+ `lastName` varchar(60) ,
+ `contactNumber` varchar(60) ,
+ `buildingNumber` varchar(60) ,
+ `street` varchar(60) ,
+ `barangay` varchar(60) ,
+ `city` varchar(60) ,
+ `province` varchar(60) 
+)*/;
+
 /*Table structure for table `package_media_view` */
 
 DROP TABLE IF EXISTS `package_media_view`;
@@ -482,7 +509,10 @@ DROP TABLE IF EXISTS `package_view`;
  `packageDetails` text ,
  `inclusion` text ,
  `exclusion` text ,
- `price` double 
+ `price` double ,
+ `departureAndReturnDateId` int(6) ,
+ `departureDate` date ,
+ `returnDate` date 
 )*/;
 
 /*Table structure for table `place_view` */
@@ -535,6 +565,13 @@ DROP TABLE IF EXISTS `van_view`;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `destination_view` AS select `destination_table`.`destinationId` AS `destinationId`,`destination_table`.`packageId` AS `packageId`,`destination_table`.`placeId` AS `placeId`,`place_table`.`placeName` AS `placeName`,`place_table`.`latitude` AS `latitude`,`place_table`.`longtitude` AS `longtitude` from (`destination_table` join `place_table` on((`destination_table`.`placeId` = `place_table`.`placeId`))) */;
 
+/*View structure for view employee_view */
+
+/*!50001 DROP TABLE IF EXISTS `employee_view` */;
+/*!50001 DROP VIEW IF EXISTS `employee_view` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_view` AS select `employee_table`.`employeeId` AS `employeeId`,`employee_table`.`profileId` AS `profileId`,`employee_table`.`accountId` AS `accountId`,`account_table`.`userName` AS `userName`,`account_table`.`passWord` AS `passWord`,`profile_table`.`firstName` AS `firstName`,`profile_table`.`middleName` AS `middleName`,`profile_table`.`lastName` AS `lastName`,`profile_table`.`contactNumber` AS `contactNumber`,`profile_table`.`buildingNumber` AS `buildingNumber`,`profile_table`.`street` AS `street`,`profile_table`.`barangay` AS `barangay`,`profile_table`.`city` AS `city`,`profile_table`.`province` AS `province` from ((`employee_table` join `profile_table` on((`employee_table`.`profileId` = `profile_table`.`profileId`))) join `account_table` on((`employee_table`.`accountId` = `account_table`.`accountId`))) */;
+
 /*View structure for view package_media_view */
 
 /*!50001 DROP TABLE IF EXISTS `package_media_view` */;
@@ -547,7 +584,7 @@ DROP TABLE IF EXISTS `van_view`;
 /*!50001 DROP TABLE IF EXISTS `package_view` */;
 /*!50001 DROP VIEW IF EXISTS `package_view` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`packageName` AS `packageName`,`package_table`.`pax` AS `pax`,`package_table`.`packageDetails` AS `packageDetails`,`package_table`.`inclusion` AS `inclusion`,`package_table`.`exclusion` AS `exclusion`,`package_table`.`price` AS `price` from `package_table` */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `package_view` AS select `package_table`.`packageId` AS `packageId`,`package_table`.`packageName` AS `packageName`,`package_table`.`pax` AS `pax`,`package_table`.`packageDetails` AS `packageDetails`,`package_table`.`inclusion` AS `inclusion`,`package_table`.`exclusion` AS `exclusion`,`package_table`.`price` AS `price`,`package_table`.`departureAndReturnDateId` AS `departureAndReturnDateId`,`departure_and_return_date_table`.`departureDate` AS `departureDate`,`departure_and_return_date_table`.`returnDate` AS `returnDate` from (`package_table` join `departure_and_return_date_table` on((`package_table`.`departureAndReturnDateId` = `departure_and_return_date_table`.`departureAndReturnDateId`))) */;
 
 /*View structure for view place_view */
 
