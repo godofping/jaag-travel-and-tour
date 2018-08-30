@@ -269,6 +269,8 @@ include("includes/side-menu.php");
 
                   <input type="text" name="from" value="update-walk-in-customer" hidden="">
                   <input type="text" name="customerId" value="<?php echo $res['customerId'] ?>" hidden="">
+                  <input type="text" name="profileId" value="<?php echo $res['profileId'] ?>" hidden="">
+                  
                  
                 
           </div>
@@ -307,6 +309,7 @@ include("includes/side-menu.php");
             <form method="POST" action="controller.php">
               <input type="text" name="from" value="delete-walk-in-customer" hidden="">
               <input type="text" name="customerId" value="<?php echo $res['customerId'] ?>" hidden="">
+              <input type="text" name="profileId" value="<?php echo $res['profileId'] ?>" hidden="">
               <button type="submit" class="btn btn-primary">Yes</button>
             </form>
               <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>

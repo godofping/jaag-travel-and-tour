@@ -55,12 +55,10 @@ if (isset($_POST['from']) and $_POST['from'] == 'add-walk-in-customer') {
 
 if (isset($_POST['from']) and $_POST['from'] == 'update-walk-in-customer') {
 	
-	$qry = mysqli_query($connection, "select * from customer_view where customerId = '" . $_POST['customerId'] . "'");
-	$res = mysqli_fetch_assoc($qry);
 
-	mysqli_query($connection, "update address_table set province = '" . $_POST['province'] . "',city = '" . $_POST['city'] . "', barangay = '" . $_POST['barangay'] . "', street = '" . $_POST['street'] . "', buildingNumber = '" . $_POST['buildingNumber'] . "' where addressId = '" . $res['addressId'] . "'");
 
-	mysqli_query($connection, "update profile_table set firstName = '" . $_POST['firstName'] . "', middleName = '" . $_POST['middleName'] . "', lastName = '" . $_POST['lastName'] . "', contactNumber = '" . $_POST['contactNumber'] . "' where profileId = '" . $res['profileId'] . "'");
+
+	mysqli_query($connection, "update profile_table set firstName = '" . $_POST['firstName'] . "', middleName = '" . $_POST['middleName'] . "', lastName = '" . $_POST['lastName'] . "', contactNumber = '" . $_POST['contactNumber'] . "',province = '" . $_POST['province'] . "',city = '" . $_POST['city'] . "', barangay = '" . $_POST['barangay'] . "', street = '" . $_POST['street'] . "', buildingNumber = '" . $_POST['buildingNumber'] . "' where profileId = '" . $_POST['profileId'] . "'");
 
 	$_SESSION['do'] = 'updated';
 	header("Location: list-of-walk-in-customers.php");
@@ -68,14 +66,9 @@ if (isset($_POST['from']) and $_POST['from'] == 'update-walk-in-customer') {
 
 if (isset($_POST['from']) and $_POST['from'] == 'delete-walk-in-customer') {
 	
-	$qry = mysqli_query($connection, "select * from customer_view where customerId = '" . $_POST['customerId'] . "'");
-	$res = mysqli_fetch_assoc($qry);
+	mysqli_query($connection, "delete from profile_table where profileId = '" . $_POST['profileId'] . "'");
 
-	mysqli_query($connection, "delete from address_table where addressId = '" . $res['addressId'] . "'");
-
-	mysqli_query($connection, "delete from profile_table where profileId = '" . $res['profileId'] . "'");
-
-	mysqli_query($connection, "delete from customer_table where customerId = '" . $res['customerId'] . "'");
+	mysqli_query($connection, "delete from customer_table where customerId = '" . $_POST['customerId'] . "'");
 
 	$_SESSION['do'] = 'deleted';
 	header("Location: list-of-walk-in-customers.php");
@@ -208,7 +201,7 @@ if (isset($_POST['from']) and $_POST['from'] == 'delete-package-image') {
 
 if (isset($_POST['from']) and $_POST['from'] == 'update-profile') {
 
-	mysqli_query($connection, "update profile_table set firstName = '" . $_POST['firstName'] . "' ");
+	mysqli_query($connection, "update profile_table set firstName = '" . $_POST['firstName'] . "',middleName = '" . $_POST['middleName'] . "', lastName = '" . $_POST['lastName'] . "',buildingNumber = '" . $_POST['buildingNumber'] . "', street = '" . $_POST['street'] . "', barangay = '" . $_POST['barangay'] . "', city = '" . $_POST['city'] . "', province = '" . $_POST['province'] . "', contactNumber = '" . $_POST['contactNumber'] . "' where profileId = '" . $_POST['profileId'] . "' ");
 
 	$_SESSION['do'] = 'updated';
 	header("Location: profile.php");
