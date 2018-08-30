@@ -5,5 +5,7 @@
 				<li><span><a href="van-rentals.php">Van Rentals</a></span></li>
 				<li><span><a href="van-rentals.php">Announcements</a></span></li>
 				<li><span><a href="van-rentals.php">Reviews</a></span></li>
+				<li><span><a href="van-rentals.php">About</a></span></li>
+
 			</ul>
 		</nav>
