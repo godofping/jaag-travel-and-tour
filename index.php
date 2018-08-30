@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Panagea - Premium site template for travel agencies, hotels and restaurant listing.">
-    <meta name="author" content="Ansonika">
+    <meta name="description" content="Jaag Travel and Tours">
+    <meta name="author" content="STI">
     <title>Panagea | Premium site template for travel agencies, hotels and restaurant listing.</title>
 
     <!-- Favicons-->
@@ -37,14 +37,14 @@
 		<div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
 		<div id="logo">
 			<a href="index.html">
-				<img src="img/logo.png" width="150" height="36" data-retina="true" alt="" class="logo_normal">
+				<img src="img/logo_2x.png" width="150" height="36" data-retina="true" alt="" class="logo_normal">
 				<img src="img/logo_sticky.png" width="150" height="36" data-retina="true" alt="" class="logo_sticky">
 			</a>
 		</div>
 		<ul id="top_menu">
-			<li><a href="cart-1.html" class="cart-menu-btn" title="Cart"><strong>4</strong></a></li>
+			<li><a href="cart-1.html" class="cart-menu-btn" title="Cart"><strong>0</strong></a></li>
 			<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In">Sign In</a></li>
-			<li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li>
+			
 		</ul>
 		<!-- /top_menu -->
 		<a href="#menu" class="btn_mobile">
@@ -57,15 +57,7 @@
 		<nav id="menu" class="main-menu">
 			<ul>
 				<li><span><a href="#0">Home</a></span>
-					<ul>
-						<li><a href="index.html">Home version 1</a></li>
-						<li><a href="index-2.html">Home version 2</a></li>
-						<li><a href="index-3.html">Home version 3</a></li>
-						<li><a href="index-4.html">Home version 4</a></li>
-						<li><a href="index-5.html">Home version 5</a></li>
-						<li><a href="index-6.html">With Cookie bar (EU law)</a></li>
-                        <li><a href="index-7.html">Home version 7</a></li>
-					</ul>
+				
 				</li>
 				<li><span><a href="#0">Tours</a></span>
 					<ul>
@@ -181,7 +173,7 @@
 				</div>
 			</div>
 			</div>
-			<img src="img/video_fix.png" alt="" class="header-video--media" data-video-src="video/intro" data-teaser-source="video/intro" data-provider="" data-video-width="1920" data-video-height="960">
+			<img src="img/video_fix.png" alt="" class="header-video--media" data-video-src="video/intro.mp4" data-teaser-source="video/intro" data-provider="" data-video-width="1920" data-video-height="960">
 		</section>
 		<!-- /header-video -->
 
