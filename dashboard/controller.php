@@ -116,7 +116,7 @@ if (isset($_POST['from']) and $_POST['from'] == 'add-package') {
 	mysqli_query($connection, "insert into departure_and_return_date_table (departureDate, returnDate) values ('" . $_POST['departureDate'] . "', '" . $_POST['returnDate'] . "')");
 	$departureAndReturnDateId = mysqli_insert_id($connection);
 
-	mysqli_query($connection, "insert into package_table (packageName, pax, packageDetails, price, inclusion, exclusion, departureAndReturnDateId) values ('" . $_POST['packageName'] . "', '" . $_POST['pax'] . "', '" . $_POST['packageDetails'] . "', '" . $_POST['price'] . "', '" . $_POST['inclusion'] . "', '" . $_POST['exclusion'] . "', '" . $departureAndReturnDateId . "')");
+	mysqli_query($connection, "insert into package_table (packageName, pax, packageDetails, price, inclusion, exclusion, departureAndReturnDateId,packageStatus) values ('" . $_POST['packageName'] . "', '" . $_POST['pax'] . "', '" . $_POST['packageDetails'] . "', '" . $_POST['price'] . "', '" . $_POST['inclusion'] . "', '" . $_POST['exclusion'] . "', '" . $departureAndReturnDateId . "', 'open')");
 	$packageId = mysqli_insert_id($connection);
 
 	foreach ($_POST['places'] as $placeId)

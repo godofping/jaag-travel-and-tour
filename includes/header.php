@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Jaag Travel and Tours">
     <meta name="author" content="STI">
-    <title>Panagea | Premium site template for travel agencies, hotels and restaurant listing.</title>
+    <title>JAGG | Travel and Tour and Van Rentals</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">

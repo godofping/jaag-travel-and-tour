@@ -47,6 +47,7 @@ include("includes/side-menu.php");
                   <th>Inclusions</th>
                   <th>Exclusions</th>
                   <th>Images</th>
+                  <th>Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -74,6 +75,7 @@ include("includes/side-menu.php");
                   <td><?php echo $res['exclusion']; ?></td>
 
                   <td><a href="list-of-package-images.php?packageId=<?php echo $res['packageId'];?>&packageName=<?php echo $res['packageName'] ?>"><button type="button" class="btn btn-info btn-xs">MANAGE</button></a></td>
+                  <td><?php echo $res['packageStatus']; ?></td>
 
                   <td><button type="button" class="btn btn-floating btn-warning btn-sm waves-effect waves-classic" data-target="#updateModal<?php echo $res['packageId'] ?>" data-toggle="modal"><i class="icon md-edit" aria-hidden="true"></i></button> <button type="button" class="btn btn-floating btn-danger btn-sm waves-effect waves-classic" data-target="#deleteModal<?php echo $res['packageId'] ?>" data-toggle="modal"><i class="icon md-delete" aria-hidden="true"></i></button> </td>
                 </tr>

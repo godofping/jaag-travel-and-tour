@@ -27,8 +27,8 @@ include("includes/header.php");
 			</div>
 			<div id="reccomended" class="owl-carousel owl-theme">
 				<?php
-				$qry = mysqli_query($connection, "select * from package_view");
-				 ?>
+				$qry = mysqli_query($connection, "select * from package_view where packageStatus = 'open'");
+				while ($res = mysqli_fetch_assoc($qry)) { ?>
 				 <div class="item">
 					<div class="box_grid">
 						<figure>
@@ -37,7 +37,7 @@ include("includes/header.php");
 							<small>Historic</small>
 						</figure>
 						<div class="wrapper">
-							<h3><a href="tour-detail.html">Arc rex</a></h3>
+							<h3><a href="tour-detail.html"><?php echo $res['packageName']; ?></a></h3>
 							<p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
 							<span class="price">From <strong>$54</strong> /per person</span>
 						</div>
