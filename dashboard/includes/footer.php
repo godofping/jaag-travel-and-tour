@@ -168,19 +168,21 @@
     <?php if (isset($_SESSION['do'])): ?>
 
         <script>
-          $(document).ready(function(){
-           toastr["success"]("Successfully <?php 
-            if ($_SESSION['do'] == 'added') {
-                echo "added!";
-            } elseif ($_SESSION['do'] == 'deleted') {
-                echo "deleted!";
-            } elseif ($_SESSION['do'] == 'updated') {
-                echo "updated!";
-            }
-
-            ?>", "Message");
-          });
+            <?php if ($_SESSION['do'] == 'added'): ?>
+            toastr["success"]("Successfully added!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'updated'): ?>
+                toastr["success"]("Successfully updated!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'deleted'): ?>
+                toastr["success"]("Successfully deleted!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'updated-password-failed'): ?>
+                toastr["error"]("Update password failed!! Please try again.", "Error");
+            <?php endif ?>
         </script>
+
+
 
     <?php endif ?>
 

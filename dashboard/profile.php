@@ -243,6 +243,61 @@ include("includes/side-menu.php");
       </div>
     </div>
 
+    <div class="modal fade modal-fill-in" id="updatePasswordModal" aria-hidden="false" aria-labelledby="addModal0"
+      role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-simple">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h3 class="modal-title" id="exampleFillInModalTitle">Update Password</h3>
+          </div>
+          <div class="modal-body">
+           
+            <form method="POST" action="controller.php">
+                
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group form-material" data-plugin="formMaterial">
+                          <label class="form-control-label" for="oldPassword">Old Password</label>
+                          <input type="password" class="form-control" id="oldPassword" name="oldPassword" required="" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group form-material" data-plugin="formMaterial">
+                          <label class="form-control-label" for="newPassword">New Password</label>
+                          <input type="password" class="form-control" id="newPassword" name="newPassword" required="" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group form-material" data-plugin="formMaterial">
+                          <label class="form-control-label" for="confirmNewPassword">Confirm New Password</label>
+                          <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required="" />
+                          </div>
+                        </div>
+                      </div>
+
+                      
+
+                  <input type="text" name="from" value="update-password-profile" hidden="">
+                  <input type="text" name="accountId" value="<?php echo $res['accountId']; ?>" hidden="">
+                  <input type="text" name="passWord" value="<?php echo $res['passWord']; ?>" hidden="">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- End Modal -->
 
  

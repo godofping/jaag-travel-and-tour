@@ -208,6 +208,23 @@ if (isset($_POST['from']) and $_POST['from'] == 'update-profile') {
 
 }
 
+if (isset($_POST['from']) and $_POST['from'] == 'update-password-profile') {
+	if ($_POST['passWord'] == md5($_POST['oldPassword']) and $_POST['newPassword'] == $_POST['confirmNewPassword']) {
+		mysqli_query($connection, "update account_table set passWord = '" . md5($_POST['newPassword']) . "' where accountId = '" . $_POST['accountId'] . "' ");
+		$_SESSION['do'] = 'updated';
+	}
+	else
+	{
+		$_SESSION['do'] = 'updated-password-failed';
+	}
+
+	
+
+	
+	header("Location: profile.php");
+
+}
+
 
 
 

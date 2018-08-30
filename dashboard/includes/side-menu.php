@@ -130,6 +130,17 @@
           </ul>
         </li>
 
+        <li class="site-menu-item <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-employees'): ?>
+          active open
+        <?php endif ?>">
+          <a class="animsition-link" href="list-of-employees.php">
+                  <i class="site-menu-icon md-accounts-alt" aria-hidden="true"></i>
+                  <span class="site-menu-title">Employees</span>
+              </a>
+        </li>
+
+
+
         <li class="site-menu-item has-sub <?php if (isset($_SESSION['current_page']) and $_SESSION['current_page'] == 'list-of-detinations' ): ?>
           active open
         <?php endif ?>">
