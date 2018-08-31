@@ -40,7 +40,11 @@ $res = mysqli_fetch_assoc($qry);
 					<div class="col-lg-8">
 						<section id="description">
 							<h2>Description</h2>
+
 							<p><?php echo $res['packageDetails']; ?></p>
+
+							<h4>Pax: <?php echo $res['pax']; ?></h4>
+							<h5> Remaining slots 0</h5>
 					
 							<div id="instagram-feed" class="clearfix"></div>
 							<hr>
@@ -84,8 +88,8 @@ $res = mysqli_fetch_assoc($qry);
 							</div>
 
 							<div class="form-group">
-								<input class="form-control" type="text" name="dates" placeholder="When..">
-								<i class="icon_calendar"></i>
+								<input class="form-control" type="number" name="pax" placeholder="Number of Pax">
+								<i class="icon_profile"></i>
 							</div>
 
 							<a href="cart-1.html" class="btn_1 full-width purchase">Purchase</a>
@@ -102,5 +106,24 @@ $res = mysqli_fetch_assoc($qry);
 		<!-- /bg_color_1 -->
 	</main>
 	<!--/main-->
+
+
+	<?php 
+	$qry2 = mysqli_query($connection, "select * from destination_view where packageId = '" . $res['packageId'] . "'");
+	$res2 = mysqli_fetch_assoc($qry2)
+	 ?>
+
+	<script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: <?php echo $res2['latitude']; ?>, lng: <?php echo $res2['longtitude']; ?>},
+          zoom: 10
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrM94NRHiWS652rYp3jenICI1Z24BH4dM&callback=initMap"
+    async defer></script>
+	
 	
 <?php include("includes/footer.php"); ?>
