@@ -15,7 +15,10 @@ include("dashboard/includes/connection.php");
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
-
+    <script type="text/javascript" src="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css
+Install">
+	<script type="text/javascript">toastr.info('Are you the 6 fingered man?')</script>
     <!-- BASE CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -43,35 +46,68 @@ include("dashboard/includes/connection.php");
 			<figure>
 				<a href="index.html"><img src="img/logo_sticky.png" width="155" height="36" data-retina="true" alt="" class="logo_sticky"></a>
 			</figure>
-			<form autocomplete="off">
+			<form autocomplete="off" method="POST" action="controller.php">
 				<div class="form-group">
-					<label>Your Name</label>
-					<input class="form-control" type="text">
-					<i class="ti-user"></i>
+					<label>First Name</label>
+					<input class="form-control" type="text" name="firstName" id="firstName" required="">
+					<i class="ti-arrow-up"></i>
 				</div>
 				<div class="form-group">
-					<label>Your Last Name</label>
-					<input class="form-control" type="text">
-					<i class="ti-user"></i>
+					<label>Middle Name</label>
+					<input class="form-control" type="text" name="middleName" id="middleName" required="">
+					<i class="ti-arrow-right"></i>
 				</div>
 				<div class="form-group">
-					<label>Your Email</label>
-					<input class="form-control" type="email">
-					<i class="icon_mail_alt"></i>
+					<label>Last Name</label>
+					<input class="form-control" type="text" name="lastName" id="lastName" required="">
+					<i class="ti-arrow-left"></i>
 				</div>
 				<div class="form-group">
-					<label>Your password</label>
-					<input class="form-control" type="password" id="password1">
-					<i class="icon_lock_alt"></i>
+					<label>Contact Number</label>
+					<input class="form-control" type="text" name="contactNumber" id="contactNumber" required="">
+					<i class="ti-arrow-down"></i>
 				</div>
 				<div class="form-group">
-					<label>Confirm password</label>
-					<input class="form-control" type="password" id="password2">
-					<i class="icon_lock_alt"></i>
+					<label>Building Number</label>
+					<input class="form-control" type="text" name="buildingNumber" id="buildingNumber">
+					<i class="ti-arrows-vertical"></i>
 				</div>
+				<div class="form-group">
+					<label>Street</label>
+					<input class="form-control" type="text" name="street" id="street">
+					<i class="ti-arrows-horizontal"></i>
+				</div>
+				<div class="form-group">
+					<label>Barangay</label>
+					<input class="form-control" type="text" name="barangay" id="barangay">
+					<i class="ti-angle-up"></i>
+				</div>
+				<div class="form-group">
+					<label>City</label>
+					<input class="form-control" type="text" name="city" id="city" required="">
+					<i class="ti-angle-right"></i>
+				</div>
+				<div class="form-group">
+					<label>Province</label>
+					<input class="form-control" type="text" name="province" id="province" required="">
+					<i class="ti-angle-left"></i>
+				</div>
+				<div class="form-group">
+					<label>Username</label>
+					<input class="form-control" type="text" name="userName" id="userName" required="">
+					<i class="ti-angle-down"></i>
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input class="form-control" type="password" name="passWord" id="passWord" required="">
+					<i class="ti-key"></i>
+				</div>
+
+				
 				<div id="pass-info" class="clearfix"></div>
-				<a href="#0" class="btn_1 rounded full-width add_top_30">Register Now!</a>
-				<div class="text-center add_top_10">Already have an acccount? <strong><a href="login.html">Sign In</a></strong></div>
+				<button type="submit" class="btn_1 rounded full-width add_top_30">Register Now!</button>
+				<div class="text-center add_top_10">Already have an acccount? <strong><a href="login.php">Sign In</a></strong></div>
+				<input type="text" name="from" value="register" hidden="">
 			</form>
 			<div class="copy">© 2018 Panagea</div>
 		</aside>
