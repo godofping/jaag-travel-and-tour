@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v8.53 
-MySQL - 5.5.5-10.1.33-MariaDB : Database - ottmbs_db
+MySQL - 5.5.5-10.1.34-MariaDB : Database - ottmbs_db
 *********************************************************************
 */
 
@@ -25,11 +25,11 @@ CREATE TABLE `account_table` (
   `userName` varchar(60) DEFAULT NULL,
   `passWord` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`accountId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `account_table` */
 
-insert  into `account_table`(`accountId`,`userName`,`passWord`) values (5,'admin','21232f297a57a5a743894a0e4a801fc3'),(6,'walk-in','walk-in'),(7,'navidad','81dc9bdb52d04dc20036dbd8313ed055'),(8,'aaaaaaaaaaa','451599a5f9afa91a0f2097040a796f3d'),(9,'trey','28aa7a2b0b483d0af53a8785f3fc9141'),(10,'arnold','49a30d03c669a09f2c01c3655032af3e');
+insert  into `account_table`(`accountId`,`userName`,`passWord`) values (5,'admin','21232f297a57a5a743894a0e4a801fc3'),(6,'walk-in','walk-in'),(7,'navidad','81dc9bdb52d04dc20036dbd8313ed055'),(8,'aaaaaaaaaaa','451599a5f9afa91a0f2097040a796f3d'),(9,'customer','91ec1f9324753048c0096d036a694f86');
 
 /*Table structure for table `admin_table` */
 
@@ -148,11 +148,11 @@ CREATE TABLE `customer_table` (
   KEY `FK_customer_table` (`customerType`),
   CONSTRAINT `FK_registered_customer_table` FOREIGN KEY (`profileId`) REFERENCES `profile_table` (`profileId`),
   CONSTRAINT `FK_registered_customer_table1` FOREIGN KEY (`accountId`) REFERENCES `account_table` (`accountId`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 /*Data for the table `customer_table` */
 
-insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerType`) values (11,16,6,'Walk-in'),(12,17,6,'Walk-in'),(14,21,6,'Walk-in'),(15,22,9,'Registered'),(16,23,10,'Registered');
+insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerType`) values (11,16,6,'Walk-in'),(12,17,6,'Walk-in'),(14,21,6,'Walk-in'),(15,22,9,'Registered');
 
 /*Table structure for table `departure_and_return_date_table` */
 
@@ -163,11 +163,11 @@ CREATE TABLE `departure_and_return_date_table` (
   `departureDate` date DEFAULT NULL,
   `returnDate` date DEFAULT NULL,
   PRIMARY KEY (`departureAndReturnDateId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `departure_and_return_date_table` */
 
-insert  into `departure_and_return_date_table`(`departureAndReturnDateId`,`departureDate`,`returnDate`) values (1,'2018-09-18','2018-09-21'),(4,'2018-09-12','2018-09-15'),(5,'2018-09-26','2018-09-28');
+insert  into `departure_and_return_date_table`(`departureAndReturnDateId`,`departureDate`,`returnDate`) values (1,'2018-09-18','2018-09-21'),(4,'2018-09-12','2018-09-15'),(5,'2018-09-26','2018-09-28'),(6,'2018-10-18','2018-10-20');
 
 /*Table structure for table `destination_table` */
 
@@ -182,11 +182,11 @@ CREATE TABLE `destination_table` (
   KEY `FK_destination_table` (`placeId`),
   CONSTRAINT `FK_destination_table` FOREIGN KEY (`placeId`) REFERENCES `place_table` (`placeId`),
   CONSTRAINT `FK_destination_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 /*Data for the table `destination_table` */
 
-insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (21,4,1),(25,7,5),(26,8,2);
+insert  into `destination_table`(`destinationId`,`packageId`,`placeId`) values (21,4,1),(25,7,5),(26,8,2),(27,9,4);
 
 /*Table structure for table `employee_table` */
 
@@ -254,11 +254,11 @@ CREATE TABLE `package_media_table` (
   PRIMARY KEY (`packageMediaId`),
   KEY `FK_package_media_table1` (`packageId`),
   CONSTRAINT `FK_package_media_table1` FOREIGN KEY (`packageId`) REFERENCES `package_table` (`packageId`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_media_table` */
 
-insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (4,4,'package_media/ad279697b2ee4b44a47f27014f80cb55Enchanted-River-11.jpg'),(6,7,'package_media/c614cf51883d67cce54d124a52ea65ccBUDA TOUR.jpg'),(7,8,'package_media/21ef1a1a75d3dfa643e0c9a4bd6abc7edownload.jpg'),(8,8,'package_media/b49fe98311f4ea999a7dccdb1febcd6eFootpath to Hikong Alo  Seven Falls Lake Sebu.jpg'),(9,8,'package_media/a928768403dd16a045da2a2af50b0614images.jpg'),(10,8,'package_media/511474af2373dd62896b0fd179758b22LAKE SEBU TOUR.jpg');
+insert  into `package_media_table`(`packageMediaId`,`packageId`,`mediaLocation`) values (4,4,'package_media/ad279697b2ee4b44a47f27014f80cb55Enchanted-River-11.jpg'),(7,8,'package_media/21ef1a1a75d3dfa643e0c9a4bd6abc7edownload.jpg'),(8,8,'package_media/b49fe98311f4ea999a7dccdb1febcd6eFootpath to Hikong Alo  Seven Falls Lake Sebu.jpg'),(9,8,'package_media/a928768403dd16a045da2a2af50b0614images.jpg'),(10,8,'package_media/511474af2373dd62896b0fd179758b22LAKE SEBU TOUR.jpg'),(11,7,'package_media/709f8769fdb542cdc61493c4c5eff8ad4.jpg');
 
 /*Table structure for table `package_table` */
 
@@ -278,11 +278,11 @@ CREATE TABLE `package_table` (
   PRIMARY KEY (`packageId`),
   KEY `FK_package_table123` (`departureAndReturnDateId`),
   CONSTRAINT `FK_package_table123` FOREIGN KEY (`departureAndReturnDateId`) REFERENCES `departure_and_return_date_table` (`departureAndReturnDateId`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `package_table` */
 
-insert  into `package_table`(`packageId`,`packageName`,`pax`,`packageDetails`,`inclusion`,`exclusion`,`price`,`departureAndReturnDateId`,`packageStatus`,`datePosted`) values (4,'SURIGAO TOUR',13,'THIS IS A 3 DAY TRIP. ','TRANSPORTATION','MEALS, ACCOMODATIONS',4000,1,'open','2018-08-30'),(7,'Buda',14,'THIS IS A DAY TOUR','TRANSPORATION','MEALS',999,4,'open','2018-08-30'),(8,'LAKE SEBU TOUR',15,'NONE','TRANSPORTATION, BUFFET LUNCH, BOATING, 7 FALLS ENTRANCE','HOTEL',700,5,'open','2018-08-30');
+insert  into `package_table`(`packageId`,`packageName`,`pax`,`packageDetails`,`inclusion`,`exclusion`,`price`,`departureAndReturnDateId`,`packageStatus`,`datePosted`) values (4,'SURIGAO TOUR',13,'THIS IS A 3 DAY TRIP. ','TRANSPORTATION','MEALS, ACCOMODATIONS',4000,1,'open','2018-08-30'),(7,'Buda',14,'THIS IS A DAY TOUR','TRANSPORATION','MEALS',999,4,'open','2018-08-30'),(8,'LAKE SEBU TOUR',15,'NONE','TRANSPORTATION, BUFFET LUNCH, BOATING, 7 FALLS ENTRANCE','HOTEL',700,5,'open','2018-08-30'),(9,'Asik-Asik Falls Tour',15,'','Transportation','Meals',1500,6,'open','2018-08-31');
 
 /*Table structure for table `place_table` */
 
@@ -316,11 +316,11 @@ CREATE TABLE `profile_table` (
   `city` varchar(60) DEFAULT NULL,
   `province` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`profileId`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 /*Data for the table `profile_table` */
 
-insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`contactNumber`,`buildingNumber`,`street`,`barangay`,`city`,`province`) values (13,'Abner','Natividad','Lacson','09365636999','20','National Highway','Poblacion','Tacurong City','Sultan Kudarat'),(16,'Daryl','Montenegro','Caldero','09759085665','23','Lapu-lapu','Poblacion','Tacurong City','Sultan Kudarat'),(17,'Clarie Jane','Sagolili','Jadraque','09486363633','55','Barangay Road','New Isabela','Tacurong City','Sultan Kudarat'),(18,'123','123','123','123','1231','2312','123','123','123'),(19,'Geoffrey','Karson','Navidad','091685754441','31','Bonifacio Street','Poblacion','Tacurong City','Sultan Kudarat'),(20,'aaaaaaaaaa1','aaaaaaaa1','aaaaaaaa1','aaaaa1','aaaaaaaaa1','aaaaaaaaaa1','aaaaaaaaa1','aaaaaaaa1','aaaaaaaa1'),(21,'Ferdinand','Dillan','Suarez','09168575335','03','Malvar','Poblacion','Tacurong','Sultan Kudarat'),(22,'Trey','Galvez','Capadosa','09157585995','44','Magsaysay Avenue','Poblacion','Tacurong City','Sultan Kudarat'),(23,'Arnold','Legaspi','Mabini','09169085774','23','National highway','poblacion','Tacurong City','Sultan Kudarat');
+insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`contactNumber`,`buildingNumber`,`street`,`barangay`,`city`,`province`) values (13,'Arra Mae','Pablo','Agusan','09365636999','20','National Highway','Poblacion','Tacurong City','Sultan Kudarat'),(16,'Daryl','Montenegro','Caldero','09759085665','23','Lapu-lapu','Poblacion','Tacurong City','Sultan Kudarat'),(17,'Clarie Jane','Sagolili','Jadraque','09486363633','55','Barangay Road','New Isabela','Tacurong City','Sultan Kudarat'),(18,'123','123','123','123','1231','2312','123','123','123'),(19,'Geoffrey','Karson','Navidad','091685754441','31','Bonifacio Street','Poblacion','Tacurong City','Sultan Kudarat'),(20,'aaaaaaaaaa1','aaaaaaaa1','aaaaaaaa1','aaaaa1','aaaaaaaaa1','aaaaaaaaaa1','aaaaaaaaa1','aaaaaaaa1','aaaaaaaa1'),(21,'Ferdinand','Dillan','Suarez','09168575335','03','Malvar','Poblacion','Tacurong','Sultan Kudarat'),(22,'April kieth','Fegurac','Intoy','09057640585','000','Saranay Extension','San Pablo','Tacurong City','Sultan Kudarat');
 
 /*Table structure for table `van_media_table` */
 
