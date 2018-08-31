@@ -2,7 +2,7 @@
 <header class="header menu_fixed">
 		<div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
 		<div id="logo">
-			<a href="index.html">
+			<a href="index.php">
 				<img src="img/logo_2x.png" width="150" height="36" data-retina="true" alt="" class="logo_normal">
 				<img src="img/logo_sticky.png" width="150" height="36" data-retina="true" alt="" class="logo_sticky">
 			</a>
@@ -30,10 +30,10 @@
 <nav id="menu" class="main-menu">
 			<ul>
 				<li><span><a href="index.php">Home</a></span></li>
-				<li><span><a href="packages.php">Services</a></span>
+				<li><span><a href="#">Services</a></span>
 				<ul>
 					<li><a href="tour-packages.php">Tour Packages</a></li>
-					<li><a href="index-2.html">Van Rentals</a></li>
+					<li><a href="van-rentals.php">Van Rentals</a></li>
 				</ul></li>
 				<li><span><a href="van-rentals.php">Announcements</a></span></li>
 				<li><span><a href="van-rentals.php">Reviews</a></span></li>
