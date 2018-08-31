@@ -36,37 +36,7 @@
 </head>
 
 <body>
-		<script type="text/javascript">toastr.info('Are you the 6 fingered man?')</script>
-	<div id="page">
 		
-	<header class="header menu_fixed">
-		<div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
-		<div id="logo">
-			<a href="index.html">
-				<img src="img/logo_2x.png" width="150" height="36" data-retina="true" alt="" class="logo_normal">
-				<img src="img/logo_sticky.png" width="150" height="36" data-retina="true" alt="" class="logo_sticky">
-			</a>
-		</div>
-		<ul id="top_menu">
-			<li><a href="cart.php" class="cart-menu-btn" title="Cart"><strong>0</strong></a></li>
-			<?php if (!isset($_SESSION['customerId'])): ?>
-				<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In">Sign In</a></li>
-			<?php endif ?>
-
-			<?php if (isset($_SESSION['customerId'])): ?>
-				<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Log Out">Log Out</a></li>
-			<?php endif ?>
-			
-			
-		</ul>
-		<!-- /top_menu -->
-		<a href="#menu" class="btn_mobile">
-			<div class="hamburger hamburger--spin" id="hamburger">
-				<div class="hamburger-box">
-					<div class="hamburger-inner"></div>
-				</div>
-			</div>
-		</a>
+	<div id="page">
 		<?php include("menu.php");?>		
-	</header>
-	<!-- /header -->
+	

@@ -15,9 +15,12 @@
 					<h5>Useful links</h5>
 					<ul class="links">
 						<li><a href="about.php">About</a></li>
-						<li><a href="login.php">Login</a></li>
-						<li><a href="register.php">Register</a></li>
+						<?php if (!isset($_SESSION['customerId'])): ?>
+							<li><a href="login.php">Login</a></li>
+							<li><a href="register.php">Register</a></li>
+						<?php endif ?>
 						<li><a href="announcement.php">Announcements</a></li>
+						<li><a href="reviews.php">Reviews</a></li>
 			
 					</ul>
 				</div>
