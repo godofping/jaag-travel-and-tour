@@ -30,4 +30,28 @@ if (isset($_POST['from']) and $_POST['from'] == 'register') {
 
 }
 
+if (isset($_POST['from']) and $_POST['from'] == 'logout') {
+	session_destroy();
+	session_start();
+	$_SESSION['do'] = 'logout';
+	header("Location: index.php");
+}
+
+if (isset($_POST['from']) and $_POST['from'] == 'login') {
+	$qry = mysqli_query($connection, "select * from customer_view where userName = '" . $_POST['userName'] . "' and passWord = '" . md5($_POST['passWord']) . "' and customerType = 'Registered'");
+	if (mysqli_num_rows($qry) > 0) {
+		$res = mysqli_fetch_assoc($qry);
+		$_SESSION['accountType'] = 'customer';
+		$_SESSION['customerId'] = $res['customerId'];
+		header("Location: index.php");
+	}
+	else
+	{
+
+		$_SESSION['do'] = 'failed';
+		header("Location: login.php");
+
+	}
+}
+
 ?>

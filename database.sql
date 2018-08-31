@@ -25,11 +25,11 @@ CREATE TABLE `account_table` (
   `userName` varchar(60) DEFAULT NULL,
   `passWord` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`accountId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `account_table` */
 
-insert  into `account_table`(`accountId`,`userName`,`passWord`) values (5,'admin','21232f297a57a5a743894a0e4a801fc3'),(6,'walk-in','walk-in'),(7,'navidad','81dc9bdb52d04dc20036dbd8313ed055'),(8,'aaaaaaaaaaa','451599a5f9afa91a0f2097040a796f3d');
+insert  into `account_table`(`accountId`,`userName`,`passWord`) values (5,'admin','21232f297a57a5a743894a0e4a801fc3'),(6,'walk-in','walk-in'),(7,'navidad','81dc9bdb52d04dc20036dbd8313ed055'),(8,'aaaaaaaaaaa','451599a5f9afa91a0f2097040a796f3d'),(9,'trey','28aa7a2b0b483d0af53a8785f3fc9141'),(10,'arnold','49a30d03c669a09f2c01c3655032af3e');
 
 /*Table structure for table `admin_table` */
 
@@ -148,11 +148,11 @@ CREATE TABLE `customer_table` (
   KEY `FK_customer_table` (`customerType`),
   CONSTRAINT `FK_registered_customer_table` FOREIGN KEY (`profileId`) REFERENCES `profile_table` (`profileId`),
   CONSTRAINT `FK_registered_customer_table1` FOREIGN KEY (`accountId`) REFERENCES `account_table` (`accountId`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `customer_table` */
 
-insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerType`) values (11,16,6,'Walk-in'),(12,17,6,'Walk-in'),(14,21,6,'Walk-in');
+insert  into `customer_table`(`customerId`,`profileId`,`accountId`,`customerType`) values (11,16,6,'Walk-in'),(12,17,6,'Walk-in'),(14,21,6,'Walk-in'),(15,22,9,'Registered'),(16,23,10,'Registered');
 
 /*Table structure for table `departure_and_return_date_table` */
 
@@ -316,11 +316,11 @@ CREATE TABLE `profile_table` (
   `city` varchar(60) DEFAULT NULL,
   `province` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`profileId`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 /*Data for the table `profile_table` */
 
-insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`contactNumber`,`buildingNumber`,`street`,`barangay`,`city`,`province`) values (13,'Abner','Natividad','Lacson','09365636999','20','National Highway','Poblacion','Tacurong City','Sultan Kudarat'),(16,'Daryl','Montenegro','Caldero','09759085665','23','Lapu-lapu','Poblacion','Tacurong City','Sultan Kudarat'),(17,'Clarie Jane','Sagolili','Jadraque','09486363633','55','Barangay Road','New Isabela','Tacurong City','Sultan Kudarat'),(18,'123','123','123','123','1231','2312','123','123','123'),(19,'Geoffrey','Karson','Navidad','091685754441','31','Bonifacio Street','Poblacion','Tacurong City','Sultan Kudarat'),(20,'aaaaaaaaaa1','aaaaaaaa1','aaaaaaaa1','aaaaa1','aaaaaaaaa1','aaaaaaaaaa1','aaaaaaaaa1','aaaaaaaa1','aaaaaaaa1'),(21,'Ferdinand','Dillan','Suarez','09168575335','03','Malvar','Poblacion','Tacurong','Sultan Kudarat');
+insert  into `profile_table`(`profileId`,`firstName`,`middleName`,`lastName`,`contactNumber`,`buildingNumber`,`street`,`barangay`,`city`,`province`) values (13,'Abner','Natividad','Lacson','09365636999','20','National Highway','Poblacion','Tacurong City','Sultan Kudarat'),(16,'Daryl','Montenegro','Caldero','09759085665','23','Lapu-lapu','Poblacion','Tacurong City','Sultan Kudarat'),(17,'Clarie Jane','Sagolili','Jadraque','09486363633','55','Barangay Road','New Isabela','Tacurong City','Sultan Kudarat'),(18,'123','123','123','123','1231','2312','123','123','123'),(19,'Geoffrey','Karson','Navidad','091685754441','31','Bonifacio Street','Poblacion','Tacurong City','Sultan Kudarat'),(20,'aaaaaaaaaa1','aaaaaaaa1','aaaaaaaa1','aaaaa1','aaaaaaaaa1','aaaaaaaaaa1','aaaaaaaaa1','aaaaaaaa1','aaaaaaaa1'),(21,'Ferdinand','Dillan','Suarez','09168575335','03','Malvar','Poblacion','Tacurong','Sultan Kudarat'),(22,'Trey','Galvez','Capadosa','09157585995','44','Magsaysay Avenue','Poblacion','Tacurong City','Sultan Kudarat'),(23,'Arnold','Legaspi','Mabini','09169085774','23','National highway','poblacion','Tacurong City','Sultan Kudarat');
 
 /*Table structure for table `van_media_table` */
 

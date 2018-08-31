@@ -44,17 +44,17 @@ include("dashboard/includes/connection.php");
 			<figure>
 				<a href="index.html"><img src="img/logo_sticky.png" width="155" height="36" data-retina="true" alt="" class="logo_sticky"></a>
 			</figure>
-			  <form>
+			  <form method="POST" action="controller.php">
 		
 				
 				<div class="form-group">
 					<label>Username</label>
-					<input type="text" class="form-control" name="userName" id="userName">
+					<input type="text" class="form-control" name="userName" id="userName" required="">
 					<i class="icon_pencil"></i>
 				</div>
 				<div class="form-group">
 					<label>Password</label>
-					<input type="password" class="form-control" name="passWord" id="passWord">
+					<input type="password" class="form-control" name="passWord" id="passWord" required="">
 					<i class="icon_lock_alt"></i>
 				</div>
 				<div class="clearfix add_bottom_30">
@@ -63,8 +63,9 @@ include("dashboard/includes/connection.php");
 					</div>
 					
 				</div>
-				<a href="#0" class="btn_1 rounded full-width">Login</a>
+				<button type="submit" class="btn_1 rounded full-width">Login</button>
 				<div class="text-center add_top_10">New to JAAG? <strong><a href="register.php">Sign up!</a></strong></div>
+				<input type="text" name="from" value="login" hidden="">
 			</form>
 			<div class="copy">© 2018 JAAG</div>
 		</aside>

@@ -27,10 +27,16 @@
 	<!-- Modernizr -->
 	<script src="js/modernizr.js"></script>
 
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+	
+
+
 </head>
 
 <body>
-		
+		<script type="text/javascript">toastr.info('Are you the 6 fingered man?')</script>
 	<div id="page">
 		
 	<header class="header menu_fixed">
@@ -43,7 +49,14 @@
 		</div>
 		<ul id="top_menu">
 			<li><a href="cart.php" class="cart-menu-btn" title="Cart"><strong>0</strong></a></li>
-			<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In">Sign In</a></li>
+			<?php if (!isset($_SESSION['customerId'])): ?>
+				<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Sign In">Sign In</a></li>
+			<?php endif ?>
+
+			<?php if (isset($_SESSION['customerId'])): ?>
+				<li><a href="#sign-in-dialog" id="sign-in" class="login" title="Log Out">Log Out</a></li>
+			<?php endif ?>
+			
 			
 		</ul>
 		<!-- /top_menu -->
