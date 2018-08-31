@@ -70,8 +70,8 @@ include("includes/header.php");
 			<section class="add_bottom_45">
 				<div class="main_title_3">
 					<span><em></em></span>
-					<h2>Available Vans for Rentals</h2>
-					<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+					<h2>Vans for Rentals</h2>
+					<p>here is some of the van ready for rentals.</p>
 				</div>
 				<div class="row">
 					<div class="col-xl-3 col-lg-6 col-md-6">
