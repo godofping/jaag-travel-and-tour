@@ -65,7 +65,7 @@
 				
 					<div class="form-group">
 						<label>UserName</label>
-						<input type="text" class="form-control" name="UserName" id="UserName" required="">
+						<input type="text" class="form-control" name="userName" id="userName" required="">
 						<i class="icon_mail_alt"></i>
 					</div>
 					<div class="form-group">
