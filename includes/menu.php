@@ -19,5 +19,9 @@
 				</li>
 				<?php endif ?>
 
+				<?php if (!isset($_SESSION['customerId'])): ?>
+					<li><span><a href="register.php">Create Account</a></span></li>
+				<?php endif ?>
+
 			</ul>
 		</nav>
