@@ -16,6 +16,10 @@ include("dashboard/includes/connection.php");
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
 
+    <link rel="stylesheet" href="dashboard/global/vendor/toastr/toastr.css">
+    <link rel="stylesheet" href="dashboard/assets/examples/css/advanced/toastr.css">
+  	<link rel="stylesheet" href="dashboard/global/fonts/material-design/material-design.min.css">
+
     <!-- BASE CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -42,7 +46,7 @@ include("dashboard/includes/connection.php");
 	<div id="login">
 		<aside>
 			<figure>
-				<a href="index.html"><img src="img/logo_sticky.png" width="155" height="36" data-retina="true" alt="" class="logo_sticky"></a>
+				<a href="index.php"><img src="img/logo_sticky.png" width="155" height="36" data-retina="true" alt="" class="logo_sticky"></a>
 			</figure>
 			  <form method="POST" action="controller.php">
 		
@@ -77,6 +81,43 @@ include("dashboard/includes/connection.php");
     <script src="js/common_scripts.js"></script>
     <script src="js/main.js"></script>
 	<script src="assets/validate.js"></script>	
+
+	<script src="dashboard/global/vendor/toastr/toastr.js"></script>
+	<script src="dashboard/global/js/Plugin/toastr.js"></script>
+
+	<?php 
+	if (isset($_SESSION['do'])): ?>
+
+        <script>
+            <?php if ($_SESSION['do'] == 'added'): ?>
+            toastr["success"]("Successfully added!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'updated'): ?>
+                toastr["success"]("Successfully updated!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'deleted'): ?>
+                toastr["success"]("Successfully deleted!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'updated-password-failed'): ?>
+                toastr["error"]("Update password failed! Please try again.", "Error");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'login-failed'): ?>
+
+                toastr["error"]("Login Failed! Wrong account.", "Error");
+            <?php endif ?>
+        </script>
+
+
+
+    <?php endif ?>
+
+
+
+ 		<?php
+        if (isset($_SESSION['do'])) {
+            unset($_SESSION['do']);
+        }
+        ?>
   
 </body>
 </html>

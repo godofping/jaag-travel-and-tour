@@ -43,12 +43,13 @@ if (isset($_POST['from']) and $_POST['from'] == 'login') {
 		$res = mysqli_fetch_assoc($qry);
 		$_SESSION['accountType'] = 'customer';
 		$_SESSION['customerId'] = $res['customerId'];
+		$_SESSION['do'] = 'login-success';
 		header("Location: index.php");
 	}
 	else
 	{
 
-		$_SESSION['do'] = 'failed';
+		$_SESSION['do'] = 'login-failed';
 		header("Location: login.php");
 
 	}

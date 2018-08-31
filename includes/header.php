@@ -27,9 +27,9 @@
 	<!-- Modernizr -->
 	<script src="js/modernizr.js"></script>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+	<link rel="stylesheet" href="dashboard/global/vendor/toastr/toastr.css">
+    <link rel="stylesheet" href="dashboard/assets/examples/css/advanced/toastr.css">
+  	<link rel="stylesheet" href="dashboard/global/fonts/material-design/material-design.min.css">
 	
 
 

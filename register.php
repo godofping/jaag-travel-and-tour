@@ -15,10 +15,11 @@ include("dashboard/includes/connection.php");
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
-    <script type="text/javascript" src="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css
-Install">
-	<script type="text/javascript">toastr.info('Are you the 6 fingered man?')</script>
+
+    <link rel="stylesheet" href="dashboard/global/vendor/toastr/toastr.css">
+    <link rel="stylesheet" href="dashboard/assets/examples/css/advanced/toastr.css">
+  	 <link rel="stylesheet" href="dashboard/global/fonts/material-design/material-design.min.css">
+
     <!-- BASE CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -44,7 +45,7 @@ Install">
 	<div id="login">
 		<aside>
 			<figure>
-				<a href="index.html"><img src="img/logo_sticky.png" width="155" height="36" data-retina="true" alt="" class="logo_sticky"></a>
+				<a href="index.php"><img src="img/logo_sticky.png" width="155" height="36" data-retina="true" alt="" class="logo_sticky"></a>
 			</figure>
 			<form autocomplete="off" method="POST" action="controller.php">
 				<div class="form-group">
@@ -122,7 +123,46 @@ Install">
 	
 	<!-- SPECIFIC SCRIPTS -->
 	<script src="js/pw_strenght.js"></script>
+
+	<script src="dashboard/global/vendor/toastr/toastr.js"></script>
+	<script src="dashboard/global/js/Plugin/toastr.js"></script>
+
+
 	
+	<?php 
+	if (isset($_SESSION['do'])): ?>
+
+        <script>
+            <?php if ($_SESSION['do'] == 'added'): ?>
+            toastr["success"]("Successfully added!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'updated'): ?>
+                toastr["success"]("Successfully updated!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'deleted'): ?>
+                toastr["success"]("Successfully deleted!", "Message");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'updated-password-failed'): ?>
+                toastr["error"]("Update password failed! Please try again.", "Error");
+            <?php endif ?>
+            <?php if ($_SESSION['do'] == 'username-taken'): ?>
+
+                toastr["error"]("Username is already taken! Please try another one.", "Error");
+            <?php endif ?>
+        </script>
+
+
+
+    <?php endif ?>
+
+
+
+ 		<?php
+        if (isset($_SESSION['do'])) {
+            unset($_SESSION['do']);
+        }
+        ?>
+
 	
   
 </body>
